@@ -68,7 +68,10 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new ExtractTextPlugin('css/[name].[contenthash].css'),
+    new ExtractTextPlugin({
+      filename: 'css/[name].[contenthash].css',
+      disable: !inProduction
+    }),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })

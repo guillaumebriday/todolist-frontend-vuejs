@@ -41,7 +41,7 @@ $ docker-compose run --rm node npm run dev
 
 # Or
 
-docker-compose run --rm node npm run watch
+$ docker-compose run --rm node npm run watch
 
 # Or
 

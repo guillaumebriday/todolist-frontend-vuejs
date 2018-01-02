@@ -69,14 +69,6 @@ module.exports = {
   devtool: '#eval-source-map',
   plugins: [
     new ExtractTextPlugin('css/[name].css'),
-    new PurifyCSSPlugin({
-      // Give paths to parse for rules. These should be absolute!
-      paths: glob.sync([
-        path.join(__dirname, './src/js/components/**/*.vue'),
-        path.join(__dirname, 'index.html')
-      ]),
-      minimize: inProduction
-    }),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
@@ -97,6 +89,14 @@ if (inProduction) {
       compress: {
         warnings: false
       }
+    }),
+    new PurifyCSSPlugin({
+      // Give paths to parse for rules. These should be absolute!
+      paths: glob.sync([
+        path.join(__dirname, './src/js/components/**/*.vue'),
+        path.join(__dirname, 'index.html')
+      ]),
+      minimize: true
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true

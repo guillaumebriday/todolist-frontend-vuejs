@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/',
-    filename: 'js/[name].js'
+    filename: 'js/[name].[hash].js'
   },
   module: {
     rules: [
@@ -68,7 +68,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new ExtractTextPlugin('css/[name].css'),
+    new ExtractTextPlugin('css/[name].[contenthash].css'),
     new HtmlWebpackPlugin({
       template: 'index.html'
     })

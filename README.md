@@ -50,7 +50,7 @@ $ docker-compose run --rm node npm run production
 
 Running ESLint :
 ```bash
-$ docker-compose run node npm run lint
+$ docker-compose run --rm node npm run lint
 ```
 
 ## More details

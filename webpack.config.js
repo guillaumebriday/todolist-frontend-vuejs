@@ -76,7 +76,7 @@ module.exports = {
 }
 
 if (inProduction) {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = false
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -86,7 +86,6 @@ if (inProduction) {
     }),
     new webpack.optimize.UglifyJsPlugin({
       parallel: true,
-      sourceMap: true,
       compress: {
         warnings: false
       }

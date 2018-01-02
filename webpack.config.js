@@ -85,6 +85,7 @@ if (inProduction) {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
+      parallel: true,
       sourceMap: true,
       compress: {
         warnings: false

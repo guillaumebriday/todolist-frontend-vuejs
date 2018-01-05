@@ -12,6 +12,7 @@ cache:
 script:
   - npm run lint
   - npm run production
+  - npm run test
 
 notifications:
   email: false

@@ -55,6 +55,11 @@ Running ESLint :
 $ docker-compose run --rm node npm run lint
 ```
 
+Running tests :
+```bash
+$ docker-compose run --rm node npm run test
+```
+
 ## More details
 
 More details are available on my blog post : [https://guillaumebriday.fr/laravel-vuejs-faire-une-todo-list-partie-1-presentation-et-objectifs](https://guillaumebriday.fr/laravel-vuejs-faire-une-todo-list-partie-1-presentation-et-objectifs) (French).

@@ -7,6 +7,8 @@
 
 The purpose of this repository is to consume API, provide by [a Laravel Application](https://github.com/guillaumebriday/todolist-backend), with the [Vue.js](https://vuejs.org) JavaScript front-end framework.
 
+![Screenshot](https://raw.githubusercontent.com/guillaumebriday/todolist-frontend/master/screenshot.png)
+
 ## Some of the tools used in this project
 
 - [Vue.js](https://vuejs.org)

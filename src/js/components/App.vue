@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link to="/" exact>Home</router-link>
+    <navbar></navbar>
 
     <router-view></router-view>
   </div>

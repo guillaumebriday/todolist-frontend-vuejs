@@ -7,6 +7,8 @@
 
 The purpose of this repository is to consume API, provide by [a Laravel Application](https://github.com/guillaumebriday/todolist-backend), with the [Vue.js](https://vuejs.org) JavaScript front-end framework.
 
+![Screenshot](https://raw.githubusercontent.com/guillaumebriday/todolist-frontend/master/screenshot.png)
+
 ## Some of the tools used in this project
 
 - [Vue.js](https://vuejs.org)
@@ -30,8 +32,8 @@ Setting up your development environment on your local machine :
 ```
 $ git clone https://github.com/guillaumebriday/todolist-frontend.git
 $ cd todolist-frontend
-$ docker-compose run node npm install
-$ docker-compose run --service-ports node npm run hot
+$ docker-compose run --rm node npm install
+$ docker-compose run --service-ports --rm node npm run hot
 ```
 
 ## Useful commands
@@ -51,6 +53,11 @@ $ docker-compose run --rm node npm run production
 Running ESLint :
 ```bash
 $ docker-compose run --rm node npm run lint
+```
+
+Running tests :
+```bash
+$ docker-compose run --rm node npm run test
 ```
 
 ## More details

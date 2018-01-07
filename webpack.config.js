@@ -4,6 +4,7 @@ var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var PurifyCSSPlugin = require('purifycss-webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var CleanWebpackPlugin = require('clean-webpack-plugin')
 var inProduction = (process.env.NODE_ENV === 'production')
 
 module.exports = {
@@ -97,7 +98,8 @@ if (inProduction) {
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: '"production"',
+        API_URL: '"http://localhost/api/v1/"'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
@@ -114,6 +116,7 @@ if (inProduction) {
       ]),
       minimize: true
     }),
+    new CleanWebpackPlugin(['dist']),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),

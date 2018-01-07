@@ -32,8 +32,8 @@ Setting up your development environment on your local machine :
 ```
 $ git clone https://github.com/guillaumebriday/todolist-frontend.git
 $ cd todolist-frontend
-$ docker-compose run node npm install
-$ docker-compose run --service-ports node npm run hot
+$ docker-compose run --rm node npm install
+$ docker-compose run --service-ports --rm node npm run hot
 ```
 
 ## Useful commands

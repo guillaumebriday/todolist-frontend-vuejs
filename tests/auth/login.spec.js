@@ -1,5 +1,5 @@
 import { mount } from 'vue-test-utils'
-import Login from '../src/js/components/auth/Login.vue'
+import Login from '@/components/auth/Login.vue'
 import expect from 'expect'
 
 /* eslint-disable no-undef */

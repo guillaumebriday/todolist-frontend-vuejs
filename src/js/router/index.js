@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import Home from '../components/Home'
 import Login from '../components/Login'
+import Register from '../components/Register'
 
 let router = new VueRouter({
   mode: 'history',
@@ -16,6 +17,12 @@ let router = new VueRouter({
       path: '/login',
       name: 'Login',
       component: Login,
+      meta: {auth: false}
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register,
       meta: {auth: false}
     },
     {

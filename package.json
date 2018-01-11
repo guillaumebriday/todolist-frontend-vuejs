@@ -13,7 +13,7 @@
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production webpack --no-progress --hide-modules",
     "lint": "eslint --ext .js,.vue src",
-    "test": "mocha-webpack --webpack-config webpack.config.js --require tests/setup.js tests/*.spec.js"
+    "test": "mocha-webpack --webpack-config webpack.config.js --require tests/setup.js tests/**/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.17.1",

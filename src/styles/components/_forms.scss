@@ -1,3 +1,7 @@
 .form-card {
   @apply .bg-white .shadow-md .rounded .border-indigo .border-t-4 .px-8 .pt-6 .pb-8 .mb-4;
 }
+
+.form-control {
+  @apply .shadow .appearance-none .border .rounded .w-full .py-2 .px-3 .text-grey-darker;
+}

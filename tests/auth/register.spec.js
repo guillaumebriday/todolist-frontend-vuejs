@@ -1,6 +1,7 @@
 import { mount } from 'vue-test-utils'
 import Register from '@/components/auth/Register.vue'
 import expect from 'expect'
+import Form from '@/utils/Form'
 
 /* eslint-disable no-undef */
 describe('Register', () => {
@@ -16,10 +17,12 @@ describe('Register', () => {
 
   it('enables the register button', () => {
     wrapper.setData({
-      name: 'frodo',
-      email: 'frodo@baggins.sh',
-      password: 'my_precious',
-      password_confirmation: 'my_precious'
+      form: new Form({
+        name: 'frodo',
+        email: 'frodo@baggins.sh',
+        password: 'my_precious',
+        password_confirmation: 'my_precious'
+      })
     })
 
     let button = wrapper.find('button')

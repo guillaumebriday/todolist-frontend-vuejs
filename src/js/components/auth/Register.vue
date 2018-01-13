@@ -7,36 +7,32 @@
       <span class="block sm:inline">Whoops, looks like something went wrong. Please try again.</span>
     </div>
 
-    <form @submit.prevent="register" class="form-card">
+    <form @submit.prevent="register" @keydown="form.errors.clear($event.target.name)" class="form-card">
       <div class="mb-4">
-        <label class="block text-grey-darker text-sm font-bold mb-2" for="name">
-          Name
-        </label>
-        <input v-focus v-model="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="name" type="text" :class="{ 'border-red mb-3' : this.errors['name'] }" placeholder="Name">
-        <p v-if="this.errors['name']" class="text-red text-xs italic">{{ this.errors['name'][0] }}</p>
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="name">Name</label>
+
+        <input v-focus v-model="form.name" class="form-control" id="name" type="text" :class="{ 'border-red mb-3' : form.errors.has('name') }" name="name" placeholder="Name">
+        <p v-if="form.errors.has('name')" class="text-red text-xs italic">{{ form.errors.get('name') }}</p>
       </div>
 
       <div class="mb-4">
-        <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
-          Email
-        </label>
-        <input v-model="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" :class="{ 'border-red mb-3' : this.errors['email'] }" id="username" type="email" placeholder="Email">
-        <p v-if="this.errors['email']" class="text-red text-xs italic">{{ this.errors['email'][0] }}</p>
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="username">Email</label>
+
+        <input v-model="form.email" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('email') }" id="username" type="email" name="email" placeholder="Email">
+        <p v-if="form.errors.has('email')" class="text-red text-xs italic">{{ form.errors.get('email') }}</p>
       </div>
 
       <div class="mb-6">
-        <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
-          Password
-        </label>
-        <input v-model="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" :class="{ 'border-red mb-3' : this.errors['password'] }" id="password" type="password" placeholder="Password">
-        <p v-if="this.errors['password']" class="text-red text-xs italic">{{ this.errors['password'][0] }}</p>
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="password">Password</label>
+
+        <input v-model="form.password" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('password') }" id="password" type="password" name="password" placeholder="Password">
+        <p v-if="form.errors.has('password')" class="text-red text-xs italic">{{ form.errors.get('password') }}</p>
       </div>
 
       <div class="mb-6">
-        <label class="block text-grey-darker text-sm font-bold mb-2" for="password_confirmation">
-          Password confirmation
-        </label>
-        <input v-model="password_confirmation" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="password_confirmation" type="password" placeholder="Password confirmation">
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="password_confirmation">Password confirmation</label>
+
+        <input v-model="form.password_confirmation" class="form-control" id="password_confirmation" type="password" name="password_confirmation" placeholder="Password confirmation">
       </div>
 
       <div class="flex items-center justify-between">
@@ -63,24 +59,25 @@
 </template>
 
 <script>
-import axios from 'axios'
+import Form from '@/utils/Form'
 
 export default {
   data () {
     return {
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
+      form: new Form({
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      }),
       isLoading: false,
-      hasErrors: false,
-      errors: []
+      hasErrors: false
     }
   },
 
   computed: {
     isDisabled () {
-      return this.email.length === 0 || this.name.length === 0 || this.password.length === 0 || this.password_confirmation.length === 0
+      return this.form.incompleted()
     }
   },
 
@@ -93,36 +90,20 @@ export default {
       this.isLoading = true
       this.hasErrors = false
 
-      axios
-        .post('auth/register', {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          password_confirmation: this.password_confirmation
-        })
+      this.form.post('auth/register')
         .then(response => {
-          // Login the created user
-          axios
-            .post('auth/login', {
-              email: this.email,
-              password: this.password
+          this.form.post('auth/login')
+            .then(data => {
+              this.$store.dispatch('login', data.access_token)
             })
-            .then(response => {
-              this.$store.dispatch('login', response.data.access_token)
-            })
-            .catch(error => {
-              console.log(error)
-
-              this.hasErrors = false
+            .catch(() => {
+              this.hasErrors = true
             })
         })
-        .catch(error => {
-          console.log(error)
-
+        .catch(() => {
           this.isLoading = false
-          this.errors = error.response.data.errors
-          this.password = ''
-          this.password_confirmation = ''
+          this.form.password = ''
+          this.form.password_confirmation = ''
         })
     }
   }

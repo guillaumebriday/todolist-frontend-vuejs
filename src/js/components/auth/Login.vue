@@ -3,23 +3,19 @@
   <div class="w-full max-w-xs">
     <h1 class="text-center mb-6">Todolist</h1>
 
-    <div v-if="hasErrors" class="bg-red-lightest border border-red-light text-red-dark px-4 py-3 rounded relative mb-3" role="alert">
-      <span class="block sm:inline">Incorrect username or password.</span>
-    </div>
-
-    <form @submit.prevent="login" class="form-card">
+    <form @submit.prevent="login" @keydown="form.errors.clear($event.target.name)" class="form-card">
       <div class="mb-4">
-        <label class="block text-grey-darker text-sm font-bold mb-2" for="email">
-          Email
-        </label>
-        <input v-focus v-model="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="email" type="email" placeholder="Email">
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="email">Email</label>
+
+        <input v-focus v-model="form.email" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('email') }" id="email" type="email" name="email" placeholder="Email">
+        <p v-if="form.errors.has('email')" class="text-red text-xs italic">{{ form.errors.get('email') }}</p>
       </div>
 
       <div class="mb-6">
-        <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
-          Password
-        </label>
-        <input v-model="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="password" type="password" placeholder="Password">
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="password">Password</label>
+
+        <input v-model="form.password" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('password') }" id="password" type="password" name="password" placeholder="Password">
+        <p v-if="form.errors.has('password')" class="text-red text-xs italic">{{ form.errors.get('password') }}</p>
       </div>
 
       <button class="btn-indigo" type="submit" :disabled="this.isDisabled" :class="{ 'opacity-50 cursor-not-allowed': this.isDisabled }">
@@ -42,21 +38,22 @@
 </template>
 
 <script>
-import axios from 'axios'
+import Form from '@/utils/Form'
 
 export default {
   data () {
     return {
-      email: '',
-      password: '',
-      isLoading: false,
-      hasErrors: false
+      form: new Form({
+        email: '',
+        password: ''
+      }),
+      isLoading: false
     }
   },
 
   computed: {
     isDisabled () {
-      return this.email.length === 0 || this.password.length === 0
+      return this.form.incompleted()
     }
   },
 
@@ -67,24 +64,14 @@ export default {
       }
 
       this.isLoading = true
-      this.hasErrors = false
 
-      axios
-        .post('auth/login', {
-          email: this.email,
-          password: this.password
+      this.form.post('auth/login')
+        .then(data => {
+          this.$store.dispatch('login', data.access_token)
         })
-        .then(response => {
+        .catch(() => {
           this.isLoading = false
-
-          this.$store.dispatch('login', response.data.access_token)
-        })
-        .catch(error => {
-          console.log(error)
-
-          this.isLoading = false
-          this.hasErrors = true
-          this.password = ''
+          this.form.password = ''
         })
     }
   }

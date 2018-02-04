@@ -11,7 +11,7 @@ module.exports = {
   entry: {
     app: [
       './src/js/app.js',
-      './src/styles/app.scss'
+      './src/styles/app.sass'
     ]
   },
   output: {

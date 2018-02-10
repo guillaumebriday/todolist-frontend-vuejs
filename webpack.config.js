@@ -45,15 +45,6 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [path.resolve(__dirname, './src')],
-        options: {
-          emitWarning: true
-        }
-      },
-      {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         use: [{
           loader: 'file-loader',

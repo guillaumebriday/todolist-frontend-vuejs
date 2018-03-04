@@ -3,8 +3,8 @@
   <div class="w-full max-w-xs">
     <h1 class="text-center mb-6">Todolist</h1>
 
-    <div v-if="hasErrors" class="bg-red-lightest border border-red-light text-red-dark px-4 py-3 rounded relative mb-3" role="alert">
-      <span class="block sm:inline">Whoops, looks like something went wrong. Please try again.</span>
+    <div v-if="error" class="bg-red-lightest border border-red-light text-red-dark px-4 py-3 rounded relative mb-3" role="alert">
+      <span class="block sm:inline">{( error.message }}</span>
     </div>
 
     <form @submit.prevent="register" @keydown="form.errors.clear($event.target.name)" class="form-card">
@@ -71,13 +71,13 @@ export default {
         password_confirmation: ''
       }),
       isLoading: false,
-      hasErrors: false
+      error: false
     }
   },
 
   computed: {
     isDisabled () {
-      return this.form.incompleted()
+      return this.form.incompleted() || this.isLoading
     }
   },
 
@@ -88,7 +88,7 @@ export default {
       }
 
       this.isLoading = true
-      this.hasErrors = false
+      this.error = null
 
       this.form.post('auth/register')
         .then(response => {
@@ -96,8 +96,8 @@ export default {
             .then(data => {
               this.$store.dispatch('login', data.access_token)
             })
-            .catch(() => {
-              this.hasErrors = true
+            .catch((error) => {
+              this.error = error
             })
         })
         .catch(() => {

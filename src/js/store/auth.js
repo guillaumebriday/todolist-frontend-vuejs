@@ -6,7 +6,7 @@ const types = {
 }
 
 const state = {
-  logged: !!localStorage.getItem('token')
+  logged: !!window.localStorage.getItem('token')
 }
 
 const mutations = {
@@ -26,14 +26,14 @@ const getters = {
 const actions = {
   login ({ commit }, token) {
     commit(types.LOGIN)
-    localStorage.setItem('token', token)
+    window.localStorage.setItem('token', token)
 
     router.push({name: 'Home'})
   },
 
   logout ({ commit }) {
     commit(types.LOGOUT)
-    localStorage.removeItem('token')
+    window.localStorage.removeItem('token')
 
     router.push({name: 'Login'})
   }

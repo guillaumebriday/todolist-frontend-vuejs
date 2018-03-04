@@ -28,7 +28,7 @@ const actions = {
     commit(types.LOGIN)
     window.localStorage.setItem('token', token)
 
-    router.push({name: 'Home'})
+    router.push({name: 'TaskList'})
   },
 
   logout ({ commit }) {

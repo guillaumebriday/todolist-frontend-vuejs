@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router'
 import store from '../store'
-import Home from '../components/Home'
+import TaskList from '../components/Tasks/TaskList'
 import Login from '../components/auth/Login'
 import Register from '../components/auth/Register'
 
@@ -9,8 +9,8 @@ let router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home,
+      name: 'TaskList',
+      component: TaskList,
       meta: {auth: true}
     },
     {

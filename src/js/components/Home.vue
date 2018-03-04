@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">{{ message }}</h1>
+    <task-list></task-list>
   </div>
 </template>
 

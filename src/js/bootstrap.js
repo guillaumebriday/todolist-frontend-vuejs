@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import axios from 'axios'
+import Datetime from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
 import Navbar from './components/Navbar'
 
 const API_URL = process.env.API_URL || 'http://localhost/api/v1/'
@@ -8,6 +10,8 @@ const API_URL = process.env.API_URL || 'http://localhost/api/v1/'
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
+Vue.use(Datetime)
+
 Vue.component('Navbar', Navbar)
 
 Vue.directive('focus', {

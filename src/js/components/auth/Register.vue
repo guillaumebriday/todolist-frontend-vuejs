@@ -4,7 +4,7 @@
     <h1 class="text-center mb-6">Todolist</h1>
 
     <div v-if="error" class="bg-red-lightest border border-red-light text-red-dark px-4 py-3 rounded relative mb-3" role="alert">
-      <span class="block sm:inline">{( error.message }}</span>
+      <span class="block sm:inline">{{ error.message }}</span>
     </div>
 
     <form @submit.prevent="register" @keydown="form.errors.clear($event.target.name)" class="form-card">
@@ -91,17 +91,13 @@ export default {
       this.error = null
 
       this.form.post('auth/register')
-        .then(response => {
-          this.form.post('auth/login')
-            .then(data => {
-              this.$store.dispatch('login', data.access_token)
-            })
-            .catch((error) => {
-              this.error = error
-            })
+        .then(data => {
+          this.$store.dispatch('login', data.access_token)
         })
-        .catch(() => {
+        .catch(error => {
           this.isLoading = false
+          this.error = error
+
           this.form.password = ''
           this.form.password_confirmation = ''
         })

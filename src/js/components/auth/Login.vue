@@ -53,7 +53,7 @@ export default {
 
   computed: {
     isDisabled () {
-      return this.form.incompleted()
+      return this.form.incompleted() || this.isLoading
     }
   },
 

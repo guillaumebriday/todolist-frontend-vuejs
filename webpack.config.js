@@ -11,7 +11,7 @@ module.exports = {
   entry: {
     app: [
       './src/js/app.js',
-      './src/styles/app.scss'
+      './src/styles/app.sass'
     ]
   },
   output: {
@@ -29,6 +29,10 @@ module.exports = {
         }
       },
       {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
         test: /\.s[ac]ss$/,
         use: ExtractTextPlugin.extract({
           use: [
@@ -43,15 +47,6 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      },
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [path.resolve(__dirname, './src')],
-        options: {
-          emitWarning: true
-        }
       },
       {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,

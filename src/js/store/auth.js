@@ -1,4 +1,5 @@
 import router from '../router'
+import axios from 'axios'
 
 const types = {
   LOGIN: 'LOGIN',
@@ -27,6 +28,7 @@ const actions = {
   login ({ commit }, token) {
     commit(types.LOGIN)
     window.localStorage.setItem('token', token)
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
     router.push({name: 'TaskList'})
   },
@@ -34,6 +36,7 @@ const actions = {
   logout ({ commit }) {
     commit(types.LOGOUT)
     window.localStorage.removeItem('token')
+    delete axios.defaults.headers.common['Authorization']
 
     router.push({name: 'Login'})
   }

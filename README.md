@@ -60,6 +60,22 @@ Running tests :
 $ docker-compose run --rm node npm run test
 ```
 
+## Deploy in production
+
+You can serve your application with [nginx](https://nginx.org/) in production. The configuration is very simple because it's only static files.
+
+To start nginx :
+```bash
+$ docker-compose up -d
+```
+
+To stop nginx :
+```bash
+$ docker-compose down
+```
+
+The default port is ```8888``` here but you can change it as you want.
+
 ## More details
 
 More details are available on my blog post : [https://guillaumebriday.fr/laravel-vuejs-faire-une-todo-list-partie-1-presentation-et-objectifs](https://guillaumebriday.fr/laravel-vuejs-faire-une-todo-list-partie-1-presentation-et-objectifs) (French).

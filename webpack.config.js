@@ -123,7 +123,7 @@ if (inProduction) {
         }
       ]
     }),
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist/*.*']),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),

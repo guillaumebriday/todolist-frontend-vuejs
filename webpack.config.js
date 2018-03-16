@@ -2,10 +2,16 @@ var path = require('path')
 var glob = require('glob-all')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var PurifyCSSPlugin = require('purifycss-webpack')
+var PurgecssPlugin = require('purgecss-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 var inProduction = (process.env.NODE_ENV === 'production')
+
+class TailwindExtractor {
+  static extract (content) {
+    return content.match(/[A-z0-9-:\/]+/g) || []
+  }
+}
 
 module.exports = {
   entry: {
@@ -104,13 +110,18 @@ if (inProduction) {
         warnings: false
       }
     }),
-    new PurifyCSSPlugin({
-      // Give paths to parse for rules. These should be absolute!
+    new PurgecssPlugin({
+      // Specify the locations of any files you want to scan for class names.
       paths: glob.sync([
         path.join(__dirname, './src/js/components/**/*.vue'),
         path.join(__dirname, 'index.html')
       ]),
-      minimize: true
+      extractors: [
+        {
+          extractor: TailwindExtractor,
+          extensions: ['html', 'js', 'vue']
+        }
+      ]
     }),
     new CleanWebpackPlugin(['dist']),
     new webpack.LoaderOptionsPlugin({

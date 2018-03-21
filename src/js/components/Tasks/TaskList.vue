@@ -15,7 +15,7 @@
     </div>
 
     <div class="container mx-auto mt-3 px-4">
-      <task-form @created="addTask"></task-form>
+      <task-form v-if="check != 'completed'" @created="addTask"></task-form>
 
       <div v-if="timeToChill" class="text-center mt-6">
         <p class="text-5xl">🍻</p>

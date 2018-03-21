@@ -91,9 +91,7 @@ export default {
       this.error = null
 
       this.form.post('auth/register')
-        .then(data => {
-          this.$store.dispatch('login', data.access_token)
-        })
+        .then(data => this.$store.dispatch('login', data))
         .catch(error => {
           this.isLoading = false
           this.error = error

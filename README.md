@@ -60,6 +60,12 @@ Running tests :
 $ docker-compose run --rm node npm run test
 ```
 
+## Broadcasting & WebSockets
+
+Before using WebSockets, you need to set the ```PUSHER_APP_KEY``` key in your .env file.
+
+You could generate a key on [https://pusher.com/](https://pusher.com/).
+
 ## Deploy in production
 
 You can serve your application with [nginx](https://nginx.org/) in production. The configuration is very simple because it's only static files.

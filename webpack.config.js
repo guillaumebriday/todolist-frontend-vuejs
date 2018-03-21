@@ -1,10 +1,11 @@
 var path = require('path')
 var glob = require('glob-all')
 var webpack = require('webpack')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var MiniCssExtractPlugin = require('mini-css-extract-plugin')
 var PurgecssPlugin = require('purgecss-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
+var Dotenv = require('dotenv-webpack')
 var inProduction = (process.env.NODE_ENV === 'production')
 
 class TailwindExtractor {
@@ -14,6 +15,7 @@ class TailwindExtractor {
 }
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: [
       './src/js/app.js',
@@ -29,10 +31,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          extractCSS: true
-        }
+        loader: 'vue-loader'
       },
       {
         test: /\.css$/,
@@ -40,14 +39,12 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/,
-        use: ExtractTextPlugin.extract({
-          use: [
-            {loader: 'css-loader', options: {importLoaders: 2}},
-            'postcss-loader',
-            'sass-loader'
-          ],
-          fallback: 'style-loader'
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          {loader: 'css-loader', options: {importLoaders: 2}},
+          'postcss-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.js$/,
@@ -84,9 +81,9 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new ExtractTextPlugin({
-      filename: 'css/[name].[contenthash].css',
-      disable: !inProduction
+    new Dotenv(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css'
     }),
     new HtmlWebpackPlugin({
       template: 'index.html'
@@ -96,20 +93,9 @@ module.exports = {
 
 if (inProduction) {
   module.exports.devtool = false
+  module.exports.mode = 'production'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-        API_URL: '"http://localhost/api/v1/"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      parallel: true,
-      compress: {
-        warnings: false
-      }
-    }),
     new PurgecssPlugin({
       // Specify the locations of any files you want to scan for class names.
       paths: glob.sync([
@@ -123,7 +109,7 @@ if (inProduction) {
         }
       ]
     }),
-    new CleanWebpackPlugin(['dist/*.*']),
+    new CleanWebpackPlugin(['dist/**/*.*']),
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),

@@ -66,9 +66,7 @@ export default {
       this.isLoading = true
 
       this.form.post('auth/login')
-        .then(data => {
-          this.$store.dispatch('login', data.access_token)
-        })
+        .then(data => this.$store.dispatch('login', data))
         .catch(() => {
           this.isLoading = false
           this.form.password = ''

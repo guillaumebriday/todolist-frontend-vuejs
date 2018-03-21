@@ -25,10 +25,12 @@ const getters = {
 }
 
 const actions = {
-  login ({ commit }, token) {
+  login ({ commit }, data) {
     commit(types.LOGIN)
-    window.localStorage.setItem('token', token)
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
+
+    window.localStorage.setItem('token', data.access_token)
+    window.localStorage.setItem('userId', data.user_id)
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token
 
     router.push({name: 'TaskList'})
   },
@@ -36,6 +38,7 @@ const actions = {
   logout ({ commit }) {
     commit(types.LOGOUT)
     window.localStorage.removeItem('token')
+    window.localStorage.removeItem('userId')
     delete axios.defaults.headers.common['Authorization']
 
     router.push({name: 'Login'})

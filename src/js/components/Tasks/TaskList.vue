@@ -35,8 +35,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data () {
     return {
@@ -69,15 +67,28 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
+    let userId = window.localStorage.getItem('userId')
+
     this.getTasks()
+
+    if (window.Echo) {
+      window.Echo.private(`App.User.${userId}`)
+        .listen('TaskCreated', e => this.addTask(e.task))
+        .listen('TaskUpdated', e => this.updateTask(e.task))
+        .listen('TaskDeleted', e => this.removeTask(e.task))
+    }
   },
 
   methods: {
     getTasks () {
-      axios.get('/tasks').then(response => {
+      window.axios.get('/tasks').then(response => {
         this.tasks.push(...response.data.data)
       })
+    },
+
+    addTask (task) {
+      this.tasks.push(task)
     },
 
     updateTask (task) {
@@ -88,10 +99,6 @@ export default {
     removeTask (task) {
       let taskId = task.id
       this.tasks.splice(this.tasks.findIndex(task => task.id === taskId), 1)
-    },
-
-    addTask (task) {
-      this.tasks.push(task)
     }
   }
 }

@@ -10,12 +10,19 @@
       </label>
 
       <label :class="[check === 'completed' ? 'pill-active' : 'pill-inactive']" class="pill-default">
-        <input type="radio"  v-model="check" class="hidden" value="completed"> Done ({{ completedTasks.length }})
+        <input type="radio"  v-model="check" class="hidden" value="completed"> Completed ({{ completedTasks.length }})
       </label>
     </div>
 
     <div class="container mx-auto mt-3 px-4">
       <task-form v-if="check != 'completed'" @created="addTask"></task-form>
+
+      <div v-else class="flex justify-end">
+        <div v-if="completedTasks.length" @click="deleteTasks" :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']" class="mx-4 text-grey-darker text-sm">
+          <i v-if="isRemoveLoading" class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
+          <i v-else class="fa fa-trash mr-1" aria-hidden="true"></i> Delete completed tasks
+        </div>
+      </div>
 
       <div v-if="timeToChill" class="text-center mt-6">
         <p class="text-5xl">🍻</p>
@@ -39,7 +46,8 @@ export default {
   data () {
     return {
       tasks: [],
-      check: 'active'
+      check: 'active',
+      isRemoveLoading: false
     }
   },
 
@@ -63,7 +71,7 @@ export default {
     },
 
     timeToChill () {
-      return this.check === 'active' && !this.activeTasks.length
+      return !this.tasks.length || (this.check === 'completed' && !this.completedTasks.length)
     }
   },
 
@@ -77,6 +85,7 @@ export default {
         .listen('TaskCreated', e => this.addTask(e.task))
         .listen('TaskUpdated', e => this.updateTask(e.task))
         .listen('TaskDeleted', e => this.removeTask(e.task))
+        .listen('TasksDeleted', e => this.tasksDeleted())
     }
   },
 
@@ -99,6 +108,27 @@ export default {
     removeTask (task) {
       let taskId = task.id
       this.tasks.splice(this.tasks.findIndex(task => task.id === taskId), 1)
+    },
+
+    tasksDeleted () {
+      this.completedTasks.forEach(task => this.removeTask(task))
+    },
+
+    deleteTasks () {
+      if (this.isRemoveLoading || !window.confirm('Are you sure ? All your completed tasks will be deleted forever.')) {
+        return false
+      }
+
+      this.isRemoveLoading = true
+
+      window.axios.delete('/tasks')
+        .then(response => {
+          this.tasksDeleted()
+          this.isRemoveLoading = false
+        })
+        .catch(() => {
+          this.isRemoveLoading = false
+        })
     }
   }
 }

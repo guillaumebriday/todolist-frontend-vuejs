@@ -29,14 +29,14 @@
         Time to chill ! You have no tasks
       </div>
 
-      <ul class="list-reset">
+      <transition-group class="list-reset" name="list" tag="ul">
         <task v-for="task in filteredTasks"
               :key="task.id"
               :task="task"
               @updated="updateTask"
               @deleted="removeTask">
         </task>
-      </ul>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -133,3 +133,18 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+  .list-item
+    display: inline-block
+    margin-right: 10px
+
+  .list-enter-active,
+  .list-leave-active
+    transition: all .3s
+
+  .list-enter,
+  .list-leave-to
+    opacity: 0
+    transform: translateX(30px)
+</style>

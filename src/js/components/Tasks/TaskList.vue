@@ -24,6 +24,11 @@
         </div>
       </div>
 
+      <div v-if="isLoading" class="text-xl text-center mt-6 text-grey-darker">
+        <i class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
+        Loading
+      </div>
+
       <div v-if="timeToChill" class="text-center mt-6">
         <p class="text-5xl">🍻</p>
         Time to chill ! You have no tasks
@@ -47,6 +52,7 @@ export default {
     return {
       tasks: [],
       check: 'active',
+      isLoading: false,
       isRemoveLoading: false
     }
   },
@@ -71,6 +77,10 @@ export default {
     },
 
     timeToChill () {
+      if (this.isLoading) {
+        return false
+      }
+
       return !this.tasks.length || (this.check === 'completed' && !this.completedTasks.length)
     }
   },
@@ -91,9 +101,17 @@ export default {
 
   methods: {
     getTasks () {
-      window.axios.get('/tasks').then(response => {
-        this.tasks.push(...response.data.data)
-      })
+      this.isLoading = true
+
+      window.axios.get('/tasks')
+        .then(response => {
+          this.isLoading = false
+
+          this.tasks.push(...response.data.data)
+        })
+        .catch(() => {
+          this.isLoading = false
+        })
     },
 
     addTask (task) {

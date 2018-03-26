@@ -50,8 +50,9 @@ export default {
   methods: {
     addTask () {
       if (this.isDisabled) {
-        return
+        return false
       }
+
       this.isLoading = true
       this.errors = null
 

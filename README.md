@@ -98,6 +98,15 @@ And then run :
 $ ansible-playbook -i hosts playbook.yml
 ```
 
+Now with [Capistrano](http://capistranorb.com/) :
+
+Before starting, change the configuration files with your informations, then run :
+
+```bash
+$ bundle install
+$ cap production deploy
+```
+
 ## More details
 
 More details are available on my blog post : [https://guillaumebriday.fr/laravel-vuejs-faire-une-todo-list-partie-1-presentation-et-objectifs](https://guillaumebriday.fr/laravel-vuejs-faire-une-todo-list-partie-1-presentation-et-objectifs) (French).

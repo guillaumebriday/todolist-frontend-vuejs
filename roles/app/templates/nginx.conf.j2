@@ -1,0 +1,10 @@
+server {
+  listen 80;
+
+  root {{ app_dir }}/current/dist;
+  index index.html;
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}

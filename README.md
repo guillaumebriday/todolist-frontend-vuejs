@@ -70,17 +70,33 @@ You could generate a key on [https://pusher.com/](https://pusher.com/).
 
 You can serve your application with [nginx](https://nginx.org/) in production. The configuration is very simple because it's only static files.
 
-To start nginx :
-```bash
-$ docker-compose up -d
+You can deploy this application with Ansible and Capistrano.
+
+Just create an ```hosts``` file like the following one :
+
+```ini
+[webservers]
+example.com
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[webservers:vars]
+app_dir=change-me
+app_url=example.com
+base_url=http://example.com
+pusher_app_key=a1b2c3d4
 ```
 
-To stop nginx :
-```bash
-$ docker-compose down
-```
+The ```app_dir``` must be the same in the ```playbook.yml```.
 
-The default port is ```8888``` here but you can change it as you want.
+Setup the user you use on your server in the ```roles``` and in the ```config/deploy``` folders.
+
+And then run :
+
+```bash
+$ ansible-playbook -i hosts playbook.yml
+```
 
 ## More details
 

@@ -1,13 +1,13 @@
 # Todolist-frontend Application
 
-[![Build Status](https://travis-ci.org/guillaumebriday/todolist-frontend.svg?branch=master)](https://travis-ci.org/guillaumebriday/todolist-frontend)
+[![Build Status](https://travis-ci.org/guillaumebriday/todolist-frontend-vuejs.svg?branch=master)](https://travis-ci.org/guillaumebriday/todolist-frontend-vuejs)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/guillaumebriday)
 
-> Frontend for https://github.com/guillaumebriday/todolist-backend app, built for a serie of articles on my [blog](https://guillaumebriday.fr/).
+> Frontend for https://github.com/guillaumebriday/todolist-backend-laravel app, built for a serie of articles on my [blog](https://guillaumebriday.fr/).
 
-The purpose of this repository is to consume API, provide by [a Laravel Application](https://github.com/guillaumebriday/todolist-backend), with the [Vue.js](https://vuejs.org) JavaScript front-end framework.
+The purpose of this repository is to consume API, provide by [a Laravel Application](https://github.com/guillaumebriday/todolist-backend-laravel), with the [Vue.js](https://vuejs.org) JavaScript front-end framework.
 
-![Screenshot](https://raw.githubusercontent.com/guillaumebriday/todolist-frontend/master/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/guillaumebriday/todolist-frontend-vuejs/master/screenshot.png)
 
 ## Some of the tools used in this project
 
@@ -30,7 +30,7 @@ Development environment requirements :
 
 Setting up your development environment on your local machine :
 ```
-$ git clone https://github.com/guillaumebriday/todolist-frontend.git
+$ git clone https://github.com/guillaumebriday/todolist-frontend-vuejs.git
 $ cd todolist-frontend
 $ docker-compose run --rm node npm install
 $ docker-compose run --service-ports --rm node npm run hot

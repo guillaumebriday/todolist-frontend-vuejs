@@ -52,7 +52,7 @@
     </form>
 
     <p class="text-center text-grey text-xs">
-      Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend" class="text-grey">GitHub</a>.
+      Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" class="text-grey">GitHub</a>.
     </p>
   </div>
 </div>

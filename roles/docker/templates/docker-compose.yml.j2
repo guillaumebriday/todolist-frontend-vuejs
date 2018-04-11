@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  node:
+    image: node
+    working_dir: /app
+    volumes:
+      - .:/app
+
+  todolist-frontend:
+    image: nginx
+    networks:
+       - web
+    volumes:
+      - {{ app_dir }}/nginx.conf:/etc/nginx/conf.d/default.conf
+      - {{ app_dir }}:{{ app_dir }}
+    restart: unless-stopped
+    labels:
+      - "traefik.backend=todolist-frontend"
+      - "traefik.frontend.rule=Host:{{ app_url }}"
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+
+networks:
+  web:
+    external: true

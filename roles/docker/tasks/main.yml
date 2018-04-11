@@ -1,0 +1,14 @@
+---
+- name: Pull docker images
+  docker_image:
+    name: "{{ item }}"
+  with_items:
+    - nginx:latest
+    - node:latest
+
+- name: Adding docker-compose.yml file
+  template:
+    src: ../templates/docker-compose.yml.j2
+    dest: /var/www/todolist-frontend/docker-compose.yml
+    owner: vagrant
+    group: docker

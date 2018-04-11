@@ -1,0 +1,7 @@
+---
+- name: Provisionning webservers group
+  hosts: webservers
+  become: yes
+  roles:
+    - app
+    - docker

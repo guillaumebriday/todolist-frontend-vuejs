@@ -1,7 +1,7 @@
 server {
-  listen 8888;
+  listen 80;
 
-  root /var/www/html;
+  root {{ app_dir }}/current/dist;
   index index.html;
 
   location / {

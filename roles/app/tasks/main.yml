@@ -1,0 +1,29 @@
+---
+- name: add vagrant to the user groups docker and sudo
+  user:
+    name: vagrant
+    groups: sudo,docker
+    state: present
+
+- name: Ensures todolist-frontend dirs exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: vagrant
+    group: docker
+  with_items:
+    - /var/www/todolist-frontend
+
+- name: Adding nginx file
+  template:
+    src: ../templates/nginx.conf.j2
+    dest: /var/www/todolist-frontend/nginx.conf
+    owner: vagrant
+    group: docker
+
+- name: Adding .env file
+  template:
+    src: ../templates/.env.j2
+    dest: /var/www/todolist-frontend/.env
+    owner: vagrant
+    group: docker

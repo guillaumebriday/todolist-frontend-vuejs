@@ -2,8 +2,8 @@ version: '3'
 
 services:
   node:
-    build: ./provisioning
-    image: todolist-frontend
+    image: node
+    working_dir: /app
     ports:
       - 8080:8080
     volumes:

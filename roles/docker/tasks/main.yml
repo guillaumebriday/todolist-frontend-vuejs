@@ -9,6 +9,6 @@
 - name: Adding docker-compose.yml file
   template:
     src: ../templates/docker-compose.yml.j2
-    dest: /var/www/todolist-frontend/docker-compose.yml
-    owner: vagrant
-    group: docker
+    dest: "{{ app_dir }}/docker-compose.yml"
+    owner: "{{ user }}"
+    group: "{{ group }}"

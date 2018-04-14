@@ -82,15 +82,12 @@ example.com
 ansible_python_interpreter=/usr/bin/python3
 
 [webservers:vars]
-app_dir=change-me
 app_url=example.com
 base_url=http://example.com
 pusher_app_key=a1b2c3d4
 ```
 
-The ```app_dir``` must be the same in the ```playbook.yml```.
-
-Setup the user you use on your server in the ```roles``` and in the ```config/deploy``` folders.
+Setup your variables in the ```playbook.yml``` and in the ```config/deploy.rb``` files.
 
 And then run :
 

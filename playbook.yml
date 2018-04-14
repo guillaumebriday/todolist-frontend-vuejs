@@ -2,6 +2,10 @@
 - name: Provisionning webservers group
   hosts: webservers
   become: yes
+  vars:
+    user: vagrant
+    group: docker
+    app_dir: /var/www/todolist-frontend
   roles:
     - app
     - docker

@@ -1,5 +1,3 @@
-server '192.168.50.4', user: 'vagrant', roles: %w{app db web}
-
 after 'deploy:updated', 'docker:compose'
 after 'deploy:updated', 'docker:env'
 

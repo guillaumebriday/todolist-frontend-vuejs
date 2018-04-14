@@ -1,12 +1,6 @@
 version: '3'
 
 services:
-  node:
-    image: node
-    working_dir: /app
-    volumes:
-      - .:/app
-
   todolist-frontend:
     image: nginx
     networks:

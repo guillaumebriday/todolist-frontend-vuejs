@@ -3,7 +3,7 @@ namespace :node do
   task :install do
     on roles(:app) do
       within release_path do
-        execute "docker-compose", :run, "--rm", :node, :npm, :install
+        execute :docker, :run, "--rm", "-v", "$(pwd):/app", "-w", "/app", :node, :npm, :install
       end
     end
   end
@@ -12,7 +12,7 @@ namespace :node do
   task :build do
     on roles(:app) do
       within release_path do
-        execute "docker-compose", :run, "--rm", :node, :npm, :run, :production
+        execute :docker, :run, "--rm", "-v", "$(pwd):/app", "-w", "/app", :node, :npm, :run, :production
       end
     end
   end

@@ -6,14 +6,14 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "hot": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.js --hot",
     "dev": "npm run development",
-    "development": "cross-env NODE_ENV=development webpack --mode=development --progress --hide-modules",
+    "development": "cross-env NODE_ENV=development webpack --config build/webpack.dev.js --mode development --progress --hide-modules",
     "watch": "npm run development -- --watch",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production webpack --mode=production --no-progress --hide-modules",
+    "production": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js --mode production --no-progress --hide-modules",
     "lint": "eslint --ext .js,.vue src",
-    "test": "mocha-webpack --webpack-config webpack.config.js --require tests/setup.js tests/**/*.spec.js"
+    "test": "mocha-webpack --webpack-config build/webpack.dev.js --require tests/setup.js tests/**/*.spec.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -22,12 +22,13 @@
     "laravel-echo": "^1.3.5",
     "luxon": "^0.5.8",
     "moment": "^2.21.0",
+    "pusher-js": "^4.2.2",
     "tailwindcss": "^0.5.1",
     "vue": "^2.5.16",
-    "pusher-js": "^4.2.2",
     "vue-datetime": "^1.0.0-beta.3",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "webpack-merge": "^4.1.2"
   },
   "browserslist": [
     "> 1%",

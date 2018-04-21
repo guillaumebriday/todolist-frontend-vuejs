@@ -69,11 +69,11 @@ export default {
     },
 
     completedTasks () {
-      return this.tasks.filter(task => task.deleted_at !== null)
+      return this.tasks.filter(task => task.is_completed === true)
     },
 
     activeTasks () {
-      return this.tasks.filter(task => task.deleted_at === null)
+      return this.tasks.filter(task => task.is_completed === false)
     },
 
     timeToChill () {

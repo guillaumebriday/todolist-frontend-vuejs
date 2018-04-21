@@ -21,17 +21,17 @@
 
         <div v-else class="flex items-center">
           <!-- Checkbox -->
-          <div @click="toggleCheck" :class="{ 'bg-indigo-darker' : deleted, 'cursor-not-allowed' : isToggleLoading }" class="flex-none rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center shadow">
-            <i v-if="isToggleLoading" :class="[deleted ? 'text-white' : 'text-indigo-dark']" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-            <i v-else class="fa fa-check" :class="{'hover:text-indigo-dark' : ! deleted}" aria-hidden="true"></i>
+          <div @click="toggleCompleted" :class="{ 'bg-indigo-darker' : task.is_completed, 'cursor-not-allowed' : isToggleLoading }" class="flex-none rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center shadow">
+            <i v-if="isToggleLoading" :class="[task.is_completed ? 'text-white' : 'text-indigo-dark']" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+            <i v-else class="fa fa-check" :class="{'hover:text-indigo-dark' : ! task.is_completed}" aria-hidden="true"></i>
           </div>
 
           <!-- Clock -->
-          <span v-if="task.due_at" @click="editTask = true" :title="toDate(task)" class="flex flex-no-shrink rounded-full bg-indigo-dark uppercase mx-2 px-2 py-1 text-xs font-bold cursor-pointer" :class="{ 'line-through text-grey' : this.deleted }">
+          <span v-if="task.due_at" @click="editTask = true" :title="toDate(task)" class="flex flex-no-shrink rounded-full bg-indigo-dark uppercase mx-2 px-2 py-1 text-xs font-bold cursor-pointer" :class="{ 'line-through text-grey' : task.is_completed }">
             <i class="fa fa-clock-o mr-1" aria-hidden="true"></i> {{ fromNow(task) }}
           </span>
 
-          <span @click="editTask = true" class="font-semibold mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : deleted}">{{ task.title }}</span>
+          <span @click="editTask = true" class="font-semibold mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}">{{ task.title }}</span>
         </div>
       </div>
 
@@ -79,10 +79,6 @@ export default {
   },
 
   computed: {
-    deleted () {
-      return !!this.task.deleted_at
-    },
-
     isDisabled () {
       return this.form.title === '' || this.isUpdateLoading
     }
@@ -97,20 +93,15 @@ export default {
       return moment(task.due_at).format('dddd, MMMM Do YYYY, h:mm:ss a')
     },
 
-    toggleCheck () {
+    toggleCompleted () {
       if (this.isToggleLoading) {
         return false
       }
 
       this.isToggleLoading = true
       this.error = null
-      let deletedAt = moment().format('YYYY-MM-DD HH:mm:ss')
 
-      if (this.deleted) {
-        deletedAt = null
-      }
-
-      axios.patch(this.endpoint, {deleted_at: deletedAt})
+      axios.patch(this.endpoint, {is_completed: !this.task.is_completed})
         .then(({ data }) => {
           this.$emit('updated', data.data)
 

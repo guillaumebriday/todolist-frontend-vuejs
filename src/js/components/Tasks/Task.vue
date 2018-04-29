@@ -61,7 +61,12 @@ import moment from 'moment'
 import Form from '@/utils/Form'
 
 export default {
-  props: ['task'],
+  props: {
+    task: {
+      type: Object,
+      required: true
+    }
+  },
 
   data () {
     return {

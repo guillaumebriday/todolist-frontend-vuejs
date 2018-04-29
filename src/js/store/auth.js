@@ -39,6 +39,8 @@ const actions = {
     commit(types.LOGOUT)
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('userId')
+    axios.delete('/auth/logout')
+
     delete axios.defaults.headers.common['Authorization']
 
     router.push({name: 'Login'})

@@ -29,7 +29,7 @@
 
       <div class="mt-4 text-sm">
         Don't have an account?
-        <router-link class="inline-block font-bold text-indigo hover:text-indigo-darker" to="/register" exact>
+        <router-link class="inline-block font-bold text-indigo hover:text-indigo-darker" :to="{ name: 'Register'}" exact>
           Register now
         </router-link>
       </div>

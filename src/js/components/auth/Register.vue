@@ -1,7 +1,11 @@
 <template>
 <div class="h-screen flex justify-center items-center">
   <div class="w-full max-w-xs">
-    <h1 class="text-center mb-6">Todolist</h1>
+    <h1 class="text-center mb-6">
+      <router-link class="text-black no-underline hover:underline" :to="{ name: 'Home'}" exact>
+        Todolist
+      </router-link>
+    </h1>
 
     <div v-if="error" class="bg-red-lightest border border-red-light text-red-dark px-4 py-3 rounded relative mb-3" role="alert">
       <span class="block sm:inline">{{ error.message }}</span>
@@ -45,7 +49,7 @@
       <div class="mt-4 text-sm">
         Already have an account ?
 
-        <router-link class="inline-block font-bold text-indigo hover:text-indigo-darker" to="/login" exact>
+        <router-link class="inline-block font-bold text-indigo hover:text-indigo-darker" :to="{ name: 'Login'}" exact>
           Log in now
         </router-link>
       </div>

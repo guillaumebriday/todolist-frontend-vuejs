@@ -1,5 +1,7 @@
 <template>
   <div>
+    <navbar></navbar>
+
     <div class="flex justify-center shadow px-8">
       <label :class="[check === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default">
         <input type="radio" v-model="check" class="hidden" value="active">Active ({{ activeTasks.length }})

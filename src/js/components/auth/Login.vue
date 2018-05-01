@@ -1,7 +1,11 @@
 <template>
 <div class="h-screen flex justify-center items-center">
   <div class="w-full max-w-xs">
-    <h1 class="text-center mb-6">Todolist</h1>
+    <h1 class="text-center mb-6">
+      <router-link class="text-black no-underline hover:underline" :to="{ name: 'Home'}" exact>
+        Todolist
+      </router-link>
+    </h1>
 
     <form @submit.prevent="login" @keydown="form.errors.clear($event.target.name)" class="form-card">
       <div class="mb-4">
@@ -25,7 +29,7 @@
 
       <div class="mt-4 text-sm">
         Don't have an account?
-        <router-link class="inline-block font-bold text-indigo hover:text-indigo-darker" to="/register" exact>
+        <router-link class="inline-block font-bold text-indigo hover:text-indigo-darker" :to="{ name: 'Register'}" exact>
           Register now
         </router-link>
       </div>

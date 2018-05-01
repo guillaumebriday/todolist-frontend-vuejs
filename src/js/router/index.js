@@ -2,6 +2,7 @@ import VueRouter from 'vue-router'
 import store from '../store'
 import TaskList from '../components/Tasks/TaskList'
 import Login from '../components/auth/Login'
+import Home from '../components/Home'
 import Register from '../components/auth/Register'
 
 let router = new VueRouter({
@@ -9,6 +10,12 @@ let router = new VueRouter({
   routes: [
     {
       path: '/',
+      name: 'Home',
+      component: Home,
+      meta: {auth: false}
+    },
+    {
+      path: '/app',
       name: 'TaskList',
       component: TaskList,
       meta: {auth: true}
@@ -37,8 +44,8 @@ router.beforeEach((to, from, next) => {
     return next('/login')
   }
 
-  if (store.getters.isLogged && to.name === 'Login') {
-    return next('/')
+  if (store.getters.isLogged && (to.name !== 'TaskList')) {
+    return next('/app')
   }
 
   next()

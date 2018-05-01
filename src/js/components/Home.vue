@@ -112,7 +112,7 @@
                                       <span class="text-xl text-grey-dark">/ month</span>
                                   </div>
                               </div>
-                              <router-link class="bg-indigo hover:bg-indigo-dark no-underline text-xl text-white font-semibold px-6 py-3 text-center rounded-full whitespace-no-wrap w-full" to="/register" exact>
+                              <router-link class="bg-indigo hover:bg-indigo-dark no-underline text-xl text-white font-semibold px-6 py-3 text-center rounded-full whitespace-no-wrap w-full" :to="{ name: 'Register'}" exact>
                                 Getting started
                               </router-link>
                           </div>

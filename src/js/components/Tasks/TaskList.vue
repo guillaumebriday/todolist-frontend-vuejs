@@ -3,15 +3,15 @@
     <navbar></navbar>
 
     <div class="flex justify-center shadow px-8">
-      <label :class="[check === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default">
+      <label :class="[check === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow">
         <input type="radio" v-model="check" class="hidden" value="active">Active ({{ activeTasks.length }})
       </label>
 
-      <label :class="[check === 'all' ? 'pill-active' : 'pill-inactive']" class="pill-default">
+      <label :class="[check === 'all' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow">
         <input type="radio" v-model="check" class="hidden" value="all">All ({{ tasks.length }})
       </label>
 
-      <label :class="[check === 'completed' ? 'pill-active' : 'pill-inactive']" class="pill-default">
+      <label :class="[check === 'completed' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow">
         <input type="radio"  v-model="check" class="hidden" value="completed"> Completed ({{ completedTasks.length }})
       </label>
     </div>

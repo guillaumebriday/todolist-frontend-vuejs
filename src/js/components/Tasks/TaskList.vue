@@ -2,7 +2,7 @@
   <div>
     <navbar></navbar>
 
-    <div class="flex justify-center shadow px-8">
+    <div class="flex justify-center shadow">
       <label :class="[check === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow">
         <input type="radio" v-model="check" class="hidden" value="active">Active ({{ activeTasks.length }})
       </label>

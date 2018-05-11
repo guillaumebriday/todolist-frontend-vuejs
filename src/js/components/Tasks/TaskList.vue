@@ -83,7 +83,9 @@ export default {
         return false
       }
 
-      return !this.tasks.length || (this.check === 'completed' && !this.completedTasks.length)
+      return !this.tasks.length
+             || (this.check === 'active' && !this.activeTasks.length)
+             || (this.check === 'completed' && !this.completedTasks.length)
     }
   },
 

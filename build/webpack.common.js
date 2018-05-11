@@ -60,6 +60,16 @@ module.exports = {
             outputPath: 'fonts/'
           }
         }]
+      },
+      {
+        test: /\.(png|ico)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'images/'
+          }
+        }]
       }
     ]
   },

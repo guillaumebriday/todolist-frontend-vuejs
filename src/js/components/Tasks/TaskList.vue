@@ -17,23 +17,9 @@
     </div>
 
     <div class="container mx-auto mt-3 px-4">
-      <task-form v-if="check != 'completed'" @created="addTask"></task-form>
-
-      <div v-else class="flex justify-end">
-        <div v-if="completedTasks.length" @click="deleteTasks" :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']" class="mx-4 text-grey-darker text-sm">
-          <i v-if="isRemoveLoading" class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
-          <i v-else class="fa fa-trash mr-1" aria-hidden="true"></i> Delete completed tasks
-        </div>
-      </div>
-
-      <div v-if="isLoading" class="text-xl text-center mt-6 text-grey-darker">
+      <div v-if="isLoading" class="text-xl text-center my-6 text-grey-darker">
         <i class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
         Loading
-      </div>
-
-      <div v-if="timeToChill" class="text-center mt-6">
-        <p class="text-5xl">🍻</p>
-        Time to chill ! You have no tasks
       </div>
 
       <transition-group class="list-reset" name="list" tag="ul">
@@ -44,6 +30,20 @@
               @deleted="removeTask">
         </task>
       </transition-group>
+
+      <task-form v-if="check != 'completed'" @created="addTask"></task-form>
+
+      <div v-else class="flex justify-end">
+        <div v-if="completedTasks.length" @click="deleteTasks" :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']" class="mx-4 text-grey-darker text-sm">
+          <i v-if="isRemoveLoading" class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
+          <i v-else class="fa fa-trash mr-1" aria-hidden="true"></i> Delete completed tasks
+        </div>
+      </div>
+
+      <div v-if="timeToChill" class="text-center mb-6">
+        <p class="text-5xl">🍻</p>
+        Time to chill ! You have no tasks
+      </div>
     </div>
   </div>
 </template>

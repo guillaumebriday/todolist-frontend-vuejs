@@ -18,6 +18,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'Navbar',
@@ -28,6 +29,7 @@ export default {
 
   methods: {
     logout () {
+      axios.delete('/auth/logout')
       this.$store.dispatch('logout')
     }
   }

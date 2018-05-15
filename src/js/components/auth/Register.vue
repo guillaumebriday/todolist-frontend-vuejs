@@ -39,12 +39,9 @@
         <input v-model="form.password_confirmation" class="form-control" id="password_confirmation" type="password" name="password_confirmation" placeholder="Password confirmation">
       </div>
 
-      <div class="flex items-center justify-between">
-        <button class="btn-indigo" type="submit" :disabled="this.isDisabled" :class="{ 'opacity-50 cursor-not-allowed': this.isDisabled }">
-          <i v-if="isLoading" class="fa fa-spinner fa-spin fa-fw"></i>
-          Register
-        </button>
-      </div>
+      <loading-button :isLoading="isLoading" :disabled="isDisabled" :class="[{ 'opacity-50 cursor-not-allowed': isDisabled }]" class="btn-indigo">
+        Register
+      </loading-button>
 
       <div class="mt-4 text-sm">
         Already have an account ?

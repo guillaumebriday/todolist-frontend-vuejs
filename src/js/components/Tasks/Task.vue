@@ -39,18 +39,27 @@
         <!-- Update buttons -->
         <div v-if="editTask" class="flex items-center justify-between mt-2">
           <div class="flex items-center">
-            <button @click="updateTask" type="submit" :class="[isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-indigo hover:bg-white']" class="flex text-white border-2 border-indigo rounded-full bg-indigo uppercase px-3 py-2 text-xs font-bold no-outline align-middle cursor-pointer">
-              <i v-if="isUpdateLoading" class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
-              <i v-else class="fa fa-check mr-1" aria-hidden="true"></i> Save
-            </button>
+            <loading-button
+              @click.native="updateTask"
+              :isLoading="isUpdateLoading"
+              :class="[isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-indigo hover:bg-white']"
+              icon="fa-check"
+              class="flex text-white border-2 border-indigo rounded-full bg-indigo uppercase px-3 py-2 text-xs font-bold no-outline align-middle cursor-pointer">
+                Save
+            </loading-button>
 
             <span @click="cancelEdit" class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline">Cancel</span>
           </div>
 
-          <span @click="removeTask" :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']" class="mx-4 text-grey-darker text-sm">
-            <i v-if="isRemoveLoading" class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
-            <i v-else class="fa fa-trash mr-1" aria-hidden="true"></i> Delete
-          </span>
+          <loading-button
+            @click.native="removeTask"
+            :isLoading="isRemoveLoading"
+            :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
+            type="button"
+            icon="fa-trash"
+            class="mx-4 text-grey-darker text-sm">
+              Delete
+          </loading-button>
         </div>
       </form>
     </on-click-outside>

@@ -9,6 +9,7 @@ import Navbar from './components/Navbar'
 import TaskList from './components/Tasks/TaskList'
 import Task from './components/Tasks/Task'
 import TaskForm from './components/Tasks/TaskForm'
+import LoadingButton from './components/LoadingButton'
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8000'
 
@@ -24,6 +25,7 @@ Vue.component('Navbar', Navbar)
 Vue.component('TaskList', TaskList)
 Vue.component('Task', Task)
 Vue.component('TaskForm', TaskForm)
+Vue.component('LoadingButton', LoadingButton)
 
 Vue.directive('focus', {
   inserted (el) {

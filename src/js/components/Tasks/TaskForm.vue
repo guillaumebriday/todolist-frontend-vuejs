@@ -16,10 +16,14 @@
     </div>
 
     <div class="flex justify-end">
-      <button type="submit" :class="[isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-indigo hover:bg-white']" class="flex text-white border-2 border-indigo rounded-full bg-indigo uppercase px-3 py-2 text-xs font-bold no-outline align-middle">
-        <i v-if="isLoading" class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
-        <i v-else class="fa fa-plus mr-1" aria-hidden="true"></i> Add
-      </button>
+      <loading-button
+        :isLoading="isLoading"
+        :disabled="isDisabled"
+        :class="[isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-indigo hover:bg-white']"
+        icon="fa-plus"
+        class="text-white border-2 border-indigo rounded-full bg-indigo uppercase px-3 py-2 text-xs font-bold no-outline">
+          Add
+      </loading-button>
     </div>
   </form>
 </template>

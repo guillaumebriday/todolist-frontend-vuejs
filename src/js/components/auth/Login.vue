@@ -22,10 +22,9 @@
         <p v-if="form.errors.has('password')" class="text-red text-xs italic">{{ form.errors.get('password') }}</p>
       </div>
 
-      <button class="btn-indigo" type="submit" :disabled="this.isDisabled" :class="{ 'opacity-50 cursor-not-allowed': this.isDisabled }">
-        <i v-if="isLoading" class="fa fa-spinner fa-spin fa-fw"></i>
+      <loading-button :isLoading="isLoading" :disabled="isDisabled" :class="[{ 'opacity-50 cursor-not-allowed': isDisabled }]" class="btn-indigo">
         Sign In
-      </button>
+      </loading-button>
 
       <div class="mt-4 text-sm">
         Don't have an account?

@@ -34,10 +34,16 @@
       <task-form v-if="check != 'completed'" @created="addTask"></task-form>
 
       <div v-else class="flex justify-end">
-        <div v-if="completedTasks.length" @click="deleteTasks" :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']" class="mx-4 text-grey-darker text-sm">
-          <i v-if="isRemoveLoading" class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
-          <i v-else class="fa fa-trash mr-1" aria-hidden="true"></i> Delete completed tasks
-        </div>
+        <loading-button
+          v-if="completedTasks.length"
+          @click.native="deleteTasks"
+          :isLoading="isRemoveLoading"
+          :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
+          type="button"
+          icon="fa-trash"
+          class="mx-4 text-grey-darker text-sm">
+            Delete completed tasks
+        </loading-button>
       </div>
 
       <div v-if="timeToChill" class="text-center mb-6">

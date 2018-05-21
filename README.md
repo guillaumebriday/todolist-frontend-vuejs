@@ -12,7 +12,7 @@ The purpose of this repository is to consume API, provide by [a Laravel Applicat
 ## Some of the tools used in this project
 
 - [Vue.js](https://vuejs.org)
-- [vue-router](https://router.vuejs.org/en/)
+- [vue-router with Lazy Loading Routes](https://router.vuejs.org/en/)
 - [vue-test-utils](https://github.com/vuejs/vue-test-utils)
 - [vuex](https://github.com/vuejs/vuex)
 - [axios](https://github.com/axios/axios)

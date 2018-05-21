@@ -55,7 +55,17 @@
 </template>
 
 <script>
+import Navbar from '@components/Navbar'
+import Task from '@components/Tasks/Task'
+import TaskForm from '@components/Tasks/TaskForm'
+
 export default {
+  components: {
+    Navbar,
+    Task,
+    TaskForm
+  },
+
   data () {
     return {
       tasks: [],

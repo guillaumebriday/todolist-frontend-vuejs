@@ -1,4 +1,4 @@
-import Errors from './Errors'
+import Errors from '@/utils/Errors'
 import axios from 'axios'
 
 class Form {

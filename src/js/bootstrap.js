@@ -5,11 +5,7 @@ import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
-import Navbar from './components/Navbar'
-import TaskList from './components/Tasks/TaskList'
-import Task from './components/Tasks/Task'
-import TaskForm from './components/Tasks/TaskForm'
-import LoadingButton from './components/LoadingButton'
+import LoadingButton from '@components/LoadingButton'
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8000'
 
@@ -20,11 +16,6 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(Datetime)
 
-Vue.component('Navbar', Navbar)
-
-Vue.component('TaskList', TaskList)
-Vue.component('Task', Task)
-Vue.component('TaskForm', TaskForm)
 Vue.component('LoadingButton', LoadingButton)
 
 Vue.directive('focus', {

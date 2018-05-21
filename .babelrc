@@ -3,5 +3,6 @@
     ["env", { "modules": false }],
     "stage-3",
     "es2015"
-  ]
+  ],
+  "plugins": ["syntax-dynamic-import"]
 }

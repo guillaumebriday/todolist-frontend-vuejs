@@ -4,6 +4,7 @@ let path = require('path')
 let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 let HtmlWebpackPlugin = require('html-webpack-plugin')
 let Dotenv = require('dotenv-webpack')
+let webpack = require('webpack')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -92,6 +93,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new Dotenv({
       path: resolve('.env')
     }),

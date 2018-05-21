@@ -1,9 +1,9 @@
 import VueRouter from 'vue-router'
-import store from '../store'
-import TaskList from '../components/Tasks/TaskList'
-import Login from '../components/auth/Login'
-import Home from '../components/Home'
-import Register from '../components/auth/Register'
+import store from '@/store'
+import TaskList from '@components/Tasks/TaskList'
+import Login from '@components/auth/Login'
+import Home from '@components/Home'
+import Register from '@components/auth/Register'
 
 let router = new VueRouter({
   mode: 'history',

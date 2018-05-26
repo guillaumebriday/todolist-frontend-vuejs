@@ -15,7 +15,7 @@ let router = new VueRouter({
       meta: {auth: false}
     },
     {
-      path: '/app',
+      path: '/app/:status',
       name: 'TaskList',
       component: TaskList,
       meta: {auth: true}
@@ -45,7 +45,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if (store.getters.isLogged && (to.name !== 'TaskList')) {
-    return next('/app')
+    return next('/app/active')
   }
 
   next()

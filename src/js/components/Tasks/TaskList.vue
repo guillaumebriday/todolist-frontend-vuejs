@@ -3,17 +3,17 @@
     <navbar></navbar>
 
     <div class="flex justify-center shadow">
-      <label :class="[check === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow">
-        <input type="radio" v-model="check" class="hidden" value="active">Active ({{ activeTasks.length }})
-      </label>
+      <router-link :class="[status === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow no-underline" :to="{name: 'TaskList', params: { status: 'active' }}" exact>
+        Active ({{ activeTasks.length }})
+      </router-link>
 
-      <label :class="[check === 'all' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow">
-        <input type="radio" v-model="check" class="hidden" value="all">All ({{ tasks.length }})
-      </label>
+      <router-link :class="[status === 'all' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow no-underline" :to="{name: 'TaskList', params: { status: 'all' }}" exact>
+        All ({{ tasks.length }})
+      </router-link>
 
-      <label :class="[check === 'completed' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow">
-        <input type="radio"  v-model="check" class="hidden" value="completed"> Completed ({{ completedTasks.length }})
-      </label>
+      <router-link :class="[status === 'completed' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow no-underline" :to="{name: 'TaskList', params: { status: 'completed' }}" exact>
+        Completed ({{ completedTasks.length }})
+      </router-link>
     </div>
 
     <div class="container mx-auto mt-3 px-4">
@@ -31,7 +31,7 @@
         </task>
       </transition-group>
 
-      <task-form v-if="check != 'completed'" @created="addTask"></task-form>
+      <task-form v-if="status != 'completed'" @created="addTask"></task-form>
 
       <div v-else class="flex justify-end">
         <loading-button
@@ -69,17 +69,20 @@ export default {
   data () {
     return {
       tasks: [],
-      check: 'active',
       isLoading: false,
       isRemoveLoading: false
     }
   },
 
   computed: {
+    status () {
+      return this.$route.params.status
+    },
+
     filteredTasks () {
-      if (this.check === 'completed') {
+      if (this.status === 'completed') {
         return this.completedTasks
-      } else if (this.check === 'active') {
+      } else if (this.status === 'active') {
         return this.activeTasks
       }
 
@@ -100,8 +103,8 @@ export default {
       }
 
       return !this.tasks.length ||
-             (this.check === 'active' && !this.activeTasks.length) ||
-             (this.check === 'completed' && !this.completedTasks.length)
+             (this.status === 'active' && !this.activeTasks.length) ||
+             (this.status === 'completed' && !this.completedTasks.length)
     }
   },
 

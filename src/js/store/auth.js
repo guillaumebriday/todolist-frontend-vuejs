@@ -32,7 +32,7 @@ const actions = {
     window.localStorage.setItem('userId', data.user_id)
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token
 
-    router.push({name: 'TaskList'})
+    router.push({name: 'TaskList', params: { status: 'active' }})
   },
 
   logout ({ commit }) {

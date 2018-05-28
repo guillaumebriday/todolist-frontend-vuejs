@@ -5,6 +5,7 @@ let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 let HtmlWebpackPlugin = require('html-webpack-plugin')
 let Dotenv = require('dotenv-webpack')
 let webpack = require('webpack')
+let { VueLoaderPlugin } = require('vue-loader')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -27,24 +28,24 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
-        }
+        loader: 'vue-loader'
       },
       {
         test: /\.css$/,
         use: [ 'style-loader', 'css-loader' ]
       },
       {
-        test: /\.s[ac]ss$/,
+        test: /\.sass$/,
         use: [
           MiniCssExtractPlugin.loader,
           {loader: 'css-loader', options: {importLoaders: 2}},
           'postcss-loader',
-          'sass-loader'
+          {
+            loader: 'sass-loader',
+            options: {
+              indentedSyntax: true
+            }
+          }
         ]
       },
       {
@@ -93,6 +94,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new Dotenv({
       path: resolve('.env')

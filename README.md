@@ -31,7 +31,7 @@ Development environment requirements :
 Setting up your development environment on your local machine :
 ```
 $ git clone https://github.com/guillaumebriday/todolist-frontend-vuejs.git
-$ cd todolist-frontend
+$ cd todolist-frontend-vuejs
 $ docker-compose run --rm node npm install
 $ docker-compose run --service-ports --rm node npm run hot
 ```

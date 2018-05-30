@@ -8,7 +8,7 @@
           </router-link>
         </div>
 
-        <button @click="logout" class="text-grey-light mr-3 border border-white py-2 px-4 rounded hover:bg-white hover:text-indigo">
+        <button @click="logout" class="text-grey-light mr-3 border border-white py-2 px-4 rounded-full hover:bg-white hover:text-indigo">
           Logout
         </button>
       </div>

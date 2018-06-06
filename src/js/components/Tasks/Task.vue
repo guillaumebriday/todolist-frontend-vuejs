@@ -5,32 +5,35 @@
         <form-error :error="error"></form-error>
 
         <!-- Task -->
-        <div class="text-white leading-none rounded-full shadow-md overflow-hidden p-3" :class="[editTask ? 'bg-white mb-4' : 'bg-indigo']">
+        <div class="bg-white leading-none rounded-lg shadow overflow-hidden p-3 mb-4">
           <!-- Update form -->
-          <div v-if="editTask" class="flex items-center">
-            <div class="border-r w-1/3 pr-1 flex items-center">
-              <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :minute-step="5" class="w-full" input-class="w-full"></datetime>
+          <div v-if="editTask" class="flex flex-col">
+            <input v-focus @keyup.esc="cancelEdit" v-model="form.title" placeholder="What needs to be done?"  class="w-full mb-2 pb-2 px-2 no-outline text-lg font-semibold border-b" type="text">
+
+            <div class="flex items-center text-xs">
+              <i class="fa fa-clock-o mr-1 text-grey-dark" aria-hidden="true"></i>
+              <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :minute-step="5" input-class="text-grey-dark"></datetime>
+
               <span v-if="form.due_at" @click="clearDueAt" class="flex-none rounded-full bg-grey hover:bg-red h-6 w-6 cursor-pointer flex items-center justify-center shadow">
                 <i class="fa fa-times text-white"></i>
               </span>
             </div>
-
-            <input v-focus @keyup.esc="cancelEdit" v-model="form.title" placeholder="What needs to be done?"  class="w-full mx-2 rounded-full py-1 px-2 no-outline" type="text">
           </div>
 
           <div v-else class="flex items-center">
-            <!-- Checkbox -->
-            <div @click="toggleCompleted" :class="{ 'bg-indigo-darker' : task.is_completed, 'cursor-not-allowed' : isToggleLoading }" class="flex-none rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center shadow">
-              <i v-if="isToggleLoading" :class="[task.is_completed ? 'text-white' : 'text-indigo-dark']" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-              <i v-else class="fa fa-check" :class="{'hover:text-indigo-dark' : ! task.is_completed}" aria-hidden="true"></i>
+            <div class="flex-grow">
+              <p @click="editTask = true" class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}">{{ task.title }}</p>
+
+              <span v-if="task.due_at" @click="editTask = true" :title="toDate(task)" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']">
+                <i class="fa fa-clock-o mr-1" aria-hidden="true"></i> {{ fromNow(task) }}
+              </span>
             </div>
 
-            <!-- Clock -->
-            <span v-if="task.due_at" @click="editTask = true" :title="toDate(task)" class="flex flex-no-shrink rounded-full bg-indigo-dark uppercase mx-2 px-2 py-1 text-xs font-bold cursor-pointer" :class="{ 'line-through text-grey' : task.is_completed }">
-              <i class="fa fa-clock-o mr-1" aria-hidden="true"></i> {{ fromNow(task) }}
-            </span>
-
-            <span @click="editTask = true" class="font-semibold mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}">{{ task.title }}</span>
+            <!-- Checkbox -->
+            <div @click="toggleCompleted" :class="[task.is_completed ? 'bg-indigo' : 'border-2', {'cursor-not-allowed' : isToggleLoading}]" class="rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center">
+              <i v-if="isToggleLoading" class="fa fa-spinner fa-spin" :class="[task.is_completed ? 'text-white' : 'text-indigo']" aria-hidden="true"></i>
+              <i v-else class="fa fa-check text-white" :class="{'hover:text-indigo' : ! task.is_completed}" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
 
@@ -40,9 +43,9 @@
             <loading-button
               @click.native="updateTask"
               :isLoading="isUpdateLoading"
-              :class="[isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-indigo hover:bg-white']"
+              :class="{'opacity-50 cursor-not-allowed' : isDisabled}"
               icon="fa-check"
-              class="flex text-white border-2 border-indigo rounded-full bg-indigo uppercase px-3 py-2 text-xs font-bold no-outline align-middle cursor-pointer">
+              class="btn-indigo text-sm">
                 Save
             </loading-button>
 

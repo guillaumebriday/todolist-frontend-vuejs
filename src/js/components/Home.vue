@@ -8,10 +8,10 @@
                       <h2 class="text-2xl sm:text-3xl text-indigo-darker opacity-75 font-normal leading-tight mb-8">An Open source todolist application made with Laravel And Vue.js</h2>
 
                       <div class="flex flex-col sm:flex-row justify-center pt-8">
-                        <router-link class="bg-indigo no-underline hover:bg-indigo-dark text-xl text-white font-semibold px-8 py-2 rounded-full whitespace-no-wrap mb-2 sm:mb-0 sm:mr-2" to="/register" exact>
+                        <router-link class="bg-indigo no-underline hover:bg-indigo-dark text-xl text-white font-semibold px-8 py-2 rounded whitespace-no-wrap mb-2 sm:mb-0 sm:mr-2" to="/register" exact>
                             Register
                         </router-link>
-                        <router-link class="bg-transparent no-underline text-xl text-indigo font-semibold hover:text-indigo-dark px-8 py-2 border border-indigo-lighter hover:border-indigo-light rounded-full whitespace-no-wrap mt-2 sm:mt-0 sm:ml-2" to="/login" exact>
+                        <router-link class="bg-transparent no-underline text-xl text-indigo font-semibold hover:text-indigo-dark px-8 py-2 border border-indigo-lighter hover:border-indigo-light rounded whitespace-no-wrap mt-2 sm:mt-0 sm:ml-2" to="/login" exact>
                             Login
                         </router-link>
                       </div>
@@ -112,7 +112,7 @@
                                       <span class="text-xl text-grey-dark">/ month</span>
                                   </div>
                               </div>
-                              <router-link class="bg-indigo hover:bg-indigo-dark no-underline text-xl text-white font-semibold px-6 py-3 text-center rounded-full whitespace-no-wrap w-full" :to="{ name: 'Register'}" exact>
+                              <router-link class="bg-indigo hover:bg-indigo-dark no-underline text-xl text-white font-semibold px-6 py-3 text-center rounded whitespace-no-wrap w-full" :to="{ name: 'Register'}" exact>
                                 Getting started
                               </router-link>
                           </div>

@@ -2,9 +2,7 @@
   <li class="my-4">
     <on-click-outside :do="handleClickOutside">
       <form @submit.prevent="updateTask">
-        <ul v-if="errors" class="bg-red-lightest border border-red-light text-red-dark px-6 py-3 rounded relative mb-3" role="alert">
-          <li v-for="error in errors" :key="error[0]">{{ error[0] }}</li>
-        </ul>
+        <form-error :error="error"></form-error>
 
         <!-- Task -->
         <div class="text-white leading-none rounded-full shadow-md overflow-hidden p-3" :class="[editTask ? 'bg-white mb-4' : 'bg-indigo']">
@@ -86,7 +84,7 @@ export default {
       isRemoveLoading: false,
       isUpdateLoading: false,
       editTask: false,
-      errors: null,
+      error: null,
       form: new Form({
         title: this.task.title,
         due_at: this.task.due_at
@@ -119,14 +117,14 @@ export default {
       }
 
       this.isToggleLoading = true
-      this.errors = null
+      this.error = null
 
       this.$store.dispatch('toggleCompleted', this.task)
         .then(() => {
           this.isToggleLoading = false
         })
         .catch(error => {
-          this.errors = error.response.data.errors
+          this.error = error.response.data
           this.isToggleLoading = false
         })
     },
@@ -137,7 +135,7 @@ export default {
       }
 
       this.isUpdateLoading = true
-      this.errors = null
+      this.error = null
 
       if (this.form.due_at) {
         this.form.due_at = moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss')
@@ -155,13 +153,13 @@ export default {
         })
         .catch(error => {
           this.isUpdateLoading = false
-          this.errors = error.response.data.errors
+          this.error = error.response.data
         })
     },
 
     cancelEdit () {
       this.editTask = false
-      this.errors = null
+      this.error = null
 
       this.form.title = this.task.title
       this.form.due_at = this.task.due_at
@@ -177,16 +175,16 @@ export default {
       }
 
       this.isRemoveLoading = true
-      this.errors = null
+      this.error = null
 
       this.$store.dispatch('removeTask', this.task)
         .catch(error => {
-          this.errors = error.response.data.errors
+          this.error = error.response.data
         })
     },
 
     handleClickOutside () {
-      this.errors = null
+      this.error = null
 
       if (this.editTask && this.isNotLoading) {
         this.cancelEdit()

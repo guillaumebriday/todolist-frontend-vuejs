@@ -1,8 +1,6 @@
 <template>
   <form @submit.prevent="addTask">
-    <ul v-if="errors" class="bg-red-lightest border border-red-light text-red-dark px-6 py-3 rounded relative mb-3" role="alert">
-      <li v-for="error in errors" :key="error[0]">{{ error[0] }}</li>
-    </ul>
+    <form-error :error="error"></form-error>
 
     <div class="p-3 mb-4 appearance-none bg-white border-none rounded-full flex shadow-md items-center">
       <div class="border-r w-1/3 pr-1 flex items-center">
@@ -15,7 +13,7 @@
       <input v-focus v-model="form.title" class="w-full no-outline px-3" placeholder="What needs to be done?" ref="task" />
     </div>
 
-    <div class="flex justify-end">
+    <div class="flex justify-end my-4">
       <loading-button
         :isLoading="isLoading"
         :disabled="isDisabled"
@@ -36,7 +34,7 @@ export default {
   data () {
     return {
       isLoading: false,
-      errors: null,
+      error: null,
       form: new Form({
         title: '',
         due_at: null
@@ -57,7 +55,7 @@ export default {
       }
 
       this.isLoading = true
-      this.errors = null
+      this.error = null
 
       if (this.form.due_at) {
         this.form.due_at = moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss')
@@ -70,7 +68,7 @@ export default {
           this.isLoading = false
         })
         .catch(error => {
-          this.errors = error.response.data.errors
+          this.error = error.response.data
           this.isLoading = false
         })
     },

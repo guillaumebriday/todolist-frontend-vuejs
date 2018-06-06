@@ -6,6 +6,7 @@ import Pusher from 'pusher-js'
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 import LoadingButton from '@components/LoadingButton'
+import FormError from '@components/FormError'
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8000'
 
@@ -17,6 +18,7 @@ Vue.use(VueRouter)
 Vue.use(Datetime)
 
 Vue.component('LoadingButton', LoadingButton)
+Vue.component('FormError', FormError)
 
 Vue.directive('focus', {
   inserted (el) {

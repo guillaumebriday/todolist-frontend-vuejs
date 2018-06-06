@@ -2,9 +2,7 @@
   <li class="my-4">
     <on-click-outside :do="handleClickOutside">
       <form @submit.prevent="updateTask">
-        <div v-if="error" class="bg-red-lightest border border-red-light text-red-dark px-4 py-3 rounded relative mb-3" role="alert">
-          <span class="block sm:inline">{{ error.message }}</span>
-        </div>
+        <form-error :error="error"></form-error>
 
         <!-- Task -->
         <div class="text-white leading-none rounded-full shadow-md overflow-hidden p-3" :class="[editTask ? 'bg-white mb-4' : 'bg-indigo']">
@@ -67,12 +65,12 @@
 </template>
 
 <script>
-import axios from 'axios'
 import moment from 'moment'
 import Form from '@/utils/Form'
 import OnClickOutside from '@components/OnClickOutside'
 
 export default {
+  components: { OnClickOutside },
   props: {
     task: {
       type: Object,
@@ -80,13 +78,8 @@ export default {
     }
   },
 
-  components: {
-    OnClickOutside
-  },
-
   data () {
     return {
-      endpoint: '/tasks/' + this.task.id,
       isToggleLoading: false,
       isRemoveLoading: false,
       isUpdateLoading: false,
@@ -126,15 +119,13 @@ export default {
       this.isToggleLoading = true
       this.error = null
 
-      axios.patch(this.endpoint, {is_completed: !this.task.is_completed})
-        .then(({ data }) => {
-          this.$emit('updated', data.data)
-
+      this.$store.dispatch('toggleCompleted', this.task)
+        .then(() => {
           this.isToggleLoading = false
         })
-        .catch((error) => {
+        .catch(error => {
+          this.error = error.response.data
           this.isToggleLoading = false
-          this.error = error
         })
     },
 
@@ -150,17 +141,19 @@ export default {
         this.form.due_at = moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss')
       }
 
-      this.form.patch(this.endpoint)
-        .then(({ data }) => {
-          this.$emit('updated', data)
+      this.$store.dispatch('updateTask', {
+        task: this.task,
+        form: this.form.data()
+      })
+        .then(data => {
           this.form.due_at = data.due_at
 
           this.isUpdateLoading = false
           this.editTask = false
         })
-        .catch((error) => {
+        .catch(error => {
           this.isUpdateLoading = false
-          this.error = error
+          this.error = error.response.data
         })
     },
 
@@ -184,16 +177,15 @@ export default {
       this.isRemoveLoading = true
       this.error = null
 
-      axios.delete(this.endpoint)
-        .then(() => {
-          this.$emit('deleted', this.task)
-        })
-        .catch(() => {
-          this.isRemoveLoading = false
+      this.$store.dispatch('removeTask', this.task)
+        .catch(error => {
+          this.error = error.response.data
         })
     },
 
     handleClickOutside () {
+      this.error = null
+
       if (this.editTask && this.isNotLoading) {
         this.cancelEdit()
       }

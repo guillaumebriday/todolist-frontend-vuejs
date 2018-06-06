@@ -7,10 +7,6 @@
       </router-link>
     </h1>
 
-    <div v-if="error" class="bg-red-lightest border border-red-light text-red-dark px-4 py-3 rounded relative mb-3" role="alert">
-      <span class="block sm:inline">{{ error.message }}</span>
-    </div>
-
     <form @submit.prevent="register" @keydown="form.errors.clear($event.target.name)" class="form-card">
       <div class="mb-4">
         <label class="block text-grey-darker text-sm font-bold mb-2" for="name">Name</label>
@@ -89,13 +85,11 @@ export default {
       }
 
       this.isLoading = true
-      this.error = null
 
       this.form.post('auth/register')
         .then(data => this.$store.dispatch('login', data))
-        .catch(error => {
+        .catch(() => {
           this.isLoading = false
-          this.error = error
 
           this.form.password = ''
           this.form.password_confirmation = ''

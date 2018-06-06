@@ -25,15 +25,13 @@
       <transition-group class="list-reset" name="list" tag="ul">
         <task v-for="task in filteredTasks"
               :key="task.id"
-              :task="task"
-              @updated="updateTask"
-              @deleted="removeTask">
+              :task="task">
         </task>
       </transition-group>
 
-      <task-form v-if="status != 'completed'" @created="addTask"></task-form>
+      <task-form v-if="status != 'completed'"></task-form>
 
-      <div v-else class="flex justify-end">
+      <div v-else class="flex justify-end my-4">
         <loading-button
           v-if="completedTasks.length"
           @click.native="deleteTasks"
@@ -58,6 +56,7 @@
 import Navbar from '@components/Navbar'
 import Task from '@components/Tasks/Task'
 import TaskForm from '@components/Tasks/TaskForm'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -68,33 +67,27 @@ export default {
 
   data () {
     return {
-      tasks: [],
       isLoading: false,
       isRemoveLoading: false
     }
   },
 
   computed: {
-    status () {
-      return this.$route.params.status
-    },
+    ...mapGetters([
+      'completedTasks',
+      'activeTasks'
+    ]),
 
     filteredTasks () {
-      if (this.status === 'completed') {
-        return this.completedTasks
-      } else if (this.status === 'active') {
-        return this.activeTasks
-      }
-
-      return this.tasks
+      return this.$store.getters.filteredTasks(this.status)
     },
 
-    completedTasks () {
-      return this.tasks.filter(task => task.is_completed === true)
+    tasks () {
+      return this.$store.state.tasks.all
     },
 
-    activeTasks () {
-      return this.tasks.filter(task => task.is_completed === false)
+    status () {
+      return this.$route.params.status
     },
 
     timeToChill () {
@@ -102,22 +95,20 @@ export default {
         return false
       }
 
-      return !this.tasks.length ||
-             (this.status === 'active' && !this.activeTasks.length) ||
-             (this.status === 'completed' && !this.completedTasks.length)
+      return this.$store.getters.timeToChill(this.status)
     }
   },
 
-  mounted () {
-    let userId = window.localStorage.getItem('userId')
-
+  created () {
     this.getTasks()
 
     if (window.Echo) {
+      let userId = window.localStorage.getItem('userId')
+
       window.Echo.private(`App.User.${userId}`)
-        .listen('TaskCreated', e => this.addTask(e.task))
-        .listen('TaskUpdated', e => this.updateTask(e.task))
-        .listen('TaskDeleted', e => this.removeTask(e.task))
+        .listen('TaskCreated', e => this.$store.commit('addTask', e.task))
+        .listen('TaskUpdated', e => this.$store.commit('updateTask', e.task))
+        .listen('TaskDeleted', e => this.$store.commit('removeTask', e.task))
         .listen('TasksDeleted', e => this.tasksDeleted())
     }
   },
@@ -126,33 +117,10 @@ export default {
     getTasks () {
       this.isLoading = true
 
-      window.axios.get('/tasks')
-        .then(response => {
-          this.isLoading = false
-
-          this.tasks.push(...response.data.data)
-        })
-        .catch(() => {
+      this.$store.dispatch('fetchTasks')
+        .then(() => {
           this.isLoading = false
         })
-    },
-
-    addTask (task) {
-      this.tasks.push(task)
-    },
-
-    updateTask (task) {
-      let taskId = task.id
-      this.tasks.splice(this.tasks.findIndex(task => task.id === taskId), 1, task)
-    },
-
-    removeTask (task) {
-      let taskId = task.id
-      this.tasks.splice(this.tasks.findIndex(task => task.id === taskId), 1)
-    },
-
-    tasksDeleted () {
-      this.completedTasks.forEach(task => this.removeTask(task))
     },
 
     deleteTasks () {
@@ -162,14 +130,14 @@ export default {
 
       this.isRemoveLoading = true
 
-      window.axios.delete('/tasks')
-        .then(response => {
-          this.tasksDeleted()
+      this.$store.dispatch('deleteTasks')
+        .then(() => {
           this.isRemoveLoading = false
         })
-        .catch(() => {
-          this.isRemoveLoading = false
-        })
+    },
+
+    tasksDeleted () {
+      this.completedTasks.forEach(task => this.$store.commit('removeTask', task))
     }
   }
 }

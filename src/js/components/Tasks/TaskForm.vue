@@ -1,8 +1,6 @@
 <template>
   <form @submit.prevent="addTask">
-    <div v-if="errors" class="bg-red-lightest border border-red-light text-red-dark px-4 py-3 rounded relative mb-3" role="alert">
-      <li v-for="error in errors" :key="error[0]">{{ error[0] }}</li>
-    </div>
+    <form-error :error="error"></form-error>
 
     <div class="p-3 mb-4 appearance-none bg-white border-none rounded-full flex shadow-md items-center">
       <div class="border-r w-1/3 pr-1 flex items-center">
@@ -15,7 +13,7 @@
       <input v-focus v-model="form.title" class="w-full no-outline px-3" placeholder="What needs to be done?" ref="task" />
     </div>
 
-    <div class="flex justify-end">
+    <div class="flex justify-end my-4">
       <loading-button
         :isLoading="isLoading"
         :disabled="isDisabled"
@@ -35,9 +33,8 @@ import moment from 'moment'
 export default {
   data () {
     return {
-      endpoint: '/tasks/',
       isLoading: false,
-      errors: null,
+      error: null,
       form: new Form({
         title: '',
         due_at: null
@@ -58,23 +55,21 @@ export default {
       }
 
       this.isLoading = true
-      this.errors = null
+      this.error = null
 
       if (this.form.due_at) {
         this.form.due_at = moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss')
       }
 
-      this.form.post('tasks')
-        .then(({ data }) => {
-          this.$emit('created', data)
-
+      this.$store.dispatch('addTask', this.form)
+        .then(() => {
           this.form.reset()
           this.$refs.task.focus()
           this.isLoading = false
         })
-        .catch(({ errors }) => {
+        .catch(error => {
+          this.error = error.response.data
           this.isLoading = false
-          this.errors = errors
         })
     },
 

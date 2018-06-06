@@ -140,13 +140,12 @@ export default {
       this.isUpdateLoading = true
       this.error = null
 
-      if (this.form.due_at) {
-        this.form.due_at = moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss')
-      }
-
       this.$store.dispatch('updateTask', {
         task: this.task,
-        form: this.form.data()
+        form: {
+          title: this.form.title,
+          due_at: this.form.due_at ? moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss') : null
+        }
       })
         .then(data => {
           this.form.due_at = data.due_at

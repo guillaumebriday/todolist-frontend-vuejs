@@ -69,11 +69,10 @@ export default {
       this.isLoading = true
       this.error = null
 
-      if (this.form.due_at) {
-        this.form.due_at = moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss')
-      }
-
-      this.$store.dispatch('addTask', this.form)
+      this.$store.dispatch('addTask', {
+        title: this.form.title,
+        due_at: this.form.due_at ? moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss') : null
+      })
         .then(() => {
           this.form.reset()
           this.$refs.task.focus()
@@ -92,8 +91,7 @@ export default {
     cancel () {
       this.isShown = false
 
-      this.form.title = ''
-      this.form.due_at = null
+      this.form.reset()
     }
   }
 }

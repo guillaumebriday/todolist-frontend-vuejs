@@ -78,19 +78,6 @@ const actions = {
     })
   },
 
-  toggleCompleted ({ commit }, task) {
-    return new Promise((resolve, reject) => {
-      axios.patch(state.endpoint + task.id, {is_completed: !task.is_completed})
-        .then(({ data }) => {
-          commit('updateTask', data.data)
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
-  },
-
   updateTask ({ commit }, {task, form}) {
     return new Promise((resolve, reject) => {
       axios.patch(state.endpoint + task.id, form)

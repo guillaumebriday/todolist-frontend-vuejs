@@ -122,7 +122,10 @@ export default {
       this.isToggleLoading = true
       this.error = null
 
-      this.$store.dispatch('toggleCompleted', this.task)
+      this.$store.dispatch('updateTask', {
+        task: this.task,
+        form: { is_completed: !this.task.is_completed }
+      })
         .then(() => {
           this.isToggleLoading = false
         })

@@ -35,7 +35,7 @@
         <input v-model="form.password_confirmation" class="form-control" id="password_confirmation" type="password" name="password_confirmation" placeholder="Password confirmation">
       </div>
 
-      <loading-button :isLoading="isLoading" :disabled="isDisabled" :class="[{ 'opacity-50 cursor-not-allowed': isDisabled }]" class="btn-indigo">
+      <loading-button :isLoading="isLoading" :disabled="isDisabled" :class="[{ 'opacity-50 cursor-not-allowed': isDisabled }]" class="btn-indigo w-full">
         Register
       </loading-button>
 

@@ -56,7 +56,7 @@
 import Navbar from '@components/Navbar'
 import Task from '@components/Tasks/Task'
 import TaskForm from '@components/Tasks/TaskForm'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -99,21 +99,13 @@ export default {
     }
   },
 
-  created () {
-    this.getTasks()
-
-    if (window.Echo) {
-      let userId = window.localStorage.getItem('userId')
-
-      window.Echo.private(`App.User.${userId}`)
-        .listen('TaskCreated', e => this.$store.commit('addTask', e.task))
-        .listen('TaskUpdated', e => this.$store.commit('updateTask', e.task))
-        .listen('TaskDeleted', e => this.$store.commit('removeTask', e.task))
-        .listen('TasksDeleted', e => this.tasksDeleted())
-    }
-  },
-
   methods: {
+    ...mapMutations([
+      'addTask',
+      'updateTask',
+      'removeTask'
+    ]),
+
     getTasks () {
       this.isLoading = true
 
@@ -137,7 +129,21 @@ export default {
     },
 
     tasksDeleted () {
-      this.completedTasks.forEach(task => this.$store.commit('removeTask', task))
+      this.completedTasks.forEach(task => this.removeTask(task))
+    }
+  },
+
+  created () {
+    this.getTasks()
+
+    if (window.Echo) {
+      let userId = window.localStorage.getItem('userId')
+
+      window.Echo.private(`App.User.${userId}`)
+        .listen('TaskCreated', e => this.addTask(e.task))
+        .listen('TaskUpdated', e => this.updateTask(e.task))
+        .listen('TaskDeleted', e => this.removeTask(e.task))
+        .listen('TasksDeleted', e => this.tasksDeleted())
     }
   }
 }

@@ -40,6 +40,7 @@
 <script>
 import Form from '@/utils/Form'
 import moment from 'moment'
+import 'vue-datetime/dist/vue-datetime.css'
 
 export default {
   data () {

@@ -4,7 +4,6 @@ import axios from 'axios'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 import Datetime from 'vue-datetime'
-import 'vue-datetime/dist/vue-datetime.css'
 import LoadingButton from '@components/LoadingButton'
 import FormError from '@components/FormError'
 

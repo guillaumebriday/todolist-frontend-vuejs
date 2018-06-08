@@ -71,6 +71,7 @@
 import moment from 'moment'
 import Form from '@/utils/Form'
 import OnClickOutside from '@components/OnClickOutside'
+import 'vue-datetime/dist/vue-datetime.css'
 
 export default {
   components: { OnClickOutside },

@@ -1,7 +1,7 @@
 import { mount } from 'vue-test-utils'
-import Register from '@/components/auth/Register.vue'
+import Register from '@components/auth/Register.vue'
 import expect from 'expect'
-import Form from '@/utils/Form'
+import Form from '@utils/Form'
 
 /* eslint-disable no-undef */
 describe('Register', () => {

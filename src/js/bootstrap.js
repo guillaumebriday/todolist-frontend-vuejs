@@ -4,6 +4,22 @@ import axios from 'axios'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 import Datetime from 'vue-datetime'
+
+import fontawesome from '@fortawesome/fontawesome'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import faTimes from '@fortawesome/fontawesome-free-solid/faTimes'
+import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner'
+import faCheck from '@fortawesome/fontawesome-free-solid/faCheck'
+import faTrash from '@fortawesome/fontawesome-free-solid/faTrash'
+import faPlus from '@fortawesome/fontawesome-free-solid/faPlus'
+import faLock from '@fortawesome/fontawesome-free-solid/faLock'
+import faMobileAlt from '@fortawesome/fontawesome-free-solid/faMobileAlt'
+import faExclamationTriangle from '@fortawesome/fontawesome-free-solid/faExclamationTriangle'
+import faGithub from '@fortawesome/fontawesome-free-brands/faGithub'
+import faClock from '@fortawesome/fontawesome-free-regular/faClock'
+import faLightbulb from '@fortawesome/fontawesome-free-regular/faLightbulb'
+import faCheckCircle from '@fortawesome/fontawesome-free-regular/faCheckCircle'
+
 import LoadingButton from '@components/LoadingButton'
 import FormError from '@components/FormError'
 
@@ -13,11 +29,16 @@ window.axios = axios
 
 Vue.config.productionTip = false
 
+fontawesome.library.add(faTimes, faSpinner, faCheck, faTrash, faPlus, faLock, faMobileAlt, faExclamationTriangle)
+fontawesome.library.add(faGithub)
+fontawesome.library.add(faClock, faLightbulb, faCheckCircle)
+
 Vue.use(VueRouter)
 Vue.use(Datetime)
 
 Vue.component('LoadingButton', LoadingButton)
 Vue.component('FormError', FormError)
+Vue.component('Fa', FontAwesomeIcon)
 
 Vue.directive('focus', {
   inserted (el) {

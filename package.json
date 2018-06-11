@@ -16,9 +16,13 @@
     "test": "mocha-webpack --webpack-config build/webpack.dev.js --require tests/setup.js tests/**/*.spec.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-brands": "^5.0.13",
+    "@fortawesome/fontawesome-free-regular": "^5.0.13",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/vue-fontawesome": "0.0.23",
     "axios": "^0.18.0",
     "dotenv-webpack": "^1.5.5",
-    "font-awesome": "^4.7.0",
     "laravel-echo": "^1.4.0",
     "luxon": "^1.2.1",
     "moment": "^2.22.1",

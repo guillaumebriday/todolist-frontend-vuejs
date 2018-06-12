@@ -25,28 +25,28 @@
               <div class="flex flex-wrap -mx-6 -my-6">
                   <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-6">
                       <div class="mb-8">
-                        <i class="fa fa-lightbulb-o fa-3x text-indigo" aria-hidden="true"></i>
+                        <fa :icon="['far', 'lightbulb']" size="2x" class="text-indigo" />
                       </div>
                     <h3 class="text-3xl font-semibold mb-3">Never forget your tasks</h3>
                     <p class="text-lg leading-normal text-grey-dark mb-8">You can add unlimited tasks and let the application manage it for you. You can add due date or completed status.</p>
                   </div>
                   <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-6">
                       <div class="mb-8">
-                        <i class="fa fa-clock-o fa-3x text-indigo" aria-hidden="true"></i>
+                        <fa :icon="['far', 'clock']" size="2x" class="text-indigo" />
                       </div>
                     <h3 class="text-3xl font-semibold mb-3">Real time application</h3>
                     <p class="text-lg leading-normal text-grey-dark mb-8">Add a task on your computer and see it pop on your phone or tablet instantly.</p>
                   </div>
                   <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-6">
                       <div class="mb-8">
-                        <i class="fa fa-lock fa-3x text-indigo" aria-hidden="true"></i>
+                        <fa icon="lock" size="2x" class="text-indigo" />
                       </div>
                     <h3 class="text-3xl font-semibold mb-3">Authentication with JWT</h3>
                     <p class="text-lg leading-normal text-grey-dark mb-8">JWT are an important piece in ensuring trust and security in your application. JWT allow claims, such as user data, to be represented in a secure manner.</p>
                   </div>
                   <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-6">
                       <div class="mb-8">
-                        <i class="fa fa-mobile fa-3x text-indigo" aria-hidden="true"></i>
+                        <fa icon="mobile-alt" size="2x" class="text-indigo" />
                       </div>
                     <h3 class="text-3xl font-semibold mb-3">Responsive Design</h3>
                     <p class="text-lg leading-normal text-grey-dark mb-8">Work on your desktop, your mobile and almost every devices you need.</p>
@@ -71,7 +71,7 @@
                                   <li class="mb-4">
                                       <div class="flex items-center">
                                           <div class="mr-4">
-                                            <i class="fa fa-check-circle-o text-indigo fa-2x" aria-hidden="true"></i>
+                                            <fa :icon="['far', 'check-circle']" size="2x" class="text-indigo" />
                                           </div>
                                           <p class="text-lg leading-normal">Unlimited tasks</p>
                                       </div>
@@ -79,7 +79,7 @@
                                   <li class="mb-4">
                                       <div class="flex items-center">
                                           <div class="mr-4">
-                                            <i class="fa fa-check-circle-o text-indigo fa-2x" aria-hidden="true"></i>
+                                            <fa :icon="['far', 'check-circle']" size="2x" class="text-indigo" />
                                           </div>
                                           <p class="text-lg leading-normal">Real time application with Websockets</p>
                                       </div>
@@ -87,7 +87,7 @@
                                   <li class="mb-4">
                                       <div class="flex items-center">
                                           <div class="mr-4">
-                                            <i class="fa fa-check-circle-o text-indigo fa-2x" aria-hidden="true"></i>
+                                            <fa :icon="['far', 'check-circle']" size="2x" class="text-indigo" />
                                           </div>
                                           <p class="text-lg leading-normal">Authentication with JWT</p>
                                       </div>
@@ -95,7 +95,7 @@
                                   <li class="">
                                       <div class="flex items-center">
                                           <div class="mr-4">
-                                            <i class="fa fa-check-circle-o text-indigo fa-2x" aria-hidden="true"></i>
+                                            <fa :icon="['far', 'check-circle']" size="2x" class="text-indigo" />
                                           </div>
                                           <p class="text-lg leading-normal">Responsive Design</p>
                                       </div>
@@ -125,11 +125,11 @@
 
       <footer class="bg-grey-lightest py-8">
         <p class="text-center text-grey text-xs mb-4">
-          Made with <i class="fa fa-heart text-red" aria-hidden="true"></i> by <a href="https://guillaumebriday.fr" target="_blank" class="text-grey">Guillaume Briday</a>.
+          Made with <fa icon="heart" class="text-red" /> by <a href="https://guillaumebriday.fr" target="_blank" class="text-grey">Guillaume Briday</a>.
         </p>
 
         <p class="text-center text-grey text-xs">
-          Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" class="text-grey"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a>.
+          Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" class="text-grey"><fa :icon="['fab', 'github']" /> GitHub</a>.
         </p>
       </footer>
   </div>

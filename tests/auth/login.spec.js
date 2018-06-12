@@ -1,7 +1,7 @@
 import { mount } from 'vue-test-utils'
-import Login from '@/components/auth/Login.vue'
+import Login from '@components/auth/Login.vue'
 import expect from 'expect'
-import Form from '@/utils/Form'
+import Form from '@utils/Form'
 
 /* eslint-disable no-undef */
 describe('Login', () => {

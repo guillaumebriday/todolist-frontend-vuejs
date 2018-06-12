@@ -1,7 +1,7 @@
 <template>
   <button :type="type" :disabled="disabled">
-    <i v-if="isLoading" class="fa fa-spinner fa-spin mr-1"></i>
-    <i v-else-if="icon" :class="icon" class="fa mr-1"></i>
+    <fa v-if="isLoading" icon="spinner" class="mr-1" spin />
+    <fa v-else-if="icon" :icon="icon" class="mr-1" />
 
     <slot></slot>
   </button>

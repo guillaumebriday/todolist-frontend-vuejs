@@ -18,7 +18,7 @@
 
     <div class="container mx-auto mt-3 px-4">
       <div v-if="isLoading" class="text-xl text-center my-6 text-grey-darker">
-        <i class="fa fa-spinner fa-spin mr-1" aria-hidden="true"></i>
+        <fa icon="spinner" class="mr-1" spin />
         Loading
       </div>
 
@@ -38,7 +38,7 @@
           :isLoading="isRemoveLoading"
           :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
           type="button"
-          icon="fa-trash"
+          icon="trash"
           class="mx-4 text-grey-darker text-sm">
             Delete completed tasks
         </loading-button>

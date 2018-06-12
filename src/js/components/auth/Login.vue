@@ -34,14 +34,14 @@
       </div>
     </form>
   <p class="text-center text-grey text-xs">
-    Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" class="text-grey">GitHub</a>.
+    Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" class="text-grey"><fa :icon="['fab', 'github']" /> GitHub</a>.
   </p>
   </div>
 </div>
 </template>
 
 <script>
-import Form from '@/utils/Form'
+import Form from '@utils/Form'
 
 export default {
   data () {

@@ -11,11 +11,11 @@
             <input v-focus @keyup.esc="cancelEdit" v-model="form.title" placeholder="What needs to be done?"  class="w-full mb-2 pb-2 px-2 no-outline text-lg font-semibold border-b" type="text">
 
             <div class="flex items-center text-xs">
-              <i class="fa fa-clock-o mr-1 text-grey-dark" aria-hidden="true"></i>
+              <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />
               <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :minute-step="5" input-class="text-grey-dark"></datetime>
 
               <span v-if="form.due_at" @click="clearDueAt" class="flex-none rounded-full bg-grey hover:bg-red h-6 w-6 cursor-pointer flex items-center justify-center shadow">
-                <i class="fa fa-times text-white"></i>
+                <fa icon="times" class="text-white" />
               </span>
             </div>
           </div>
@@ -25,14 +25,14 @@
               <p @click="editTask = true" class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}">{{ task.title }}</p>
 
               <span v-if="task.due_at" @click="editTask = true" :title="toDate(task)" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']">
-                <i class="fa fa-clock-o mr-1" aria-hidden="true"></i> {{ fromNow(task) }}
+                <fa :icon="['far', 'clock']" class="mr-1" /> {{ fromNow(task) }}
               </span>
             </div>
 
             <!-- Checkbox -->
             <div @click="toggleCompleted" :class="[task.is_completed ? 'bg-indigo' : 'border-2', {'cursor-not-allowed' : isToggleLoading}]" class="rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center">
-              <i v-if="isToggleLoading" class="fa fa-spinner fa-spin" :class="[task.is_completed ? 'text-white' : 'text-indigo']" aria-hidden="true"></i>
-              <i v-else class="fa fa-check text-white" :class="{'hover:text-indigo' : ! task.is_completed}" aria-hidden="true"></i>
+              <fa v-if="isToggleLoading" icon="spinner" :class="[task.is_completed ? 'text-white' : 'text-indigo']" spin />
+              <fa v-else icon="check" class="text-white" :class="{'hover:text-indigo' : ! task.is_completed}" />
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
               @click.native="updateTask"
               :isLoading="isUpdateLoading"
               :class="{'opacity-50 cursor-not-allowed' : isDisabled}"
-              icon="fa-check"
+              icon="check"
               class="btn-indigo text-sm">
                 Save
             </loading-button>
@@ -57,7 +57,7 @@
             :isLoading="isRemoveLoading"
             :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
             type="button"
-            icon="fa-trash"
+            icon="trash"
             class="mx-4 text-grey-darker text-sm">
               Delete
           </loading-button>
@@ -69,7 +69,7 @@
 
 <script>
 import moment from 'moment'
-import Form from '@/utils/Form'
+import Form from '@utils/Form'
 import OnClickOutside from '@components/OnClickOutside'
 import 'vue-datetime/dist/vue-datetime.css'
 

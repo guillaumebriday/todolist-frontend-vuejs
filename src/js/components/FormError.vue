@@ -1,7 +1,7 @@
 <template>
   <div v-if="error" class="bg-red-lightest border-t-4 border-red shadow-md text-red-dark px-6 py-3 rounded relative mb-3" role="alert">
     <div class="flex">
-      <i class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></i>
+      <fa icon="exclamation-triangle" class="mr-2" />
 
       <div class="flex-grow">
         <strong class="font-bold">Whoops !</strong>
@@ -9,7 +9,7 @@
       </div>
 
       <span class="absolute pin-t pin-b pin-r px-4 py-3 cursor-pointer" @click.prevent="error = null">
-        <i class="fa fa-times" aria-hidden="true"></i>
+        <fa icon="times" />
       </span>
     </div>
   </div>

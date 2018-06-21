@@ -51,14 +51,21 @@ class Form {
   }
 
   /**
-   * Reset the form fields.
+   * Reset the form fields and errors.
    */
   reset () {
+    this.resetFields()
+
+    this.errors.clear()
+  }
+
+  /**
+   * Reset the form fields and errors.
+   */
+  resetFields () {
     for (let field in this.originalData) {
       this[field] = ''
     }
-
-    this.errors.clear()
   }
 
   /**

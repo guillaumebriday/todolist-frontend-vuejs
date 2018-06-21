@@ -8,10 +8,16 @@ const types = {
 }
 
 const state = {
+  user: null,
+  endpoint: '/users/',
   logged: !!window.localStorage.getItem('token')
 }
 
 const mutations = {
+  setUser (state, user) {
+    state.user = user
+  },
+
   [types.LOGIN] (state, data) {
     state.logged = true
 
@@ -37,6 +43,19 @@ const getters = {
 }
 
 const actions = {
+  fetchUser ({ commit }) {
+    return new Promise((resolve, reject) => {
+      axios.get('/auth/me')
+        .then(({ data }) => {
+          commit('setUser', data.data)
+          resolve()
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+
   login ({ commit }, data) {
     commit(types.LOGIN, data)
 

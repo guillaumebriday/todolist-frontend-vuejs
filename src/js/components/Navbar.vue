@@ -1,6 +1,6 @@
 <template>
   <nav class="bg-indigo" v-if="isLogged">
-    <div class="container mx-auto px-8 py-4">
+    <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between">
         <div>
           <router-link class="text-white no-underline font-bold text-3xl hover:underline" to="/" exact>
@@ -8,9 +8,16 @@
           </router-link>
         </div>
 
-        <button @click="logout" class="text-grey-light mr-3 border border-white py-2 px-4 rounded hover:bg-white hover:text-indigo">
-          Logout
-        </button>
+        <div>
+          <router-link class="text-white no-underline hover:underline ml-4" :to="{ name: 'Profile'}" exact>
+            <fa icon="user" class="mr" />
+            Profile
+          </router-link>
+
+          <button @click="logout" class="text-grey-light ml-4 border border-white py-2 px-4 rounded hover:bg-white hover:text-indigo">
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   </nav>

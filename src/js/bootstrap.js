@@ -10,6 +10,8 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import faTimes from '@fortawesome/fontawesome-free-solid/faTimes'
 import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner'
 import faCheck from '@fortawesome/fontawesome-free-solid/faCheck'
+import faUser from '@fortawesome/fontawesome-free-solid/faUser'
+import faKey from '@fortawesome/fontawesome-free-solid/faKey'
 import faTrash from '@fortawesome/fontawesome-free-solid/faTrash'
 import faPlus from '@fortawesome/fontawesome-free-solid/faPlus'
 import faLock from '@fortawesome/fontawesome-free-solid/faLock'
@@ -30,7 +32,7 @@ window.axios = axios
 
 Vue.config.productionTip = false
 
-fontawesome.library.add(faTimes, faSpinner, faCheck, faTrash, faPlus, faLock, faHeart, faMobileAlt, faExclamationTriangle)
+fontawesome.library.add(faTimes, faSpinner, faCheck, faUser, faKey, faTrash, faPlus, faLock, faHeart, faMobileAlt, faExclamationTriangle)
 fontawesome.library.add(faGithub)
 fontawesome.library.add(faClock, faLightbulb, faCheckCircle)
 

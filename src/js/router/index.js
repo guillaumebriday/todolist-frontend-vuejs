@@ -4,6 +4,8 @@ let Home = () => import('@components/Home')
 let Login = () => import('@components/auth/Login')
 let Register = () => import('@components/auth/Register')
 let TaskList = () => import('@components/Tasks/TaskList')
+let Profile = () => import('@components/Users/Profile')
+let Security = () => import('@components/Users/Security')
 
 let router = new VueRouter({
   mode: 'history',
@@ -13,6 +15,18 @@ let router = new VueRouter({
       name: 'Home',
       component: Home,
       meta: {auth: false}
+    },
+    {
+      path: '/settings/profile',
+      name: 'Profile',
+      component: Profile,
+      meta: {auth: true}
+    },
+    {
+      path: '/settings/security',
+      name: 'Security',
+      component: Security,
+      meta: {auth: true}
     },
     {
       path: '/app/:status',
@@ -44,7 +58,7 @@ router.beforeEach((to, from, next) => {
     return next('/login')
   }
 
-  if (store.getters.isLogged && (to.name !== 'TaskList')) {
+  if (store.getters.isLogged && !to.meta.auth) {
     return next('/app/active')
   }
 

@@ -176,7 +176,7 @@ export default {
     },
 
     removeTask () {
-      if (this.isRemoveLoading) {
+      if (this.isRemoveLoading || !window.confirm('Are you sure ? Your task will be deleted forever.')) {
         return false
       }
 

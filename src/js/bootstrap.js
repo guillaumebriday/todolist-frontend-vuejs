@@ -5,23 +5,24 @@ import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
 import Datetime from 'vue-datetime'
 
-import fontawesome from '@fortawesome/fontawesome'
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-import faTimes from '@fortawesome/fontawesome-free-solid/faTimes'
-import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner'
-import faCheck from '@fortawesome/fontawesome-free-solid/faCheck'
-import faUser from '@fortawesome/fontawesome-free-solid/faUser'
-import faKey from '@fortawesome/fontawesome-free-solid/faKey'
-import faTrash from '@fortawesome/fontawesome-free-solid/faTrash'
-import faPlus from '@fortawesome/fontawesome-free-solid/faPlus'
-import faLock from '@fortawesome/fontawesome-free-solid/faLock'
-import faHeart from '@fortawesome/fontawesome-free-solid/faHeart'
-import faMobileAlt from '@fortawesome/fontawesome-free-solid/faMobileAlt'
-import faExclamationTriangle from '@fortawesome/fontawesome-free-solid/faExclamationTriangle'
-import faGithub from '@fortawesome/fontawesome-free-brands/faGithub'
-import faClock from '@fortawesome/fontawesome-free-regular/faClock'
-import faLightbulb from '@fortawesome/fontawesome-free-regular/faLightbulb'
-import faCheckCircle from '@fortawesome/fontawesome-free-regular/faCheckCircle'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck'
+import { faUser } from '@fortawesome/free-solid-svg-icons/faUser'
+import { faKey } from '@fortawesome/free-solid-svg-icons/faKey'
+import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash'
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus'
+import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
+import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart'
+import { faMobileAlt } from '@fortawesome/free-solid-svg-icons/faMobileAlt'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons/faExclamationTriangle'
+import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub'
+import { faClock } from '@fortawesome/free-regular-svg-icons/faClock'
+import { faLightbulb } from '@fortawesome/free-regular-svg-icons/faLightbulb'
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons/faCheckCircle'
 
 import LoadingButton from '@components/LoadingButton'
 import FormError from '@components/FormError'
@@ -32,9 +33,9 @@ window.axios = axios
 
 Vue.config.productionTip = false
 
-fontawesome.library.add(faTimes, faSpinner, faCheck, faUser, faKey, faTrash, faPlus, faLock, faHeart, faMobileAlt, faExclamationTriangle)
-fontawesome.library.add(faGithub)
-fontawesome.library.add(faClock, faLightbulb, faCheckCircle)
+library.add(faTimes, faSpinner, faCheck, faUser, faKey, faTrash, faPlus, faLock, faHeart, faMobileAlt, faExclamationTriangle)
+library.add(faGithub)
+library.add(faClock, faLightbulb, faCheckCircle)
 
 Vue.use(VueRouter)
 Vue.use(Datetime)

@@ -8,7 +8,7 @@
         <div class="bg-white leading-none rounded-lg shadow overflow-hidden p-3 mb-4">
           <!-- Update form -->
           <div v-if="editTask" class="flex flex-col">
-            <input v-focus @keyup.esc="cancelEdit" v-model="form.title" placeholder="What needs to be done?"  class="w-full mb-2 pb-2 px-2 no-outline text-lg font-semibold border-b" type="text">
+            <input v-focus @keyup.esc="cancelEdit" v-model="form.title" placeholder="What needs to be done?" class="w-full mb-2 pb-2 px-2 focus:outline-none text-lg font-semibold border-b" type="text">
 
             <div class="flex items-center text-xs">
               <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />

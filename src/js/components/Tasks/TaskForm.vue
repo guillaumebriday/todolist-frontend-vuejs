@@ -4,7 +4,7 @@
       <form-error :error="error"></form-error>
 
       <div class="p-3 mb-4 appearance-none bg-white rounded-lg flex flex-col shadow">
-        <input v-focus @keyup.esc="cancel" v-model="form.title" class="w-full mb-2 pt-1 pb-2 px-2 no-outline font-semibold border-b" placeholder="What needs to be done?" ref="task" />
+        <input v-focus @keyup.esc="cancel" v-model="form.title" class="w-full mb-2 pt-1 pb-2 px-2 focus:outline-none font-semibold border-b" placeholder="What needs to be done?" ref="task" />
 
         <div class="flex items-center text-xs">
           <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />

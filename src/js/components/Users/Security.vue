@@ -26,7 +26,7 @@
               </div>
 
               <div class="md:w-2/3">
-                <input v-focus v-model="form.password" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('password') }" id="password" type="password" name="password" placeholder="Your new password">
+                <input v-model="form.password" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('password') }" id="password" type="password" name="password" placeholder="Your new password">
                 <p v-if="form.errors.has('password')" class="text-red text-xs italic">{{ form.errors.get('password') }}</p>
               </div>
             </div>
@@ -37,7 +37,7 @@
               </div>
 
               <div class="md:w-2/3">
-                <input v-focus v-model="form.password_confirmation" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('password_confirmation') }" id="password_confirmation" type="password" name="password_confirmation" placeholder="Your new password confirmation">
+                <input v-model="form.password_confirmation" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('password_confirmation') }" id="password_confirmation" type="password" name="password_confirmation" placeholder="Your new password confirmation">
                 <p v-if="form.errors.has('password_confirmation')" class="text-red text-xs italic">{{ form.errors.get('password_confirmation') }}</p>
               </div>
             </div>

@@ -29,6 +29,7 @@ const mutations = {
 
   [types.LOGOUT] (state) {
     state.logged = false
+    state.user = null
 
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('userId')
@@ -56,14 +57,17 @@ const actions = {
     })
   },
 
-  login ({ commit }, data) {
+  login ({ commit, dispatch }, data) {
     commit(types.LOGIN, data)
+
+    dispatch('fetchUser')
 
     router.push({name: 'TaskList', params: { status: 'active' }})
   },
 
   logout ({ commit }) {
     commit(types.LOGOUT)
+    commit('clearTasks')
 
     router.push({name: 'Login'})
   }

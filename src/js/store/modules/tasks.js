@@ -22,6 +22,10 @@ const mutations = {
   removeTask (state, task) {
     let taskId = task.id
     state.all.splice(state.all.findIndex(task => task.id === taskId), 1)
+  },
+
+  clearTasks (state) {
+    state.all = []
   }
 }
 

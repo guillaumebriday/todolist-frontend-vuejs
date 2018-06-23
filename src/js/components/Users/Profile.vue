@@ -6,7 +6,7 @@
 
       <div class="flex-1">
         <div class="rounded overflow-hidden bg-white px-6 py-6 shadow-md">
-          <p class="font-bold text-xl mb-6 pb-6 border-b">Update your profile</p>
+          <h2 class="font-bold text-xl mb-6 pb-6 border-b">Update your profile</h2>
 
           <form @submit.prevent="update" class="w-full max-w-md" @keydown="form.errors.clear($event.target.name)">
             <div class="md:flex md:items-center mb-4">
@@ -40,6 +40,20 @@
               </div>
             </div>
           </form>
+
+          <h2 class="font-bold text-red text-xl mb-6 pb-6 border-b">Delete your account</h2>
+
+          <p>Once you delete your account, there is no going back. Please be certain.</p>
+
+          <loading-button
+            :isLoading="isDeleteLoading"
+            :disabled="isDeleteDisabled"
+            @click.native.prevent="deleteAccount"
+            :class="{'opacity-50 cursor-not-allowed' : isDeleteDisabled}"
+            icon="trash"
+            class="btn-red mt-4 text-sm">
+              Delete your account
+          </loading-button>
         </div>
       </div>
     </div>
@@ -50,6 +64,7 @@
 import Navbar from '@components/Navbar'
 import Sidebar from '@components/Users/Sidebar'
 import Form from '@utils/Form'
+import axios from 'axios'
 
 export default {
   components: {
@@ -63,17 +78,22 @@ export default {
         email: '',
         name: ''
       }),
-      isLoading: false
+      isLoading: false,
+      isDeleteLoading: false
     }
   },
 
   computed: {
     isDisabled () {
-      if (this.isLoading || this.form.incompleted()) {
+      if (this.isLoading || this.form.incompleted() || !this.user) {
         return true
       }
 
       return this.form.email === this.user.email && this.form.name === this.user.name
+    },
+
+    isDeleteDisabled () {
+      return this.isDeleteLoading || !this.user
     },
 
     user () {
@@ -111,10 +131,30 @@ export default {
     },
 
     setForm () {
+      if (!this.user) {
+        return false
+      }
+
       this.form = new Form({
         email: this.user.email,
         name: this.user.name
       })
+    },
+
+    deleteAccount () {
+      if (this.isDeleteDisabled || !window.confirm('Are you sure ? Your tasks and your account will be deleted forever.')) {
+        return false
+      }
+
+      this.isDeleteLoading = true
+
+      axios.delete('/users/' + this.user.id)
+        .then(() => {
+          this.$store.dispatch('logout')
+        })
+        .catch(() => {
+          this.isDeleteLoading = false
+        })
     }
   },
 

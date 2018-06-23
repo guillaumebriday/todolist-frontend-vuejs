@@ -56,8 +56,10 @@ const actions = {
     })
   },
 
-  login ({ commit }, data) {
+  login ({ commit, dispatch }, data) {
     commit(types.LOGIN, data)
+
+    dispatch('fetchUser')
 
     router.push({name: 'TaskList', params: { status: 'active' }})
   },

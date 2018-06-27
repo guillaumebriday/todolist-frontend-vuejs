@@ -5,7 +5,6 @@ let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 let HtmlWebpackPlugin = require('html-webpack-plugin')
 let Dotenv = require('dotenv-webpack')
 let webpack = require('webpack')
-let PrerenderSPAPlugin = require('prerender-spa-plugin')
 let { VueLoaderPlugin } = require('vue-loader')
 
 function resolve (dir) {
@@ -97,11 +96,6 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'index.html'
-    }),
-    new PrerenderSPAPlugin({
-      staticDir: resolve('dist'),
-      minify: true,
-      routes: ['/', '/login', '/register']
     })
   ]
 }

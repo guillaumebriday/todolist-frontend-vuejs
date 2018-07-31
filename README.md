@@ -72,19 +72,10 @@ You can serve your application with [nginx](https://nginx.org/) in production. T
 
 You can deploy this application with Ansible and Capistrano.
 
-Just create an ```hosts``` file like the following one :
+Copy the hosts example file and change the values to your needs :
 
-```ini
-[webservers]
-example.com
-
-[all:vars]
-ansible_python_interpreter=/usr/bin/python3
-
-[webservers:vars]
-app_url=example.com
-base_url=http://example.com
-pusher_app_key=a1b2c3d4
+```bash
+$ cp hosts.example hosts
 ```
 
 Setup your variables in the ```playbook.yml``` and in the ```config/deploy.rb``` files.

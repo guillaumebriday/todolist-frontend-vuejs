@@ -7,6 +7,7 @@ let merge = require('webpack-merge')
 let PurgecssPlugin = require('purgecss-webpack-plugin')
 let HtmlWebpackPlugin = require('html-webpack-plugin')
 let CleanWebpackPlugin = require('clean-webpack-plugin')
+let CopyWebpackPlugin = require('copy-webpack-plugin')
 let common = require('./webpack.common.js')
 
 class TailwindExtractor {
@@ -49,6 +50,13 @@ module.exports = merge(common, {
         collapseWhitespace: true,
         removeAttributeQuotes: true
       }
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: resolve('_redirects'),
+        to: '_redirects',
+        toType: 'file'
+      }
+    ])
   ]
 })

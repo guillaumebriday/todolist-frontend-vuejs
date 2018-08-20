@@ -89,7 +89,8 @@ module.exports = {
     new VueLoaderPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new Dotenv({
-      path: resolve('.env')
+      path: resolve('.env'),
+      systemvars: true
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css'

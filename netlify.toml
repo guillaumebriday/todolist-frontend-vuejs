@@ -1,0 +1,7 @@
+[build]
+  command = "npm run production"
+  publish = "dist"
+
+[build.environment]
+  CI = "true"
+  BASE_URL = "https://todolist-backend.guillaumebriday.xyz"

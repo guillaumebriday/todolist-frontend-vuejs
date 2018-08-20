@@ -68,32 +68,7 @@ You could generate a key on [https://pusher.com/](https://pusher.com/).
 
 ## Deploy in production
 
-You can serve your application with [nginx](https://nginx.org/) in production. The configuration is very simple because it's only static files.
-
-You can deploy this application with Ansible and Capistrano.
-
-Copy the hosts example file and change the values to your needs :
-
-```bash
-$ cp hosts.example hosts
-```
-
-Setup your variables in the ```playbook.yml``` and in the ```config/deploy.rb``` files.
-
-And then run :
-
-```bash
-$ ansible-playbook -i hosts playbook.yml
-```
-
-Now with [Capistrano](http://capistranorb.com/) :
-
-Before starting, change the configuration files with your informations, then run :
-
-```bash
-$ bundle install
-$ cap production deploy
-```
+This application is hosted on [Netlify](https://www.netlify.com/) and available on [https://todolist.guillaumebriday.xyz/](https://todolist.guillaumebriday.xyz/).
 
 ## More details
 

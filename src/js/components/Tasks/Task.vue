@@ -12,7 +12,7 @@
 
             <div class="flex items-center text-xs">
               <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />
-              <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :minute-step="5" input-class="text-grey-dark"></datetime>
+              <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :zone="zone" :minute-step="5" input-class="text-grey-dark"></datetime>
 
               <span v-if="form.due_at" @click="clearDueAt" class="flex-none rounded-full bg-grey hover:bg-red h-6 w-6 cursor-pointer flex items-center justify-center shadow">
                 <fa icon="times" class="text-white" />
@@ -24,8 +24,8 @@
             <div class="flex-grow">
               <p @click="editTask = true" class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}">{{ task.title }}</p>
 
-              <span v-if="task.due_at" @click="editTask = true" :title="toDate(task)" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']">
-                <fa :icon="['far', 'clock']" class="mr-1" /> {{ fromNow(task) }}
+              <span v-if="task.due_at" @click="editTask = true" :title="toDate" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']">
+                <fa :icon="['far', 'clock']" class="mr-1" /> {{ fromNow }}
               </span>
             </div>
 
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import moment from 'moment-timezone'
 import Form from '@utils/Form'
 import OnClickOutside from '@components/OnClickOutside'
 import 'vue-datetime/dist/vue-datetime.css'
@@ -103,18 +103,22 @@ export default {
 
     isNotLoading () {
       return !(this.isToggleLoading || this.isRemoveLoading || this.isUpdateLoading)
+    },
+
+    fromNow () {
+      return moment(this.task.due_at).fromNow()
+    },
+
+    toDate () {
+      return moment(this.task.due_at).format('dddd, MMMM Do YYYY, h:mm:ss a')
+    },
+
+    zone () {
+      return moment.tz.guess()
     }
   },
 
   methods: {
-    fromNow (task) {
-      return moment(task.due_at).fromNow()
-    },
-
-    toDate (task) {
-      return moment(task.due_at).format('dddd, MMMM Do YYYY, h:mm:ss a')
-    },
-
     toggleCompleted () {
       if (this.isToggleLoading) {
         return false
@@ -148,7 +152,7 @@ export default {
         task: this.task,
         form: {
           title: this.form.title,
-          due_at: this.form.due_at ? moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss') : null
+          due_at: moment(this.form.due_at).seconds(0)
         }
       })
         .then(data => {

@@ -8,7 +8,7 @@
 
         <div class="flex items-center text-xs">
           <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />
-          <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :minute-step="5" input-class="text-grey-dark"></datetime>
+          <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :zone="zone" :minute-step="5" input-class="text-grey-dark"></datetime>
 
           <span v-if="form.due_at" @click="clearDueAt" class="flex-none rounded-full bg-grey hover:bg-red h-6 w-6 cursor-pointer flex items-center justify-center shadow">
             <fa icon="times" class="text-white" />
@@ -39,7 +39,7 @@
 
 <script>
 import Form from '@utils/Form'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import 'vue-datetime/dist/vue-datetime.css'
 
 export default {
@@ -58,6 +58,10 @@ export default {
   computed: {
     isDisabled () {
       return this.form.title === '' || this.isLoading
+    },
+
+    zone () {
+      return moment.tz.guess()
     }
   },
 
@@ -72,7 +76,7 @@ export default {
 
       this.$store.dispatch('addTask', {
         title: this.form.title,
-        due_at: this.form.due_at ? moment(this.form.due_at).format('YYYY-MM-DD HH:mm:ss') : null
+        due_at: moment(this.form.due_at).seconds(0)
       })
         .then(() => {
           this.form.reset()

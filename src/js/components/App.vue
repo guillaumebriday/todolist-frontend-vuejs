@@ -6,7 +6,7 @@
 
 <script>
 import axios from 'axios'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 export default {
   created () {

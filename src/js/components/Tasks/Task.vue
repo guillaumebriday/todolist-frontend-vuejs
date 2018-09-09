@@ -1,80 +1,78 @@
 <template>
-  <li class="my-4">
-    <on-click-outside :do="handleClickOutside">
-      <form @submit.prevent="updateTask">
-        <form-error :error="error"></form-error>
+  <li class="my-4" v-on-clickaway="handleClickAway">
+    <form @submit.prevent="updateTask">
+      <form-error :error="error"></form-error>
 
-        <!-- Task -->
-        <div class="bg-white leading-none rounded-lg shadow overflow-hidden p-3 mb-4">
-          <!-- Update form -->
-          <div v-if="editTask" class="flex flex-col">
-            <input v-focus @keyup.esc="cancelEdit" v-model="form.title" placeholder="What needs to be done?" class="w-full mb-2 pb-2 px-2 focus:outline-none text-lg font-semibold border-b" type="text">
+      <!-- Task -->
+      <div class="bg-white leading-none rounded-lg shadow overflow-hidden p-3 mb-4">
+        <!-- Update form -->
+        <div v-if="editTask" class="flex flex-col">
+          <input v-focus @keyup.esc="cancelEdit" v-model="form.title" placeholder="What needs to be done?" class="w-full mb-2 pb-2 px-2 focus:outline-none text-lg font-semibold border-b" type="text">
 
-            <div class="flex items-center text-xs">
-              <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />
-              <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :zone="zone" :minute-step="5" input-class="text-grey-dark"></datetime>
+          <div class="flex items-center text-xs">
+            <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />
+            <datetime type="datetime" v-model="form.due_at" placeholder="Due at" :zone="zone" :minute-step="5" input-class="text-grey-dark"></datetime>
 
-              <span v-if="form.due_at" @click="clearDueAt" class="flex-none rounded-full bg-grey hover:bg-red h-6 w-6 cursor-pointer flex items-center justify-center shadow">
-                <fa icon="times" class="text-white" />
-              </span>
-            </div>
-          </div>
-
-          <div v-else class="flex items-center">
-            <div class="flex-grow">
-              <p @click="editTask = true" class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}">{{ task.title }}</p>
-
-              <span v-if="task.due_at" @click="editTask = true" :title="toDate" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']">
-                <fa :icon="['far', 'clock']" class="mr-1" /> {{ fromNow }}
-              </span>
-            </div>
-
-            <!-- Checkbox -->
-            <div @click="toggleCompleted" :class="[task.is_completed ? 'bg-indigo' : 'border-2', {'cursor-not-allowed' : isToggleLoading}]" class="rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center">
-              <fa v-if="isToggleLoading" icon="spinner" :class="[task.is_completed ? 'text-white' : 'text-indigo']" spin />
-              <fa v-else icon="check" class="text-white" :class="{'hover:text-indigo' : ! task.is_completed}" />
-            </div>
+            <span v-if="form.due_at" @click="clearDueAt" class="flex-none rounded-full bg-grey hover:bg-red h-6 w-6 cursor-pointer flex items-center justify-center shadow">
+              <fa icon="times" class="text-white" />
+            </span>
           </div>
         </div>
 
-        <!-- Update buttons -->
-        <div v-if="editTask" class="flex items-center justify-between mt-2">
-          <div class="flex items-center">
-            <loading-button
-              @click.native="updateTask"
-              :isLoading="isUpdateLoading"
-              :class="{'opacity-50 cursor-not-allowed' : isDisabled}"
-              icon="check"
-              class="btn-indigo text-sm">
-                Save
-            </loading-button>
+        <div v-else class="flex items-center">
+          <div class="flex-grow">
+            <p @click="editTask = true" class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}">{{ task.title }}</p>
 
-            <span @click="cancelEdit" class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline">Cancel</span>
+            <span v-if="task.due_at" @click="editTask = true" :title="toDate" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']">
+              <fa :icon="['far', 'clock']" class="mr-1" /> {{ fromNow }}
+            </span>
           </div>
 
+          <!-- Checkbox -->
+          <div @click="toggleCompleted" :class="[task.is_completed ? 'bg-indigo' : 'border-2', {'cursor-not-allowed' : isToggleLoading}]" class="rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center">
+            <fa v-if="isToggleLoading" icon="spinner" :class="[task.is_completed ? 'text-white' : 'text-indigo']" spin />
+            <fa v-else icon="check" class="text-white" :class="{'hover:text-indigo' : ! task.is_completed}" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Update buttons -->
+      <div v-if="editTask" class="flex items-center justify-between mt-2">
+        <div class="flex items-center">
           <loading-button
-            @click.native="removeTask"
-            :isLoading="isRemoveLoading"
-            :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
-            type="button"
-            icon="trash"
-            class="mx-4 text-grey-darker text-sm">
-              Delete
+            @click.native="updateTask"
+            :isLoading="isUpdateLoading"
+            :class="{'opacity-50 cursor-not-allowed' : isDisabled}"
+            icon="check"
+            class="btn-indigo text-sm">
+              Save
           </loading-button>
+
+          <span @click="cancelEdit" class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline">Cancel</span>
         </div>
-      </form>
-    </on-click-outside>
+
+        <loading-button
+          @click.native="removeTask"
+          :isLoading="isRemoveLoading"
+          :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
+          type="button"
+          icon="trash"
+          class="mx-4 text-grey-darker text-sm">
+            Delete
+        </loading-button>
+      </div>
+    </form>
   </li>
 </template>
 
 <script>
+import { mixin as clickaway } from 'vue-clickaway'
 import moment from 'moment-timezone'
 import Form from '@utils/Form'
-import OnClickOutside from '@components/OnClickOutside'
 import 'vue-datetime/dist/vue-datetime.css'
 
 export default {
-  components: { OnClickOutside },
+  mixins: [ clickaway ],
   props: {
     task: {
       type: Object,
@@ -201,7 +199,7 @@ export default {
       })
     },
 
-    handleClickOutside () {
+    handleClickAway () {
       this.error = null
 
       if (this.editTask && this.isNotLoading) {

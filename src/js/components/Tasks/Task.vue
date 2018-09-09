@@ -89,11 +89,12 @@ export default {
       isUpdateLoading: false,
       editTask: false,
       error: null,
-      form: new Form({
-        title: this.task.title,
-        due_at: this.task.due_at
-      })
+      form: this.setForm(this.task)
     }
+  },
+
+  watch: {
+    task () { this.form = this.setForm(this.task) }
   },
 
   computed: {
@@ -191,6 +192,13 @@ export default {
         .catch(error => {
           this.error = error.response.data
         })
+    },
+
+    setForm (task) {
+      return new Form({
+        title: this.task.title,
+        due_at: this.task.due_at
+      })
     },
 
     handleClickOutside () {

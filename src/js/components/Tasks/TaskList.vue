@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <navbar />
 
     <div class="flex justify-center shadow">
       <router-link :class="[status === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow no-underline" :to="{name: 'TaskList', params: { status: 'active' }}" exact>
@@ -25,22 +25,23 @@
       <transition-group class="list-reset" name="list" tag="ul">
         <task v-for="task in filteredTasks"
               :key="task.id"
-              :task="task">
-        </task>
+              :task="task"
+        />
       </transition-group>
 
-      <task-form v-if="status != 'completed'"></task-form>
+      <task-form v-if="status != 'completed'" />
 
       <div v-else class="flex justify-end my-4">
         <loading-button
           v-if="completedTasks.length"
-          @click.native="deleteTasks"
-          :isLoading="isRemoveLoading"
+          :is-loading="isRemoveLoading"
           :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
           type="button"
           icon="trash"
-          class="mx-4 text-grey-darker text-sm">
-            Delete completed tasks
+          class="mx-4 text-grey-darker text-sm"
+          @click.native="deleteTasks"
+        >
+          Delete completed tasks
         </loading-button>
       </div>
 
@@ -99,6 +100,20 @@ export default {
     }
   },
 
+  created () {
+    this.getTasks()
+
+    if (window.Echo) {
+      let userId = window.localStorage.getItem('userId')
+
+      window.Echo.private(`App.User.${userId}`)
+        .listen('TaskCreated', e => this.addTask(e.task))
+        .listen('TaskUpdated', e => this.updateTask(e.task))
+        .listen('TaskDeleted', e => this.removeTask(e.task))
+        .listen('TasksDeleted', e => this.tasksDeleted())
+    }
+  },
+
   methods: {
     ...mapMutations([
       'addTask',
@@ -130,20 +145,6 @@ export default {
 
     tasksDeleted () {
       this.completedTasks.forEach(task => this.removeTask(task))
-    }
-  },
-
-  created () {
-    this.getTasks()
-
-    if (window.Echo) {
-      let userId = window.localStorage.getItem('userId')
-
-      window.Echo.private(`App.User.${userId}`)
-        .listen('TaskCreated', e => this.addTask(e.task))
-        .listen('TaskUpdated', e => this.updateTask(e.task))
-        .listen('TaskDeleted', e => this.removeTask(e.task))
-        .listen('TasksDeleted', e => this.tasksDeleted())
     }
   }
 }

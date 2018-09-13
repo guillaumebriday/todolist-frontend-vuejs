@@ -1,21 +1,21 @@
 <template>
   <div>
-    <navbar></navbar>
+    <navbar />
     <div class="container md:flex mx-auto mt-3 px-4">
-      <sidebar class="flex-none w-full md:max-w-xs"></sidebar>
+      <sidebar class="flex-none w-full md:max-w-xs" />
 
       <div class="flex-1">
         <div class="rounded overflow-hidden bg-white px-6 py-6 shadow-md">
           <h2 class="font-bold text-xl mb-6 pb-6 border-b">Update your profile</h2>
 
-          <form @submit.prevent="update" class="w-full max-w-md" @keydown="form.errors.clear($event.target.name)">
+          <form class="w-full max-w-md" @submit.prevent="update" @keydown="form.errors.clear($event.target.name)">
             <div class="md:flex md:items-center mb-4">
               <div class="md:w-1/3">
                 <label class="block text-grey-darker md:text-right text-sm font-bold mb-1 pr-4" for="name">Name</label>
               </div>
 
               <div class="md:w-2/3">
-                <input v-focus v-model="form.name" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('name') }" id="name" type="text" name="name" placeholder="Name">
+                <input id="name" v-model="form.name" v-focus class="form-control" :class="{ 'border-red mb-3' : form.errors.has('name') }" type="text" name="name" placeholder="Name">
                 <p v-if="form.errors.has('name')" class="text-red text-xs italic">{{ form.errors.get('name') }}</p>
               </div>
             </div>
@@ -26,15 +26,15 @@
               </div>
 
               <div class="md:w-2/3">
-                <input v-model="form.email" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('email') }" id="email" type="email" name="email" placeholder="Email">
+                <input id="email" v-model="form.email" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('email') }" type="email" name="email" placeholder="Email">
                 <p v-if="form.errors.has('email')" class="text-red text-xs italic">{{ form.errors.get('email') }}</p>
               </div>
             </div>
 
             <div class="md:flex md:items-center mb-6">
-              <div class="md:w-1/3"></div>
+              <div class="md:w-1/3" />
               <div class="md:w-2/3">
-                <loading-button :isLoading="isLoading" :disabled="isDisabled" :class="[{ 'opacity-50 cursor-not-allowed': isDisabled }]" class="btn-indigo">
+                <loading-button :is-loading="isLoading" :disabled="isDisabled" :class="[{ 'opacity-50 cursor-not-allowed': isDisabled }]" class="btn-indigo">
                   Update
                 </loading-button>
               </div>
@@ -46,13 +46,14 @@
           <p>Once you delete your account, there is no going back. Please be certain.</p>
 
           <loading-button
-            :isLoading="isDeleteLoading"
+            :is-loading="isDeleteLoading"
             :disabled="isDeleteDisabled"
-            @click.native.prevent="deleteAccount"
             :class="{'opacity-50 cursor-not-allowed' : isDeleteDisabled}"
             icon="trash"
-            class="btn-red mt-4 text-sm">
-              Delete your account
+            class="btn-red mt-4 text-sm"
+            @click.native.prevent="deleteAccount"
+          >
+            Delete your account
           </loading-button>
         </div>
       </div>
@@ -107,6 +108,14 @@ export default {
     }
   },
 
+  created () {
+    if (!this.user) {
+      this.getUser()
+    } else {
+      this.setForm()
+    }
+  },
+
   methods: {
     getUser () {
       this.$store.dispatch('fetchUser')
@@ -155,14 +164,6 @@ export default {
         .catch(() => {
           this.isDeleteLoading = false
         })
-    }
-  },
-
-  created () {
-    if (!this.user) {
-      this.getUser()
-    } else {
-      this.setForm()
     }
   }
 }

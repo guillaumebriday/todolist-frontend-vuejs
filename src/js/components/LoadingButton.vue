@@ -3,7 +3,7 @@
     <fa v-if="isLoading" icon="spinner" class="mr-1" spin />
     <fa v-else-if="icon" :icon="icon" class="mr-1" />
 
-    <slot></slot>
+    <slot />
   </button>
 </template>
 

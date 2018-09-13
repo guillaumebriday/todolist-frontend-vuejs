@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-indigo" v-if="isLogged">
+  <nav v-if="isLogged" class="bg-indigo">
     <div class="container mx-auto px-4 py-4">
       <div class="flex justify-between">
         <div>
@@ -14,7 +14,7 @@
             Profile
           </router-link>
 
-          <button @click="logout" class="text-grey-light ml-4 border border-white py-2 px-4 rounded hover:bg-white hover:text-indigo">
+          <button class="text-grey-light ml-4 border border-white py-2 px-4 rounded hover:bg-white hover:text-indigo" @click="logout">
             Logout
           </button>
         </div>

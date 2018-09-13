@@ -2,15 +2,17 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   parserOptions: {
+    parser: 'babel-eslint',
     sourceType: 'module'
   },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-  extends: 'standard',
-  // required to lint *.vue files
+  extends: [
+    'standard',
+    'plugin:vue/recommended'
+  ],
   plugins: [
-    'html'
+    'vue'
   ],
   // add your custom rules here
   rules: {

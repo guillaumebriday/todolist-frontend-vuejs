@@ -37,6 +37,10 @@ const getters = {
       return getters.activeTasks
     }
 
+    return getters.allTasks
+  },
+
+  allTasks (state) {
     return state.all
   },
 

@@ -8,7 +8,7 @@
       </router-link>
 
       <router-link :class="[status === 'all' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow no-underline" :to="{name: 'TaskList', params: { status: 'all' }}" exact>
-        All ({{ tasks.length }})
+        All ({{ allTasks.length }})
       </router-link>
 
       <router-link :class="[status === 'completed' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow no-underline" :to="{name: 'TaskList', params: { status: 'completed' }}" exact>
@@ -75,16 +75,13 @@ export default {
 
   computed: {
     ...mapGetters([
-      'completedTasks',
-      'activeTasks'
+      'allTasks',
+      'activeTasks',
+      'completedTasks'
     ]),
 
     filteredTasks () {
       return this.$store.getters.filteredTasks(this.status)
-    },
-
-    tasks () {
-      return this.$store.state.tasks.all
     },
 
     status () {

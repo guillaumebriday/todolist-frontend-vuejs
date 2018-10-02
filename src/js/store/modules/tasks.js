@@ -1,31 +1,31 @@
 import axios from 'axios'
 
 const state = {
-  all: [],
+  tasks: [],
   endpoint: '/tasks/'
 }
 
 const mutations = {
   setTasks (state, tasks) {
-    state.all = tasks
+    state.tasks = tasks
   },
 
   addTask (state, task) {
-    state.all.push(task)
+    state.tasks.push(task)
   },
 
   updateTask (state, task) {
     let taskId = task.id
-    state.all.splice(state.all.findIndex(task => task.id === taskId), 1, task)
+    state.tasks.splice(state.tasks.findIndex(task => task.id === taskId), 1, task)
   },
 
   removeTask (state, task) {
     let taskId = task.id
-    state.all.splice(state.all.findIndex(task => task.id === taskId), 1)
+    state.tasks.splice(state.tasks.findIndex(task => task.id === taskId), 1)
   },
 
   clearTasks (state) {
-    state.all = []
+    state.tasks = []
   }
 }
 
@@ -41,19 +41,19 @@ const getters = {
   },
 
   allTasks (state) {
-    return state.all
+    return state.tasks
   },
 
   activeTasks (state) {
-    return state.all.filter(task => task.is_completed === false)
+    return state.tasks.filter(task => task.is_completed === false)
   },
 
   completedTasks (state) {
-    return state.all.filter(task => task.is_completed === true)
+    return state.tasks.filter(task => task.is_completed === true)
   },
 
   timeToChill: (state, getters) => (status) => {
-    return !state.all.length ||
+    return !state.tasks.length ||
             (status === 'active' && !getters.activeTasks.length) ||
             (status === 'completed' && !getters.completedTasks.length)
   }

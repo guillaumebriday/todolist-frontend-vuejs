@@ -10,7 +10,7 @@ class Form {
   constructor (data) {
     this.originalData = data
 
-    for (let field in data) {
+    for (const field in data) {
       this[field] = data[field]
     }
 
@@ -21,9 +21,9 @@ class Form {
    * Fetch all relevant data for the form.
    */
   data () {
-    let data = {}
+    const data = {}
 
-    for (let property in this.originalData) {
+    for (const property in this.originalData) {
       data[property] = this[property]
     }
 
@@ -41,7 +41,7 @@ class Form {
    * Return true if the form is completed.
    */
   completed () {
-    for (let field in this.originalData) {
+    for (const field in this.originalData) {
       if (this[field] === '' || this[field] === null) {
         return false
       }
@@ -63,7 +63,7 @@ class Form {
    * Reset the form fields and errors.
    */
   resetFields () {
-    for (let field in this.originalData) {
+    for (const field in this.originalData) {
       this[field] = ''
     }
   }

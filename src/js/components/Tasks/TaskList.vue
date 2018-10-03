@@ -101,7 +101,7 @@ export default {
     this.getTasks()
 
     if (window.Echo) {
-      let userId = window.localStorage.getItem('userId')
+      const userId = window.localStorage.getItem('userId')
 
       window.Echo.private(`App.User.${userId}`)
         .listen('TaskCreated', e => this.addTask(e.task))

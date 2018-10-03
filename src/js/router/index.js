@@ -1,13 +1,13 @@
 import VueRouter from 'vue-router'
 import store from '@store'
-let Home = () => import('@components/Home')
-let Login = () => import('@components/auth/Login')
-let Register = () => import('@components/auth/Register')
-let TaskList = () => import('@components/Tasks/TaskList')
-let Profile = () => import('@components/Users/Profile')
-let Security = () => import('@components/Users/Security')
+const Home = () => import('@components/Home')
+const Login = () => import('@components/auth/Login')
+const Register = () => import('@components/auth/Register')
+const TaskList = () => import('@components/Tasks/TaskList')
+const Profile = () => import('@components/Users/Profile')
+const Security = () => import('@components/Users/Security')
 
-let router = new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   routes: [
     {

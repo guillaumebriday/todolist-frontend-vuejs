@@ -11,10 +11,10 @@ import moment from 'moment-timezone'
 export default {
   created () {
     axios.interceptors.request.use(config => {
-      let expiresAt = moment(window.localStorage.getItem('expiresAt'))
+      const expiresAt = moment(window.localStorage.getItem('expiresAt'))
 
       if (expiresAt.isValid() && moment().isBefore(expiresAt)) {
-        let diff = moment.duration(expiresAt.diff(moment()))
+        const diff = moment.duration(expiresAt.diff(moment()))
 
         if (diff.asHours() < 12 && config.url !== 'auth/refresh') {
           axios.post('auth/refresh')

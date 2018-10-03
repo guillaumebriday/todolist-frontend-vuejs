@@ -15,12 +15,12 @@ const mutations = {
   },
 
   updateTask (state, task) {
-    let taskId = task.id
+    const taskId = task.id
     state.tasks.splice(state.tasks.findIndex(task => task.id === taskId), 1, task)
   },
 
   removeTask (state, task) {
-    let taskId = task.id
+    const taskId = task.id
     state.tasks.splice(state.tasks.findIndex(task => task.id === taskId), 1)
   },
 

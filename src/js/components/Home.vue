@@ -125,7 +125,7 @@
 
     <footer class="bg-grey-lightest py-8">
       <p class="text-center text-grey text-xs mb-4">
-        Made with <fa icon="heart" class="text-red" /> by <a href="https://guillaumebriday.fr" target="_blank" class="text-grey">Guillaume Briday</a>.
+        Made with <fa icon="heart" class="text-red" /> by <a href="https://guillaumebriday.fr" class="text-grey">Guillaume Briday</a>.
       </p>
 
       <p class="text-center text-grey text-xs">

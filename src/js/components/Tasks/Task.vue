@@ -69,7 +69,7 @@
 
 <script>
 import { mixin as clickaway } from 'vue-clickaway'
-import moment from 'moment-timezone'
+import moment from 'moment'
 import Form from '@utils/Form'
 import 'vue-datetime/dist/vue-datetime.css'
 

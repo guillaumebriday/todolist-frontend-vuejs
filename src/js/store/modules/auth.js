@@ -23,7 +23,7 @@ const mutations = {
 
     window.localStorage.setItem('token', data.access_token)
     window.localStorage.setItem('userId', data.user_id)
-    window.localStorage.setItem('expiresAt', moment().add(data.expires_in, 'seconds').utc().format())
+    window.localStorage.setItem('expiresAt', moment().add(data.expires_in, 'seconds').format())
     axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token
   },
 

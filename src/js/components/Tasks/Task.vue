@@ -11,7 +11,7 @@
 
           <div class="flex items-center text-xs">
             <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />
-            <datetime v-model="form.due_at" type="datetime" placeholder="Due at" :zone="zone" :minute-step="5" input-class="text-grey-dark" />
+            <datetime v-model="form.due_at" type="datetime" placeholder="Due at" :minute-step="5" input-class="text-grey-dark" />
 
             <span v-if="form.due_at" class="flex-none rounded-full bg-grey hover:bg-red h-6 w-6 cursor-pointer flex items-center justify-center shadow" @click="clearDueAt">
               <fa icon="times" class="text-white" />
@@ -108,10 +108,6 @@ export default {
 
     toDate () {
       return moment(this.task.due_at).format('dddd, MMMM Do YYYY, h:mm:ss a')
-    },
-
-    zone () {
-      return moment.tz.guess()
     }
   },
 

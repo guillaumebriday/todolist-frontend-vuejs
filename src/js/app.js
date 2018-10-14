@@ -5,10 +5,7 @@ import VueAnalytics from 'vue-analytics'
 import App from '@components/App'
 import router from '@router'
 import store from '@store'
-import moment from 'moment'
 require.context('../images', true)
-
-moment.tz.setDefault(moment.tz.guess())
 
 Vue.use(VueAnalytics, {
   id: process.env.TRACKING_ID,

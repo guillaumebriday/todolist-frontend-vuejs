@@ -60,7 +60,7 @@ const getters = {
 }
 
 const actions = {
-  fetchTasks ({ commit }, params) {
+  fetchTasks ({ commit }) {
     return new Promise((resolve, reject) => {
       axios.get(state.endpoint)
         .then(({ data }) => {

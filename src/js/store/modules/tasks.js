@@ -73,9 +73,9 @@ const actions = {
     })
   },
 
-  addTask ({ commit }, form) {
+  addTask ({ commit }, params) {
     return new Promise((resolve, reject) => {
-      axios.post(state.endpoint, form)
+      axios.post(state.endpoint, params)
         .then(({ data }) => {
           commit('addTask', data.data)
           resolve()
@@ -86,9 +86,9 @@ const actions = {
     })
   },
 
-  updateTask ({ commit }, {task, form}) {
+  updateTask ({ commit }, {task, params}) {
     return new Promise((resolve, reject) => {
-      axios.patch(state.endpoint + task.id, form)
+      axios.patch(state.endpoint + task.id, params)
         .then(({ data }) => {
           commit('updateTask', data.data)
           resolve(data.data)

@@ -45,16 +45,14 @@ const getters = {
 
 const actions = {
   fetchUser ({ commit }) {
-    return new Promise((resolve, reject) => {
-      axios.get('/auth/me')
-        .then(({ data }) => {
-          commit('setUser', data.data)
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+    return axios.get('/auth/me')
+      .then(({ data }) => {
+        commit('setUser', data.data)
+        return data.data
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   },
 
   login ({ commit, dispatch }, data) {

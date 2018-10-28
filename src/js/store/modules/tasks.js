@@ -61,68 +61,58 @@ const getters = {
 
 const actions = {
   fetchTasks ({ commit }) {
-    return new Promise((resolve, reject) => {
-      axios.get(state.endpoint)
-        .then(({ data }) => {
-          commit('setTasks', data.data)
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+    return axios.get(state.endpoint)
+      .then(({ data }) => {
+        commit('setTasks', data.data)
+        return data.data
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   },
 
   addTask ({ commit }, params) {
-    return new Promise((resolve, reject) => {
-      axios.post(state.endpoint, params)
-        .then(({ data }) => {
-          commit('addTask', data.data)
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+    return axios.post(state.endpoint, params)
+      .then(({ data }) => {
+        commit('addTask', data.data)
+        return data.data
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   },
 
   updateTask ({ commit }, {task, params}) {
-    return new Promise((resolve, reject) => {
-      axios.patch(state.endpoint + task.id, params)
-        .then(({ data }) => {
-          commit('updateTask', data.data)
-          resolve(data.data)
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+    return axios.patch(state.endpoint + task.id, params)
+      .then(({ data }) => {
+        commit('updateTask', data.data)
+        return data.data
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   },
 
   removeTask ({ commit }, task) {
-    return new Promise((resolve, reject) => {
-      axios.delete(state.endpoint + task.id)
-        .then(response => {
-          commit('removeTask', task)
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+    return axios.delete(state.endpoint + task.id)
+      .then(response => {
+        commit('removeTask', task)
+        return response
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   },
 
   deleteTasks ({ commit, getters }) {
-    return new Promise((resolve, reject) => {
-      axios.delete(state.endpoint)
-        .then(response => {
-          getters.completedTasks.forEach(task => commit('removeTask', task))
-          resolve()
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
+    return axios.delete(state.endpoint)
+      .then(response => {
+        getters.completedTasks.forEach(task => commit('removeTask', task))
+        return response
+      })
+      .catch(error => {
+        return Promise.reject(error)
+      })
   }
 }
 

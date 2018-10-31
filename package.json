@@ -12,7 +12,7 @@
     "watch": "npm run development -- --watch",
     "prod": "npm run production",
     "production": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js --mode production --no-progress --hide-modules",
-    "lint": "eslint --ext .js,.vue src",
+    "lint": "eslint --ext .js,.vue src build",
     "test": "mocha-webpack --webpack-config build/webpack.dev.js --require tests/setup.js tests/**/*.spec.js"
   },
   "dependencies": {

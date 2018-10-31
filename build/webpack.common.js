@@ -1,11 +1,11 @@
 /* eslint-disable no-useless-escape */
 
-let path = require('path')
-let MiniCssExtractPlugin = require('mini-css-extract-plugin')
-let HtmlWebpackPlugin = require('html-webpack-plugin')
-let Dotenv = require('dotenv-webpack')
-let webpack = require('webpack')
-let { VueLoaderPlugin } = require('vue-loader')
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
+const webpack = require('webpack')
+const { VueLoaderPlugin } = require('vue-loader')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)

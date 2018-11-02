@@ -126,7 +126,7 @@ export default {
 
       this.$store.dispatch('updateTask', {
         task: this.task,
-        form: { is_completed: !this.task.is_completed }
+        params: { is_completed: !this.task.is_completed }
       })
         .then(() => {
           this.isToggleLoading = false
@@ -147,7 +147,7 @@ export default {
 
       this.$store.dispatch('updateTask', {
         task: this.task,
-        form: {
+        params: {
           title: this.form.title,
           due_at: moment(this.form.due_at).seconds(0)
         }

@@ -32,32 +32,32 @@ Setting up your development environment on your local machine :
 ```
 $ git clone https://github.com/guillaumebriday/todolist-frontend-vuejs.git
 $ cd todolist-frontend-vuejs
-$ docker-compose run --rm node npm install
-$ docker-compose run --service-ports --rm node npm run hot
+$ docker-compose run --rm node yarn
+$ docker-compose run --service-ports --rm node yarn hot
 ```
 
 ## Useful commands
 Building the app :
 ```bash
-$ docker-compose run --rm node npm run dev
+$ docker-compose run --rm node yarn dev
 
 # Or
 
-$ docker-compose run --rm node npm run watch
+$ docker-compose run --rm node yarn watch
 
 # Or
 
-$ docker-compose run --rm node npm run production
+$ docker-compose run --rm node yarn production
 ```
 
 Running ESLint :
 ```bash
-$ docker-compose run --rm node npm run lint
+$ docker-compose run --rm node yarn lint
 ```
 
 Running tests :
 ```bash
-$ docker-compose run --rm node npm run test
+$ docker-compose run --rm node yarn test
 ```
 
 ## Broadcasting & WebSockets

@@ -1,8 +1,8 @@
 import VueRouter from 'vue-router'
 import store from '@store'
 const Home = () => import('@components/Home')
-const Login = () => import('@components/auth/Login')
-const Register = () => import('@components/auth/Register')
+const Login = () => import('@components/Auth/Login')
+const Register = () => import('@components/Auth/Register')
 const TaskList = () => import('@components/Tasks/TaskList')
 const Profile = () => import('@components/Users/Profile')
 const Security = () => import('@components/Users/Security')

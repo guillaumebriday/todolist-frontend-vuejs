@@ -1,43 +1,7 @@
 <template>
   <li v-on-clickaway="handleClickAway" class="my-4">
-    <form @submit.prevent="updateTask">
-      <form-error :error="error" />
-
-      <!-- Task -->
-      <div class="bg-white leading-none rounded-lg shadow overflow-hidden p-3 mb-4">
-        <!-- Update form -->
-        <div v-if="editTask" class="flex flex-col">
-          <input v-model="form.title" v-focus placeholder="What needs to be done?" class="w-full mb-2 pb-2 px-2 focus:outline-none text-lg font-semibold border-b" type="text" @keyup.esc="cancelEdit">
-
-          <div class="flex items-center text-xs">
-            <fa :icon="['far', 'clock']" class="mr-1 text-grey-dark" />
-            <datetime v-model="form.due_at" type="datetime" placeholder="Due at" :minute-step="5" input-class="text-grey-dark" />
-
-            <span v-if="form.due_at" class="flex-none rounded-full bg-grey hover:bg-red h-6 w-6 cursor-pointer flex items-center justify-center shadow" @click="clearDueAt">
-              <fa icon="times" class="text-white" />
-            </span>
-          </div>
-        </div>
-
-        <div v-else class="flex items-center">
-          <div class="flex-grow">
-            <p class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}" @click="editTask = true">{{ task.title }}</p>
-
-            <span v-if="task.due_at" :title="toDate" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']" @click="editTask = true">
-              <fa :icon="['far', 'clock']" class="mr-1" /> {{ fromNow }}
-            </span>
-          </div>
-
-          <!-- Checkbox -->
-          <div :class="[task.is_completed ? 'bg-indigo' : 'border-2', {'cursor-not-allowed' : isToggleLoading}]" class="rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center" @click="toggleCompleted">
-            <fa v-if="isToggleLoading" icon="spinner" :class="[task.is_completed ? 'text-white' : 'text-indigo']" spin />
-            <fa v-else icon="check" class="text-white" :class="{'hover:text-indigo' : ! task.is_completed}" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Update buttons -->
-      <div v-if="editTask" class="flex items-center justify-between mt-2">
+    <task-form v-if="editTask" ref="taskForm" :form="form" :error="error" @submit="updateTask">
+      <div class="flex items-center justify-between mt-2">
         <div class="flex items-center">
           <loading-button
             :is-loading="isUpdateLoading"
@@ -63,7 +27,25 @@
           Delete
         </loading-button>
       </div>
-    </form>
+    </task-form>
+
+    <div v-else class="bg-white leading-none rounded-lg shadow overflow-hidden p-3 mb-4">
+      <div class="flex items-center">
+        <div class="flex-grow">
+          <p class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}" @click="editTask = true">{{ task.title }}</p>
+
+          <span v-if="task.due_at" :title="toDate" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']" @click="editTask = true">
+            <fa :icon="['far', 'clock']" class="mr-1" /> {{ fromNow }}
+          </span>
+        </div>
+
+        <!-- Checkbox -->
+        <div :class="[task.is_completed ? 'bg-indigo' : 'border-2', {'cursor-not-allowed' : isToggleLoading}]" class="rounded-full bg-white h-6 w-6 cursor-pointer flex items-center justify-center" @click="toggleCompleted">
+          <fa v-if="isToggleLoading" icon="spinner" :class="[task.is_completed ? 'text-white' : 'text-indigo']" spin />
+          <fa v-else icon="check" class="text-white" :class="{'hover:text-indigo' : ! task.is_completed}" />
+        </div>
+      </div>
+    </div>
   </li>
 </template>
 
@@ -71,10 +53,15 @@
 import { mixin as clickaway } from 'vue-clickaway'
 import moment from 'moment'
 import Form from '@utils/Form'
-import 'vue-datetime/dist/vue-datetime.css'
+import TaskForm from '@components/Tasks/TaskForm'
 
 export default {
+  components: {
+    TaskForm
+  },
+
   mixins: [ clickaway ],
+
   props: {
     task: {
       type: Object,

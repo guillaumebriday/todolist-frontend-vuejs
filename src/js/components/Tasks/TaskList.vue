@@ -29,7 +29,7 @@
         />
       </transition-group>
 
-      <task-form v-if="status != 'completed'" />
+      <new-task v-if="status != 'completed'" />
 
       <div v-else class="flex justify-end my-4">
         <loading-button
@@ -56,14 +56,14 @@
 <script>
 import Navbar from '@components/Navbar'
 import Task from '@components/Tasks/Task'
-import TaskForm from '@components/Tasks/TaskForm'
+import NewTask from '@components/Tasks/NewTask'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
     Navbar,
     Task,
-    TaskForm
+    NewTask
   },
 
   data () {

@@ -4,4 +4,4 @@
 
 [build.environment]
   CI = "true"
-  BASE_URL = "https://todolist-backend.guillaumebriday.xyz"
+  BASE_URL = "https://todolist-api.guillaumebriday.xyz"

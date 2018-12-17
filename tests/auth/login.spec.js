@@ -1,5 +1,5 @@
 import { mount } from 'vue-test-utils'
-import Login from '@components/auth/Login.vue'
+import Login from '@components/Auth/Login.vue'
 import expect from 'expect'
 import Form from '@utils/Form'
 

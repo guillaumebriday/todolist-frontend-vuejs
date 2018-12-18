@@ -8,17 +8,18 @@ import Datetime from 'vue-datetime'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
-import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck'
-import { faUser } from '@fortawesome/free-solid-svg-icons/faUser'
-import { faKey } from '@fortawesome/free-solid-svg-icons/faKey'
-import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash'
-import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus'
-import { faLock } from '@fortawesome/free-solid-svg-icons/faLock'
-import { faHeart } from '@fortawesome/free-solid-svg-icons/faHeart'
-import { faMobileAlt } from '@fortawesome/free-solid-svg-icons/faMobileAlt'
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons/faExclamationTriangle'
+import {
+  faTimes,
+  faSpinner,
+  faCheck,
+  faUser,
+  faKey,
+  faTrash,
+  faPlus,
+  faLock,
+  faHeart,
+  faMobileAlt,
+  faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub'
 import { faClock } from '@fortawesome/free-regular-svg-icons/faClock'
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons/faLightbulb'

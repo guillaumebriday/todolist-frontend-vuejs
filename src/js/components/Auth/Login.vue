@@ -9,17 +9,25 @@
 
       <form class="form-card" @submit.prevent="login" @keydown="form.errors.clear($event.target.name)">
         <div class="mb-4">
-          <label class="block text-grey-darker text-sm font-bold mb-2" for="email">Email</label>
+          <label class="block text-grey-darker text-sm font-bold mb-2" for="email">
+            Email
+          </label>
 
           <input id="email" v-model="form.email" v-focus class="form-control" :class="{ 'border-red mb-3' : form.errors.has('email') }" type="email" name="email" placeholder="Email">
-          <p v-if="form.errors.has('email')" class="text-red text-xs italic">{{ form.errors.get('email') }}</p>
+          <p v-if="form.errors.has('email')" class="text-red text-xs italic">
+            {{ form.errors.get('email') }}
+          </p>
         </div>
 
         <div class="mb-6">
-          <label class="block text-grey-darker text-sm font-bold mb-2" for="password">Password</label>
+          <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+            Password
+          </label>
 
           <input id="password" v-model="form.password" class="form-control" :class="{ 'border-red mb-3' : form.errors.has('password') }" type="password" name="password" placeholder="Password">
-          <p v-if="form.errors.has('password')" class="text-red text-xs italic">{{ form.errors.get('password') }}</p>
+          <p v-if="form.errors.has('password')" class="text-red text-xs italic">
+            {{ form.errors.get('password') }}
+          </p>
         </div>
 
         <loading-button :is-loading="isLoading" :disabled="isDisabled" :class="[{ 'opacity-50 cursor-not-allowed': isDisabled }]" class="btn-indigo w-full">
@@ -34,7 +42,9 @@
         </div>
       </form>
       <p class="text-center text-grey text-xs">
-        Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" class="text-grey"><fa :icon="['fab', 'github']" /> GitHub</a>.
+        Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" class="text-grey">
+          <fa :icon="['fab', 'github']" /> GitHub
+        </a>.
       </p>
     </div>
   </div>

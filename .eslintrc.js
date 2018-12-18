@@ -22,6 +22,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/max-attributes-per-line': 'off',
     'prefer-const': 'error',
-    'no-var': 'error'
+    'no-var': 'error',
+    "vue/component-name-in-template-casing": ["error", "kebab-case"]
   }
 }

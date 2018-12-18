@@ -82,7 +82,7 @@ const actions = {
       })
   },
 
-  updateTask ({ commit }, {task, params}) {
+  updateTask ({ commit }, { task, params }) {
     return axios.patch(state.endpoint + task.id, params)
       .then(({ data }) => {
         commit('updateTask', data.data)

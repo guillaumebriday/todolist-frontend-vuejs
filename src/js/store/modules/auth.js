@@ -60,14 +60,14 @@ const actions = {
 
     dispatch('fetchUser')
 
-    router.push({name: 'TaskList', params: { status: 'active' }})
+    router.push({ name: 'TaskList', params: { status: 'active' } })
   },
 
   logout ({ commit }) {
     commit(types.LOGOUT)
     commit('clearTasks')
 
-    router.push({name: 'Login'})
+    router.push({ name: 'Login' })
   }
 }
 

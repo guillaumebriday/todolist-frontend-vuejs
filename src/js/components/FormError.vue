@@ -4,8 +4,12 @@
       <fa icon="exclamation-triangle" class="mr-2" />
 
       <div class="flex-grow">
-        <strong class="font-bold">Whoops !</strong>
-        <span class="block sm:inline">{{ error.message }}</span>
+        <strong class="font-bold">
+          Whoops !
+        </strong>
+        <span class="block sm:inline">
+          {{ error.message }}
+        </span>
       </div>
 
       <span class="absolute pin-t pin-b pin-r px-4 py-3 cursor-pointer" @click.prevent="error = null">

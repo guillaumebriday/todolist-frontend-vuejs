@@ -46,7 +46,9 @@
       </div>
 
       <div v-if="timeToChill" class="text-center mb-6">
-        <p class="text-5xl">🍻</p>
+        <p class="text-5xl">
+          🍻
+        </p>
         Time to chill ! You have no tasks
       </div>
     </div>

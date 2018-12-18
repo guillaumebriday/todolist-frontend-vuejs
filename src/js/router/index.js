@@ -14,37 +14,37 @@ const router = new VueRouter({
       path: '/',
       name: 'Home',
       component: Home,
-      meta: {auth: false}
+      meta: { auth: false }
     },
     {
       path: '/settings/profile',
       name: 'Profile',
       component: Profile,
-      meta: {auth: true}
+      meta: { auth: true }
     },
     {
       path: '/settings/security',
       name: 'Security',
       component: Security,
-      meta: {auth: true}
+      meta: { auth: true }
     },
     {
       path: '/app/:status',
       name: 'TaskList',
       component: TaskList,
-      meta: {auth: true}
+      meta: { auth: true }
     },
     {
       path: '/login',
       name: 'Login',
       component: Login,
-      meta: {auth: false}
+      meta: { auth: false }
     },
     {
       path: '/register',
       name: 'Register',
       component: Register,
-      meta: {auth: false}
+      meta: { auth: false }
     },
     {
       path: '*',

@@ -12,7 +12,9 @@
           Add
         </loading-button>
 
-        <span class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline" @click="cancel">Cancel</span>
+        <span class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline" @click="cancel">
+          Cancel
+        </span>
       </div>
     </task-form>
 

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 class="text-grey font-normal text-base">SETTINGS</h2>
+    <h2 class="text-grey font-normal text-base">
+      SETTINGS
+    </h2>
 
     <p class="my-4">
       <router-link class="no-underline hover:underline" :class="[isProfileActive ? 'text-indigo' : 'text-grey-dark']" :to="{ name: 'Profile'}" exact>

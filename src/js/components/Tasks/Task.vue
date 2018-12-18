@@ -13,7 +13,9 @@
             Save
           </loading-button>
 
-          <span class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline" @click="cancelEdit">Cancel</span>
+          <span class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline" @click="cancelEdit">
+            Cancel
+          </span>
         </div>
 
         <loading-button
@@ -32,7 +34,9 @@
     <div v-else class="bg-white leading-none rounded-lg shadow overflow-hidden p-3 mb-4">
       <div class="flex items-center">
         <div class="flex-grow">
-          <p class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}" @click="editTask = true">{{ task.title }}</p>
+          <p class="font-semibold text-lg mx-2 text-left flex-auto cursor-pointer" :class="{'line-through text-grey' : task.is_completed}" @click="editTask = true">
+            {{ task.title }}
+          </p>
 
           <span v-if="task.due_at" :title="toDate" class="flex flex-no-shrink mr-2 mt-2 px-2 py-1 text-xs cursor-pointer" :class="[task.is_completed ? 'line-through text-grey' : 'text-grey-dark']" @click="editTask = true">
             <fa :icon="['far', 'clock']" class="mr-1" /> {{ fromNow }}

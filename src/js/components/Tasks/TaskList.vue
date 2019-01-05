@@ -22,10 +22,11 @@
         Loading
       </div>
 
-      <transition-group class="list-reset" name="list" tag="ul">
-        <task v-for="task in filteredTasks"
+      <transition-group class="list-reset relative" name="tasks-list" tag="ul">
+        <task v-for="task in tasks"
               :key="task.id"
               :task="task"
+              class="tasks-list-item"
         />
       </transition-group>
 
@@ -38,7 +39,7 @@
           :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
           type="button"
           icon="trash"
-          class="mx-4 text-grey-darker text-sm"
+          class="text-grey-darker text-sm"
           @click.native="deleteTasks"
         >
           Delete completed tasks
@@ -71,7 +72,9 @@ export default {
   data () {
     return {
       isLoading: false,
-      isRemoveLoading: false
+      isRemoveLoading: false,
+      isAnimated: true,
+      initialTasks: []
     }
   },
 
@@ -81,6 +84,14 @@ export default {
       'activeTasks',
       'completedTasks'
     ]),
+
+    tasks () {
+      if (this.isAnimated) {
+        return this.initialTasks
+      }
+
+      return this.filteredTasks
+    },
 
     filteredTasks () {
       return this.$store.getters.filteredTasks(this.status)
@@ -99,7 +110,13 @@ export default {
     }
   },
 
-  created () {
+  watch: {
+    status () {
+      this.isAnimated = false
+    }
+  },
+
+  mounted () {
     this.getTasks()
 
     if (window.Echo) {
@@ -126,7 +143,27 @@ export default {
       this.$store.dispatch('fetchTasks')
         .then(() => {
           this.isLoading = false
+          this.setInitialTasks([...this.filteredTasks])
         })
+    },
+
+    setInitialTasks (tasks) {
+      if (!tasks.length) {
+        return false
+      }
+
+      let interval = null
+
+      this.initialTasks.push(tasks.shift())
+
+      interval = setInterval(() => {
+        if (tasks.length > 0) {
+          this.initialTasks.push(tasks.shift())
+        } else {
+          clearInterval(interval)
+          this.isAnimated = false
+        }
+      }, 25)
     },
 
     deleteTasks () {
@@ -150,16 +187,19 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .list-item
-    display: inline-block
-    margin-right: 10px
+.tasks-list-item
+  transition: all .3s ease-in-out
+  backface-visibility: hidden
 
-  .list-enter-active,
-  .list-leave-active
-    transition: all .3s
+.tasks-list-enter,
+.tasks-list-leave-to
+  opacity: 0
+  transform: translateX(30px)
 
-  .list-enter,
-  .list-leave-to
-    opacity: 0
-    transform: translateX(30px)
+.tasks-list-leave-active
+  position: absolute
+  left: 0
+  right: 0
+  margin: 0
+
 </style>

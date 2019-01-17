@@ -1,7 +1,5 @@
 <template>
   <div>
-    <navbar />
-
     <div class="flex justify-center shadow">
       <router-link :class="[status === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow no-underline" :to="{name: 'TaskList', params: { status: 'active' }}" exact>
         Active ({{ activeTasks.length }})
@@ -22,11 +20,11 @@
         Loading
       </div>
 
-      <transition-group class="list-reset relative" name="tasks-list" tag="ul">
+      <transition-group class="list-reset relative" name="slide-left" tag="ul">
         <task v-for="task in tasks"
               :key="task.id"
               :task="task"
-              class="tasks-list-item"
+              class="animated task-item"
         />
       </transition-group>
 
@@ -57,14 +55,12 @@
 </template>
 
 <script>
-import Navbar from '@components/Navbar'
 import Task from '@components/Tasks/Task'
 import NewTask from '@components/Tasks/NewTask'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
-    Navbar,
     Task,
     NewTask
   },
@@ -187,19 +183,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.tasks-list-item
-  transition: all .3s ease-in-out
-  backface-visibility: hidden
-
-.tasks-list-enter,
-.tasks-list-leave-to
-  opacity: 0
-  transform: translateX(30px)
-
-.tasks-list-leave-active
+.slide-left-leave-active.task-item
   position: absolute
   left: 0
   right: 0
   margin: 0
-
 </style>

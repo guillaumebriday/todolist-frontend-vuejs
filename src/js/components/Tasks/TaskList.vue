@@ -1,7 +1,5 @@
 <template>
   <div>
-    <navbar />
-
     <div class="flex justify-center shadow">
       <router-link :class="[status === 'active' ? 'pill-active' : 'pill-inactive']" class="pill-default lg:flex-no-grow no-underline" :to="{name: 'TaskList', params: { status: 'active' }}" exact>
         Active ({{ activeTasks.length }})
@@ -22,10 +20,11 @@
         Loading
       </div>
 
-      <transition-group class="list-reset" name="list" tag="ul">
-        <task v-for="task in filteredTasks"
+      <transition-group class="list-reset relative" name="fade-out-left" tag="ul">
+        <task v-for="task in tasks"
               :key="task.id"
               :task="task"
+              class="animated task-item"
         />
       </transition-group>
 
@@ -38,7 +37,7 @@
           :class="[isRemoveLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:underline hover:text-red']"
           type="button"
           icon="trash"
-          class="mx-4 text-grey-darker text-sm"
+          class="text-grey-darker text-sm"
           @click.native="deleteTasks"
         >
           Delete completed tasks
@@ -56,14 +55,12 @@
 </template>
 
 <script>
-import Navbar from '@components/Navbar'
 import Task from '@components/Tasks/Task'
 import NewTask from '@components/Tasks/NewTask'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
-    Navbar,
     Task,
     NewTask
   },
@@ -71,7 +68,9 @@ export default {
   data () {
     return {
       isLoading: false,
-      isRemoveLoading: false
+      isRemoveLoading: false,
+      isAnimated: true,
+      initialTasks: []
     }
   },
 
@@ -81,6 +80,14 @@ export default {
       'activeTasks',
       'completedTasks'
     ]),
+
+    tasks () {
+      if (this.isAnimated) {
+        return this.initialTasks
+      }
+
+      return this.filteredTasks
+    },
 
     filteredTasks () {
       return this.$store.getters.filteredTasks(this.status)
@@ -99,7 +106,13 @@ export default {
     }
   },
 
-  created () {
+  watch: {
+    status () {
+      this.isAnimated = false
+    }
+  },
+
+  mounted () {
     this.getTasks()
 
     if (window.Echo) {
@@ -126,7 +139,27 @@ export default {
       this.$store.dispatch('fetchTasks')
         .then(() => {
           this.isLoading = false
+          this.setInitialTasks([...this.filteredTasks])
         })
+    },
+
+    setInitialTasks (tasks) {
+      if (!tasks.length) {
+        return false
+      }
+
+      let interval = null
+
+      this.initialTasks.push(tasks.shift())
+
+      interval = setInterval(() => {
+        if (tasks.length > 0) {
+          this.initialTasks.push(tasks.shift())
+        } else {
+          clearInterval(interval)
+          this.isAnimated = false
+        }
+      }, 25)
     },
 
     deleteTasks () {
@@ -150,16 +183,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .list-item
-    display: inline-block
-    margin-right: 10px
-
-  .list-enter-active,
-  .list-leave-active
-    transition: all .3s
-
-  .list-enter,
-  .list-leave-to
-    opacity: 0
-    transform: translateX(30px)
+.fade-out-left-leave-active.task-item
+  position: absolute
+  left: 0
+  right: 0
+  margin: 0
 </style>

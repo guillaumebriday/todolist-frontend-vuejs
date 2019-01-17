@@ -1,0 +1,24 @@
+.animated
+  transition-duration: .25s
+
+.animated.fastest
+  transition-duration: .125s
+
+.fade-in-enter,
+.fade-in-leave-active
+  opacity: 0
+
+.fade-out-left-enter,
+.fade-out-right-leave-active
+  opacity: 0
+  transform: translate3d(30px, 0, 0)
+
+.fade-out-right-enter,
+.fade-out-left-leave-active
+  opacity: 0
+  transform: translate3d(-30px, 0, 0)
+
+.fade-out-down-enter,
+.fade-out-down-leave-to
+  opacity: 0
+  transform: translate3d(0, -10px, 0)

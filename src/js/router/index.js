@@ -6,6 +6,7 @@ const Register = () => import('@components/Auth/Register')
 const TaskList = () => import('@components/Tasks/TaskList')
 const Profile = () => import('@components/Users/Profile')
 const Security = () => import('@components/Users/Security')
+const Settings = () => import('@components/Users/Settings')
 
 const router = new VueRouter({
   mode: 'history',
@@ -17,16 +18,22 @@ const router = new VueRouter({
       meta: { auth: false }
     },
     {
-      path: '/settings/profile',
-      name: 'Profile',
-      component: Profile,
-      meta: { auth: true }
-    },
-    {
-      path: '/settings/security',
-      name: 'Security',
-      component: Security,
-      meta: { auth: true }
+      path: '/settings',
+      component: Settings,
+      children: [
+        {
+          path: 'profile',
+          name: 'Profile',
+          meta: { auth: true },
+          component: Profile
+        },
+        {
+          path: 'security',
+          name: 'Security',
+          meta: { auth: true },
+          component: Security
+        }
+      ]
     },
     {
       path: '/app/:status',

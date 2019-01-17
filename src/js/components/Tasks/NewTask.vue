@@ -1,27 +1,29 @@
 <template>
   <div class="my-4">
-    <task-form v-if="isShown" ref="taskForm" :form="form" :error="error" @submit="addTask">
-      <div class="flex items-center my-4">
-        <loading-button
-          :is-loading="isLoading"
-          :disabled="isDisabled"
-          :class="{'opacity-50 cursor-not-allowed' : isDisabled}"
-          icon="plus"
-          class="btn-indigo text-sm"
-        >
-          Add
-        </loading-button>
+    <transition name="fade-out-down" mode="out-in">
+      <task-form v-if="isShown" ref="taskForm" class="animated fastest" :form="form" :error="error" @submit="addTask">
+        <div class="flex items-center my-4">
+          <loading-button
+            :is-loading="isLoading"
+            :disabled="isDisabled"
+            :class="{'opacity-50 cursor-not-allowed' : isDisabled}"
+            icon="plus"
+            class="btn-indigo text-sm"
+          >
+            Add
+          </loading-button>
 
-        <span class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline" @click="cancel">
-          Cancel
-        </span>
-      </div>
-    </task-form>
+          <span class="ml-4 text-grey-darker text-sm cursor-pointer hover:underline" @click="cancel">
+            Cancel
+          </span>
+        </div>
+      </task-form>
 
-    <button v-else class="hover:underline text-grey-darker text-sm cursor-pointer" @click="isShown = true">
-      <fa icon="plus" class="mr-1" />
-      Add task
-    </button>
+      <button v-else class="animated fastest hover:underline text-grey-darker text-sm cursor-pointer" @click="isShown = true">
+        <fa icon="plus" class="mr-1" />
+        Add task
+      </button>
+    </transition>
   </div>
 </template>
 

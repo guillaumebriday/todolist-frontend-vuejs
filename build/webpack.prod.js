@@ -30,6 +30,7 @@ module.exports = merge(common, {
         resolve('src/js/components/**/*.vue'),
         resolve('index.html')
       ]),
+      whitelistPatterns: [/^fade-.+/],
       extractors: [
         {
           extractor: TailwindExtractor,

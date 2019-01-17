@@ -27,9 +27,9 @@ export default {
   watch: {
     '$route' (to, from) {
       if (from.name === 'Profile' && to.name === 'Security') {
-        this.transitionName = 'slide-right'
+        this.transitionName = 'fade-out-right'
       } else if (from.name === 'Security' && to.name === 'Profile') {
-        this.transitionName = 'slide-left'
+        this.transitionName = 'fade-out-left'
       }
     }
   }

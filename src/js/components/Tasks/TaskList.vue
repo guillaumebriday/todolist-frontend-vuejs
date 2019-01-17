@@ -20,7 +20,7 @@
         Loading
       </div>
 
-      <transition-group class="list-reset relative" name="slide-left" tag="ul">
+      <transition-group class="list-reset relative" name="fade-out-left" tag="ul">
         <task v-for="task in tasks"
               :key="task.id"
               :task="task"
@@ -183,7 +183,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.slide-left-leave-active.task-item
+.fade-out-left-leave-active.task-item
   position: absolute
   left: 0
   right: 0

@@ -20,18 +20,18 @@ export default {
 
   data () {
     return {
-      transitionName: 'fade'
+      transitionName: null
     }
   },
 
   watch: {
     '$route' (to, from) {
-      this.transitionName = 'fade'
+      this.transitionName = 'fade-in'
 
       if (from.name === 'Register' && to.name === 'Login') {
-        this.transitionName = 'slide-right'
+        this.transitionName = 'fade-out-right'
       } else if (from.name === 'Login' && to.name === 'Register') {
-        this.transitionName = 'slide-left'
+        this.transitionName = 'fade-out-left'
       }
     }
   },

@@ -4,21 +4,21 @@
 .animated.fastest
   transition-duration: .125s
 
-.fade-enter,
-.fade-leave-active
+.fade-in-enter,
+.fade-in-leave-active
   opacity: 0
 
-.slide-left-enter,
-.slide-right-leave-active
+.fade-out-left-enter,
+.fade-out-right-leave-active
   opacity: 0
   transform: translate3d(30px, 0, 0)
 
-.slide-right-enter,
-.slide-left-leave-active
+.fade-out-right-enter,
+.fade-out-left-leave-active
   opacity: 0
   transform: translate3d(-30px, 0, 0)
 
-.slide-down-enter,
-.slide-down-leave-to
+.fade-out-down-enter,
+.fade-out-down-leave-to
   opacity: 0
   transform: translate3d(0, -10px, 0)

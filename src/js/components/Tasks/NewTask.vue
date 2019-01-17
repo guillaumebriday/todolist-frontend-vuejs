@@ -1,6 +1,6 @@
 <template>
   <div class="my-4">
-    <transition name="slide-down" mode="out-in">
+    <transition name="fade-out-down" mode="out-in">
       <task-form v-if="isShown" ref="taskForm" class="animated fastest" :form="form" :error="error" @submit="addTask">
         <div class="flex items-center my-4">
           <loading-button

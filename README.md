@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/guillaumebriday/todolist-frontend-vuejs.svg?branch=master)](https://travis-ci.org/guillaumebriday/todolist-frontend-vuejs)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/guillaumebriday)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/68286221-cb5f-4960-834f-0ae250395090/deploy-status)](https://app.netlify.com/sites/todolist-frontend-vuejs/deploys)
 
 > Frontend for https://github.com/guillaumebriday/todolist-backend-laravel app, built for a serie of articles on my [blog](https://guillaumebriday.fr/).
 

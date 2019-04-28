@@ -15,11 +15,12 @@ Vue.use(VueAnalytics, {
   }
 })
 
+const el = document.body.appendChild(document.createElement('app'))
+
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el,
   router,
   store,
-  components: { App },
-  template: '<App/>'
+  render: h => h(App)
 })

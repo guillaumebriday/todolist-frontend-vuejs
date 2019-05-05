@@ -1,5 +1,5 @@
 <template>
-  <div class="my-4">
+  <div v-on-clickaway="handleClickAway" class="my-4">
     <transition name="fade-out-down" mode="out-in">
       <task-form v-if="isShown" ref="taskForm" class="animated fastest" :form="form" :error="error" @submit="addTask">
         <div class="flex items-center my-4">
@@ -31,11 +31,14 @@
 import Form from '@utils/Form'
 import TaskForm from '@components/Tasks/TaskForm'
 import moment from 'moment'
+import { mixin as clickaway } from 'vue-clickaway'
 
 export default {
   components: {
     TaskForm
   },
+
+  mixins: [ clickaway ],
 
   data () {
     return {
@@ -87,6 +90,12 @@ export default {
       this.isShown = false
 
       this.form.reset()
+    },
+
+    handleClickAway () {
+      if (this.isDisabled) {
+        this.cancel()
+      }
     }
   }
 }

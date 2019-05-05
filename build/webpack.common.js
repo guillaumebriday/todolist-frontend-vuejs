@@ -38,12 +38,24 @@ module.exports = {
         test: /\.sass$/,
         use: [
           MiniCssExtractPlugin.loader,
-          { loader: 'css-loader', options: { importLoaders: 2 } },
-          'postcss-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
           {
             loader: 'sass-loader',
             options: {
-              indentedSyntax: true
+              indentedSyntax: true,
+              sourceMap: true
             }
           }
         ]
@@ -84,7 +96,6 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map',
   plugins: [
     new VueLoaderPlugin(),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),

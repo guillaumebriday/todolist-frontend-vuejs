@@ -2,11 +2,12 @@
 
 const path = require('path')
 const glob = require('glob-all')
-const webpack = require('webpack')
 const merge = require('webpack-merge')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const common = require('./webpack.common.js')
 
 class TailwindExtractor {
@@ -20,8 +21,17 @@ function resolve (dir) {
 }
 
 module.exports = merge(common, {
-  devtool: false,
+  devtool: 'source-map',
   mode: 'production',
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      })
+    ]
+  },
   plugins: [
     new PurgecssPlugin({
       // Specify the locations of any files you want to scan for class names.
@@ -37,8 +47,13 @@ module.exports = merge(common, {
         }
       ]
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
+    new OptimizeCSSAssetsPlugin({
+      cssProcessorOptions: {
+        map: {
+          inline: false,
+          annotation: true
+        }
+      }
     }),
     new HtmlWebpackPlugin({
       template: 'index.html',

@@ -80,6 +80,11 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.runtime.esm',
+      '@fortawesome/free-brands-svg-icons': '@fortawesome/free-brands-svg-icons/index.es',
+      '@fortawesome/free-solid-svg-icons': '@fortawesome/free-solid-svg-icons/index.es',
+      '@fortawesome/free-regular-svg-icons': '@fortawesome/free-regular-svg-icons/index.es',
+      '@fortawesome/vue-fontawesome': '@fortawesome/vue-fontawesome/index.es',
+      '@fortawesome/fontawesome-svg-core': '@fortawesome/fontawesome-svg-core/index.es',
       '@components': resolve('src/js/components'),
       '@utils': resolve('src/js/utils'),
       '@store': resolve('src/js/store'),

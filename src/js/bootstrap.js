@@ -20,13 +20,8 @@ import {
   faHeart,
   faMobileAlt,
   faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
-import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub'
-import { faClock } from '@fortawesome/free-regular-svg-icons/faClock'
-import { faLightbulb } from '@fortawesome/free-regular-svg-icons/faLightbulb'
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons/faCheckCircle'
-
-import LoadingButton from '@components/LoadingButton'
-import FormError from '@components/FormError'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faClock, faLightbulb, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8000'
 
@@ -38,13 +33,16 @@ library.add(faTimes, faSpinner, faCheck, faUser, faKey, faTrash, faPlus, faLock,
 library.add(faGithub)
 library.add(faClock, faLightbulb, faCheckCircle)
 
+// Plugins
 Vue.use(VueRouter)
 Vue.use(Datetime)
 
-Vue.component('LoadingButton', LoadingButton)
-Vue.component('FormError', FormError)
+// Components
+Vue.component('LoadingButton', () => import('@components/LoadingButton'))
+Vue.component('FormError', () => import('@components/FormError'))
 Vue.component('Fa', FontAwesomeIcon)
 
+// Directives
 Vue.directive('focus', {
   inserted (el) {
     el.focus()

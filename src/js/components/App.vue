@@ -18,6 +18,13 @@ export default {
     Navbar
   },
 
+  metaInfo () {
+    return {
+      title: this.$route.name,
+      titleTemplate: '%s | Todolist'
+    }
+  },
+
   data () {
     return {
       transitionName: null

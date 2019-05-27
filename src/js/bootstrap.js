@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueMeta from 'vue-meta'
 import axios from 'axios'
 import Echo from 'laravel-echo'
 import Pusher from 'pusher-js'
@@ -35,6 +36,7 @@ library.add(faClock, faLightbulb, faCheckCircle)
 
 // Plugins
 Vue.use(VueRouter)
+Vue.use(VueMeta)
 Vue.use(Datetime)
 
 // Components

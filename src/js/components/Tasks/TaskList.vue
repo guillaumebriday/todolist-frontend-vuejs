@@ -65,6 +65,12 @@ export default {
     NewTask
   },
 
+  metaInfo () {
+    return {
+      title: `${this.activeTasks.length} tasks`
+    }
+  },
+
   data () {
     return {
       isLoading: false,

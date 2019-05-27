@@ -164,13 +164,13 @@
 
     <footer class="bg-grey-lightest py-8">
       <p class="text-center text-grey text-xs mb-4">
-        Made with <fa icon="heart" class="text-red" /> by <a href="https://guillaumebriday.fr" class="text-grey">
+        Made with <fa icon="heart" class="text-red" /> by <a href="https://guillaumebriday.fr" rel="noopener" class="text-grey">
           Guillaume Briday
         </a>.
       </p>
 
       <p class="text-center text-grey text-xs">
-        Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" class="text-grey">
+        Source code available on <a href="https://github.com/guillaumebriday/todolist-frontend-vuejs" rel="noopener" class="text-grey">
           <fa :icon="['fab', 'github']" /> GitHub
         </a>.
       </p>

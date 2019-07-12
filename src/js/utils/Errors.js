@@ -12,7 +12,7 @@ class Errors {
    * @param {string} field
    */
   has (field) {
-    return this.errors.hasOwnProperty(field)
+    return Object.prototype.hasOwnProperty.call(this.errors, field)
   }
 
   /**

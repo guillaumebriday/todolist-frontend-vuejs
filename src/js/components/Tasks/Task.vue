@@ -64,7 +64,7 @@ export default {
     TaskForm
   },
 
-  mixins: [ clickaway ],
+  mixins: [clickaway],
 
   props: {
     task: {

@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.sass$/,
@@ -79,7 +79,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.runtime.esm',
+      vue$: 'vue/dist/vue.runtime.esm',
       '@fortawesome/free-brands-svg-icons': '@fortawesome/free-brands-svg-icons/index.es',
       '@fortawesome/free-solid-svg-icons': '@fortawesome/free-solid-svg-icons/index.es',
       '@fortawesome/free-regular-svg-icons': '@fortawesome/free-regular-svg-icons/index.es',

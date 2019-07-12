@@ -65,7 +65,7 @@ if (process.env.PUSHER_APP_KEY) {
     encrypted: true,
     authEndpoint: `${BASE_URL}/broadcasting/auth`,
     auth: {
-      headers: { 'Authorization': 'Bearer ' + window.localStorage.token }
+      headers: { Authorization: 'Bearer ' + window.localStorage.token }
     }
   })
 }

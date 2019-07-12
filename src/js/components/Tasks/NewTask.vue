@@ -38,7 +38,7 @@ export default {
     TaskForm
   },
 
-  mixins: [ clickaway ],
+  mixins: [clickaway],
 
   data () {
     return {

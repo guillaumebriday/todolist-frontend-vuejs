@@ -113,8 +113,11 @@ export default {
   },
 
   watch: {
-    status () {
-      this.isAnimated = false
+    status: {
+      immediate: true,
+      handler () {
+        this.isAnimated = false
+      }
     }
   },
 

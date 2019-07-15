@@ -6,6 +6,8 @@
 
 > Frontend for https://github.com/guillaumebriday/todolist-backend-laravel app, built for a serie of articles on my [blog](https://guillaumebriday.fr/).
 
+> If you want to see this project with [Nuxt.js](https://nuxtjs.org/) I created the same application available here: [todolist-frontend-nuxt](https://github.com/guillaumebriday/todolist-frontend-nuxt).
+
 The purpose of this repository is to consume API, provide by [a Laravel Application](https://github.com/guillaumebriday/todolist-backend-laravel), with the [Vue.js](https://vuejs.org) JavaScript front-end framework.
 
 ![Screenshot](https://raw.githubusercontent.com/guillaumebriday/todolist-frontend-vuejs/master/screenshot.png)

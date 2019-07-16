@@ -4,6 +4,7 @@
     ":automergeDigest",
     ":automergePatch",
     ":automergeMinor",
-    ":automergePr"
+    ":automergePr",
+    ":prHourlyLimitNone"
   ]
 }

@@ -151,6 +151,8 @@ export default {
 
     setInitialTasks (tasks) {
       if (!tasks.length) {
+        this.isAnimated = false
+
         return false
       }
 

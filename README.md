@@ -35,6 +35,7 @@ Setting up your development environment on your local machine :
 ```
 $ git clone https://github.com/guillaumebriday/todolist-frontend-vuejs.git
 $ cd todolist-frontend-vuejs
+$ cp .env.example .env
 $ docker-compose run --rm node yarn
 $ docker-compose run --service-ports --rm node yarn hot
 ```

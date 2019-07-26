@@ -9032,10 +9032,10 @@ vue-loader@15.7.1:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-meta@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-2.1.0.tgz#69699ca95c709843d9354313a130e8a65f2a1227"
-  integrity sha512-6jktu1SHrz31YT5/AuzFB6al/RLghgMpOECA6yJZnzzwZ/16biQ4OBig6O2Uq4J6gFEHrqdFxmCdfYoyRt8TiQ==
+vue-meta@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-2.1.1.tgz#6d475320c11eead667799c5e3a608ec9ef7f4632"
+  integrity sha512-H9MQqJxHRDaEh3LEait6LdicZL94nGvMDD8T9aOmFtrEQsPI6rNKZ7yuPC9NYEkm9zNeumZWrdDZWhF0zg8+vA==
   dependencies:
     deepmerge "^4.0.0"
 

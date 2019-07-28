@@ -41,7 +41,7 @@
     "vue-analytics": "5.17.0",
     "vue-clickaway": "2.2.2",
     "vue-datetime": "1.0.0-beta.10",
-    "vue-meta": "2.1.1",
+    "vue-meta": "2.2.0",
     "vue-router": "3.0.7",
     "vuex": "3.1.1",
     "webpack-merge": "4.2.1"

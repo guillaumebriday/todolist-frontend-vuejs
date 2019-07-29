@@ -22,7 +22,7 @@
     "@babel/plugin-syntax-dynamic-import": "7.2.0",
     "@babel/plugin-syntax-import-meta": "7.2.0",
     "@babel/preset-env": "7.5.5",
-    "@fortawesome/fontawesome-svg-core": "1.2.19",
+    "@fortawesome/fontawesome-svg-core": "1.2.20",
     "@fortawesome/free-brands-svg-icons": "5.9.0",
     "@fortawesome/free-regular-svg-icons": "5.9.0",
     "@fortawesome/free-solid-svg-icons": "5.9.0",

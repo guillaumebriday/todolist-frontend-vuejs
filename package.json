@@ -83,7 +83,7 @@
     "webpack": "4.39.1",
     "webpack-bundle-analyzer": "3.4.1",
     "webpack-cli": "3.3.6",
-    "webpack-dev-server": "3.7.2",
+    "webpack-dev-server": "3.8.0",
     "weekstart": "1.0.0"
   }
 }

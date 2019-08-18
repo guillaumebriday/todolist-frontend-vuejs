@@ -8958,10 +8958,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
 
-vue-analytics@5.17.0:
-  version "5.17.0"
-  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.17.0.tgz#c9530b82b9b4acd111c9cba7d249adf4089746b3"
-  integrity sha512-1Cn/v06cGjmGDfRlG2hc0RF0sc2rNC88shOeLGNIlllSFv5GDZ9kLXGTPB9z9I+WyvFewyUONPIdQnpOls6h6w==
+vue-analytics@5.17.1:
+  version "5.17.1"
+  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.17.1.tgz#0fb622f1438597d8edfcf94da3308ad60a5d5eb7"
+  integrity sha512-rAWeEM6Box2gSJw8KndkN888EH1N1m4BBOZmJHD1wVWhAQXtod4S64ZgzPP5qPD17YGBtkFWjDaAgcFeNIFkHQ==
 
 vue-clickaway@2.2.2:
   version "2.2.2"

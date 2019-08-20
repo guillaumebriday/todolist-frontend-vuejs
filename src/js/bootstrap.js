@@ -20,7 +20,8 @@ import {
   faLock,
   faHeart,
   faMobileAlt,
-  faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+  faExclamationTriangle
+} from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faClock, faLightbulb, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 
@@ -52,7 +53,7 @@ Vue.directive('focus', {
 })
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.token
+axios.defaults.headers.common.Authorization = 'Bearer ' + window.localStorage.token
 axios.defaults.baseURL = `${BASE_URL}/api/v1/`
 
 if (process.env.PUSHER_APP_KEY) {

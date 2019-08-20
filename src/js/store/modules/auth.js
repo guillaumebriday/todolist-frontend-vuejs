@@ -24,7 +24,7 @@ const mutations = {
     window.localStorage.setItem('token', data.access_token)
     window.localStorage.setItem('userId', data.user_id)
     window.localStorage.setItem('expiresAt', moment().add(data.expires_in, 'seconds').format())
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token
+    axios.defaults.headers.common.Authorization = 'Bearer ' + data.access_token
   },
 
   [types.LOGOUT] (state) {
@@ -35,7 +35,7 @@ const mutations = {
     window.localStorage.removeItem('userId')
     window.localStorage.removeItem('expiresAt')
 
-    delete axios.defaults.headers.common['Authorization']
+    delete axios.defaults.headers.common.Authorization
   }
 }
 

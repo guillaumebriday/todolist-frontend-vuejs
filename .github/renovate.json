@@ -5,7 +5,8 @@
     ":automergePatch",
     ":automergeMinor",
     ":automergeBranchPush",
-    ":prHourlyLimitNone"
+    ":prHourlyLimitNone",
+    ":skipStatusChecks"
   ],
   "ignoreDeps": [
     "terser-webpack-plugin"

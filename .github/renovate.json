@@ -6,5 +6,8 @@
     ":automergeMinor",
     ":automergeBranchPush",
     ":prHourlyLimitNone"
+  ],
+  "ignoreDeps": [
+    "terser-webpack-plugin"
   ]
 }

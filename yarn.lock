@@ -7247,10 +7247,10 @@ purgecss@^1.3.0:
     postcss-selector-parser "^6.0.0"
     yargs "^13.2.2"
 
-pusher-js@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-5.0.0.tgz#db4132187c314153f3dc68500a615b836b10bd29"
-  integrity sha512-en/ec9ls/1/tY1qFKNddggYzrJtLy3FUoW8mD35S1Fx/MWwlImHluOgrpLvFtEUPy8Wdg95yEJC82NNb2KUtzw==
+pusher-js@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-5.0.1.tgz#450389f51a25638e8d2e6383209a1be6e4115c78"
+  integrity sha512-w5vucT2VjgOWMZgqGCFwrmNp68Qfct3Dd/4eOigx5f1eWEJq3DJTKYygNcENmZmC3DtlVxShq2ybASVg8yH27w==
 
 q@^1.1.2:
   version "1.5.1"

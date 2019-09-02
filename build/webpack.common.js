@@ -54,8 +54,10 @@ module.exports = {
           {
             loader: 'sass-loader',
             options: {
-              indentedSyntax: true,
-              sourceMap: true
+              sourceMap: true,
+              sassOptions: {
+                indentedSyntax: true
+              }
             }
           }
         ]

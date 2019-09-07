@@ -7,8 +7,5 @@
     ":automergeBranchPush",
     ":prHourlyLimitNone",
     ":skipStatusChecks"
-  ],
-  "ignoreDeps": [
-    "terser-webpack-plugin"
   ]
 }

@@ -80,7 +80,7 @@
     "vue-template-compiler": "2.6.10",
     "vue-test-utils": "1.0.0-beta.11",
     "webpack": "4.40.2",
-    "webpack-bundle-analyzer": "3.5.0",
+    "webpack-bundle-analyzer": "3.5.1",
     "webpack-cli": "3.3.9",
     "webpack-dev-server": "3.8.1",
     "weekstart": "1.0.0"

@@ -35,7 +35,7 @@
     "luxon": "1.19.3",
     "moment": "2.24.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
-    "pusher-js": "5.0.1",
+    "pusher-js": "5.0.2",
     "tailwindcss": "0.7.4",
     "terser-webpack-plugin": "2.1.0",
     "vue": "2.6.10",

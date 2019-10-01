@@ -2314,10 +2314,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-env@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-6.0.1.tgz#2cf45100b17341ebba09b9f708afb835f3d95974"
-  integrity sha512-/y+CmqkDNo6qL3iWYmcV58ld4sJfrXRKPj5eydi1OdTnWMyIBmQxNRADI96+a8RKAyezc/Zsn+6wObywyV/Bhg==
+cross-env@6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-6.0.2.tgz#2ec3c4b9b90cc074fed375415fc229cb7d6ce612"
+  integrity sha512-lA44HlqWCzrv7/l2pY3sfLDvMhXXhx8oztvD6rg34PdCIcP0yk77UwOL2nacsZXlrzPUMtbfagVbK6Itx8pwng==
   dependencies:
     "@babel/runtime" "^7.6.2"
     cross-spawn "^7.0.0"

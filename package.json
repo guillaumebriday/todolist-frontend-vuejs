@@ -32,7 +32,7 @@
     "copy-webpack-plugin": "5.0.4",
     "dotenv-webpack": "1.7.0",
     "laravel-echo": "1.6.1",
-    "luxon": "1.20.0",
+    "luxon": "1.21.0",
     "moment": "2.24.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "pusher-js": "5.0.2",

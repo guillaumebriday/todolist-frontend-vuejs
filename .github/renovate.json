@@ -5,6 +5,7 @@
     ":automergePatch",
     ":automergeMinor",
     ":automergeBranchPush",
-    ":skipStatusChecks"
+    ":skipStatusChecks",
+    "schedule:monthly"
   ]
 }

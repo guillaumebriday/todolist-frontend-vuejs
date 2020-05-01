@@ -70,7 +70,7 @@
     "jsdom": "15.2.1",
     "jsdom-global": "3.0.2",
     "mini-css-extract-plugin": "0.8.2",
-    "mocha": "6.2.2",
+    "mocha": "6.2.3",
     "mocha-webpack": "1.1.0",
     "node-sass": "4.13.1",
     "postcss-loader": "3.0.0",

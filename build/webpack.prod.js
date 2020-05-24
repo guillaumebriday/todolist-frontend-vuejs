@@ -41,12 +41,12 @@ module.exports = merge(common, {
         removeAttributeQuotes: true
       }
     }),
-    new CopyWebpackPlugin([
-      {
+    new CopyWebpackPlugin({
+      patterns: [{
         from: resolve('_redirects'),
         to: '_redirects',
         toType: 'file'
-      }
-    ])
+      }]
+    })
   ]
 })

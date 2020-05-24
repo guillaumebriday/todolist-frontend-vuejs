@@ -72,7 +72,7 @@ You could generate a key on [https://pusher.com/](https://pusher.com/).
 
 ## Deploy in production
 
-This application is hosted on [Netlify](https://www.netlify.com/) and available on [https://todolist.guillaumebriday.xyz/](https://todolist.guillaumebriday.xyz/).
+This application is hosted on [Netlify](https://www.netlify.com/) and available on [https://todolist.guillaumebriday.me/](https://todolist.guillaumebriday.me/).
 
 ## More details
 

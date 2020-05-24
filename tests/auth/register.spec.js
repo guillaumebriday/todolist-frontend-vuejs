@@ -25,13 +25,13 @@ describe('Register', () => {
       })
     })
 
-    let button = wrapper.find('button')
+    const button = wrapper.find('button')
 
     expect(button.attributes().disabled).not.toBe('disabled')
   })
 
   it('disables the register button', () => {
-    let button = wrapper.find('button')
+    const button = wrapper.find('button')
 
     expect(button.attributes().disabled).toBe('disabled')
   })

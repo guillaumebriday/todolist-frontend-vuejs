@@ -31,7 +31,7 @@
     "axios": "0.19.2",
     "copy-webpack-plugin": "6.0.3",
     "dotenv-webpack": "1.8.0",
-    "laravel-echo": "1.8.0",
+    "laravel-echo": "1.8.1",
     "luxon": "1.24.1",
     "moment": "2.26.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",

@@ -37,7 +37,7 @@
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pusher-js": "6.0.3",
     "tailwindcss": "0.7.4",
-    "terser-webpack-plugin": "3.0.6",
+    "terser-webpack-plugin": "3.0.8",
     "vue": "2.6.11",
     "vue-analytics": "5.22.1",
     "vue-clickaway": "2.2.2",
